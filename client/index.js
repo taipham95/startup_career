@@ -54,13 +54,9 @@ Trang Career:
 
 /*
     if(login) {
-      if(pasword !== "User") {
+      if(pasword !== "User" && email !== "Admin") {
          return;
       }
-      if(email !== "Admin") {
-        return;
-      }
-
       const { email, password } = req.body;
     } else {
      const { email, password } = req.body;
