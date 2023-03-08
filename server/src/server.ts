@@ -1,38 +1,78 @@
-import express, { Application, Request, Response } from 'express';
-import { MongoClient, Collection } from 'mongodb';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import mongoose, { ConnectOptions } from "mongoose";
 
-const app: Application = express();
-const port: number = 3000;
-const url: string = 'mongodb://localhost:27017';
-const dbName: string = 'applicant_db';
+const app = express();
+const port = 3000;
 
-interface Applicant {
-  name: string;
-  email: string;
-  phone: string;
-}
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use(express.json());
-
-app.post('/applicant', (req: Request, res: Response) => {
-  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-    if (err) throw err;
-    const db = client.db(dbName);
-    const collection: Collection<Applicant> = db.collection('applicants');
-    const newApplicant: Applicant = {
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone
-    };
-    collection.insertOne(newApplicant, (err, result) => {
-      if (err) throw err;
-      console.log(`Inserted ${result.insertedCount} documents into the collection`);
-      res.send('Applicant added successfully!');
-      client.close();
+// Connect to MongoDB
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  };
+  
+  mongoose.connect('mongodb://localhost:27017/joblistings', options)
+    .then(() => {
+      console.log('MongoDB connected');
+    })
+    .catch((err) => {
+      console.error(err);
     });
-  });
+// Create job schema
+const jobSchema = new mongoose.Schema({
+  name: String,
+  requirements: String,
+  description: String
 });
 
+// Create job model
+const Job = mongoose.model('Job', jobSchema);
+
+// Create applicant schema
+const applicantSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  dob: Date,
+  resumeLink: String
+});
+
+// Create applicant model
+const Applicant = mongoose.model('Applicant', applicantSchema);
+
+// Routes
+app.get('/jobs', async (req, res) => {
+  const jobs = await Job.find();
+  res.json(jobs);
+});
+
+app.post('/jobs', async (req, res) => {
+  const { name, requirements, description } = req.body;
+  const job = new Job({ name, requirements, description });
+  await job.save();
+  res.json(job);
+});
+
+app.get('/applicants', async (req, res) => {
+  const applicants = await Applicant.find();
+  res.json(applicants);
+});
+
+app.post('/applicants', async (req, res) => {
+  const { name, email, phone, dob, resumeLink } = req.body;
+  const applicant = new Applicant({ name, email, phone, dob, resumeLink });
+  await applicant.save();
+  res.json(applicant);
+});
+
+// Start the server
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server is running on port ${port}.`);
 });
