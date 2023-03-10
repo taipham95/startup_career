@@ -1,13 +1,16 @@
 import CareerHeader from "./components/CareerHeader";
-import ApplyPage from "./pages/ApplyPage/ApplyPage";
+// import ApplyPage from "./pages/ApplyPage/ApplyPage";
 import CareerFooter from "./components/CareerFooter";
 
+import Header from "./components/CareerBody/Header/Header";
+import Content from "./components/CareerBody/Content/Content";
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ml-0">
       <CareerHeader />
       <main className="flex-1 w-full">
-        <ApplyPage/>
+        <Header/>
+        <Content/>
       </main>
       <CareerFooter />
     </div>
