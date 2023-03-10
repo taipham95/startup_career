@@ -1,6 +1,7 @@
 import CareerHeader from "./components/CareerHeader";
 // import ApplyPage from "./pages/ApplyPage/ApplyPage";
 import CareerFooter from "./components/CareerFooter";
+import JobDetail from "./components/JobDetail";
 
 import Header from "./components/CareerBody/Header/Header";
 import Content from "./components/CareerBody/Content/Content";
