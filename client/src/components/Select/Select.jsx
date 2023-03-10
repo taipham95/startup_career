@@ -6,6 +6,7 @@ const Select = ({ props }) => {
   const [flagURL, setFlagURL] = useState("");
   const [flagAlt, setFlagAlt] = useState("");
   const [code, setCode] = useState("");
+  const [open, setOpen] = useState(false);
 
   const [countries, setCountries] = useState([]);
 
@@ -29,7 +30,7 @@ const Select = ({ props }) => {
       <li
         key={idx}
         className="w-full flex flex-row gap-5 justify-between py-4 px-6 hover:bg-sky-200 hover:cursor-pointer focus:bg-slate-300"        
-        onClick={() => onHandleClick(idx)}
+        onClick={() => onHandleItemClick(idx)}
       >
         <div className="flex flex-row justify-items-stretch gap-3 w-2/3">
         <img
@@ -43,10 +44,14 @@ const Select = ({ props }) => {
     );
   });
 
-  const onHandleClick = (val) => {
+  const onHandleItemClick = (val) => {
     console.log(val);  
+    setOpen(!open);
   };
   
+  const onHandleDropdown = () => {
+    setOpen(!open);
+  }
 
   useEffect(() => {
     fetchData();
@@ -58,6 +63,7 @@ const Select = ({ props }) => {
         data-dropdown-toggle="dropdown-states"        
         className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
         type="button"
+        onClick={() => onHandleDropdown()}
       >
         <div className="flex flex-row gap-4">
           <img
@@ -83,7 +89,7 @@ const Select = ({ props }) => {
       </button>
       <div
         id="dropdown-states"
-        class={`w-72 h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 hidden focus:outline-none outline-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700`}
+        class={`w-72 h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ${!open ? 'hidden' : ''}`}
       >
         <ul
           class="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
@@ -91,17 +97,6 @@ const Select = ({ props }) => {
           
         >
           {phoneCodes}
-          {/* <li
-            className="flex flex-row gap-4 justify-around"
-            onChange={onHandleChange}
-          >
-            <img
-              src={initFlagURL}
-              alt={flagAlt}
-              className="w-[2rem] rounded-[0.2rem]"
-            ></img>
-            <span>+84</span>
-          </li> */}
         </ul>
       </div>
     </>
