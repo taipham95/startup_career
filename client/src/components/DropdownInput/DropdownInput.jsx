@@ -18,12 +18,13 @@ const DropdownInput = ({ type, text, idInput, required, option }) => {
         <input
           type={type}
           required={required}
-          className={`peer w-full block p-2.5 z-20 min-h-[auto] rounded-lg border rounded-r-lg rounded-l-none bg-white py-[0.5rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${
+          className={`peer w-full block py-4 px-3 z-20 min-h-[auto] rounded-lg border border-l-0 rounded-r-lg rounded-l-none bg-white leading-[1.6] placeholder-gray-500 focus:placeholder-transparent outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${
             required
               ? "dark:focus:border-rose-500 focus:border-rose-500"
               : "dark:focus:border-sky-300 focus:border-sky-300"
           }`}
           id={idInput}
+          placeholder={option ? `${text} (${option})` : text}
         />
         {required ? (
           <span className="text-xs md:text-sm absolute bottom-[-1.5rem] left-0 opacity-0 p-0 m-0 peer-focus:opacity-100 peer-focus:text-red-500">
@@ -34,8 +35,8 @@ const DropdownInput = ({ type, text, idInput, required, option }) => {
         )}
         <label
           forhtml={idInput}
-          className={`pointer-events-none bg-transparent absolute h-full top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
-        peer-focus:scale-[0.9] peer-focus:left-4 peer-focus:bg-white motion-reduce:transition-none dark:text-neutral-300  ${
+          className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
+          opacity-0 peer-focus:opacity-100 peer-focus:scale-[0.9] peer-focus:left-4 peer-focus:bg-white motion-reduce:transition-none dark:text-neutral-300  ${
           required
             ? "dark:peer-focus:text-red-500 peer-focus:text-red-500"
             : "dark:peer-focus:text-sky-500 peer-focus:text-sky-500"

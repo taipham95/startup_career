@@ -6,5 +6,11 @@
 
 * {
   font-family: 'Poppins','Segoe UI,Roboto,Helvetica Neue', 'Arial', sans-serif;
+  padding:0;
+  margin:0;
 }
 
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

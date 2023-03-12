@@ -71,7 +71,7 @@ const Select = ({ props }) => {
       <button
         id="dropdown-button"
         data-dropdown-toggle="dropdown-states"
-        className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
+        className="flex-shrink-0 z-10 inline-flex items-center py-1.5 md:py-2.5 px-2 md:px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
         type="button"
         onClick={() => onHandleDropdown()}
       >
@@ -79,10 +79,10 @@ const Select = ({ props }) => {
           <img
             src={flagURL}
             alt={flagAlt}
-            className="w-[1.8rem] h-[1.15rem] rounded-[0.2rem]"
+            className="w-[1.65rem] h-[1rem] md:w-[1.8rem] md:h-[1.15rem] rounded-[0.2rem]"
           ></img>
-          <p className="truncate">{countryName}</p>
-          <p className="">
+          <p className="truncate hidden md:block">{countryName}</p>
+          <p className="text-xs md:text-sm">
           {code}
         </p>
         </div>
