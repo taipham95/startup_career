@@ -1,111 +1,23 @@
 import React from "react";
-import {
-  Grid,
-  Container,
-  Row,
-  Col,
-  Spacer,
-  Text,
-  Link,
-  Button,
-  Badge,
-} from "@nextui-org/react";
-import "./ApplyPage.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesLeft} from '@fortawesome/free-solid-svg-icons';
+
+import ApplyForm from "../../components/ApplyForm/ApplyForm";
+import HeroBanner from "../../components/HeroBanner/HeroBanner";
 
 const ApplyPage = () => {
   return (
-    /* header */
-    /* Hero banner */
-    <>
-      <Container xl fluid responsive wrap="wrap" justify="center">
-        <Row className="desk">
-          <Spacer y={4}></Spacer>
-        </Row>
-      </Container>
-      <Container
-        className="hero-banner"
-        fluid
-        xl
-        responsive
-        wrap="wrap"
-        justify="center"
-      >
-        <Row fluid justify="center" align="center">
-          <Badge isSquared color="primary">
-            Engineer
-          </Badge>
-        </Row>
-        <Row
-          fluid
-          justify="center"
-          align="center"
-          css={{ maxWidth: "50%", width: "50%", margin: "auto" }}
-        >
-          <Text
-            h1
-            weight="bold"
-            css={{
-              textAlign: "center",
-              fontSize: "2.25rem",
-              lineHeight: "1.3",
-              letterSpacing: "0.25px",
-            }}
-          >
-            Growth Data Analyst <br></br>(APAC Remote/HCMC, relocation support
-            available)
-          </Text>
-        </Row>
-        <Row>
-          <Spacer y={1}></Spacer>
-        </Row>
-        <Row
-          fluid
-          justify="center"
-          align="center"
-          css={{ maxWidth: "50%", width: "50%", margin: "auto" }}
-        >
-          <Text
-            h6
-            weight="300"
-            css={{ textAlign: "center", fontSize: "16px", lineHeight: "1.3" }}
-          >
-            Vietnam , Ho Chi Minh City - Full-time
-          </Text>
-        </Row>
-      </Container>
-      <Container responsive wrap="wrap" css={{ maxWidth: "80%", width: "80%" }}>
-        <Spacer y={2}></Spacer>
-        <Row>
-          <Link
-            href="#"
-            css={{
-              fontSize: "0.8rem",
-              fontWeight: "bold",
-              color: "#777b7c",
-            }}
-          >
-            BACK TO JOB DESCRIPTION
-          </Link>
-        </Row>
-      </Container>
-      <Grid.Container
-        gap={2}
-        justify="center"
-        css={{ maxWidth: "80%", width: "80%", margin: "auto" }}
-      >
-        <Grid xl={11} lg={10} md={10} xs={10}>
-          <Text h3 weight="bold">
-            Personal Info
-          </Text>
-        </Grid>
-        <Grid xl={1} lg={2} md={2} xs={2}>
-          <Button light color="primary" type="reset" auto>
-            Clear
-          </Button>
-        </Grid>
-      </Grid.Container>
-    </>
-    /* footer */
+    <div className="apply-page box-border mx-auto w-full min-h-full flex flex-row flex-wrap align-middle">
+      <HeroBanner />
+      <div className="bg-white container md:px-20 mx-auto py-12 max-w-[80%] lg:max-w-[60%]">
+        <div className="flex flex-row gap-1 items-center text-[#57627B] focus:text-gray-400 hover:text-sky-500">
+        <FontAwesomeIcon icon={faAnglesLeft} size="xs" beat />
+        <a href="#" className="uppercase text-left font-extrabold text-xs  ">Back to Job Description</a>
+        </div>
+        
+        <ApplyForm/>
+      </div>
+    </div>
   );
 };
 
