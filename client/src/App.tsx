@@ -1,9 +1,12 @@
+import * as React from 'react';
+import ApplyPage from "./pages/ApplyPage/ApplyPage";
+// 1. import `NextUIProvider` component
+import { NextUIProvider } from '@nextui-org/react';
+
 function App() {
+  // 2. Use at the root of your app
   return (
-    <main className="main">
-      {/* ngoc branch */}
-      <h1>Hello X-Career</h1>
-    </main>
+      <ApplyPage/>
   );
 }
 
