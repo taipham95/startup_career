@@ -38,9 +38,14 @@ app.get('/jobs', async (req, res) => {
 
 app.post('/jobs', async (req, res) => {
   const { name, requirements, description } = req.body;
-  const jobs: IJob[] = new Job({ name, requirements, description });
-  await jobs.save();
-  res.status(202).json(jobs);
+  const job = new Job({ name, requirements, description });
+  job.save((err, doc) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "An error occurred while saving the job" });
+    }
+    res.status(202).json(doc);
+  });
 });
 
 app.get('/applicants', async (req, res) => {
@@ -53,9 +58,14 @@ app.get('/applicants', async (req, res) => {
 
 app.post('/applicants', async (req, res) => {
   const { name, email, phone, dob, resumeLink } = req.body;
-  const applicant: IApplicant[] = new Applicant({ name, email, phone, dob, resumeLink });
-  await applicant.save();
-  res.status(202).json(applicant);
+  const applicant = new Applicant({ name, email, phone, dob, resumeLink });
+  applicant.save((err, doc) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "An error occurred while saving the applicant" });
+    }
+    res.status(202).json(doc);
+  });
 });
 
 // Start the server
