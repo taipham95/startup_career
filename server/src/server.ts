@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose, { ConnectOptions } from "mongoose";
+import Job, { IJob } from './job.model';
+import Applicant, { IApplicant } from './applicant.model';
 
 const app = express();
 const port = 3000;
@@ -25,32 +27,9 @@ mongoose.connect('mongodb://localhost:27017/joblistings', options)
   .catch((err) => {
     console.error(err);
   });
-
-// Create job schema
-const jobSchema = new mongoose.Schema({
-  name: String,
-  requirements: String,
-  description: String
-});
-
-// Create job model
-const Job = mongoose.model('Job', jobSchema);
-
-// Create applicant schema
-const applicantSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  dob: Date,
-  resumeLink: String
-});
-
-// Create applicant model
-const Applicant = mongoose.model('Applicant', applicantSchema);
-
 // Routes
 app.get('/jobs', async (req, res) => {
-  const jobs = await Job.find();
+  const jobs: IJob[] = await Job.find();
   if (jobs.length === 0) {
     return res.status(404).json({ message: "No jobs found" });
   }
@@ -59,13 +38,13 @@ app.get('/jobs', async (req, res) => {
 
 app.post('/jobs', async (req, res) => {
   const { name, requirements, description } = req.body;
-  const job = new Job({ name, requirements, description });
-  await job.save();
-  res.status(202).json(job);
+  const jobs: IJob[] = new Job({ name, requirements, description });
+  await jobs.save();
+  res.status(202).json(jobs);
 });
 
 app.get('/applicants', async (req, res) => {
-  const applicants = await Applicant.find();
+  const applicants: IApplicant[] = await Applicant.find();
   if (applicants.length === 0) {
     return res.status(404).json({ message: "No applicants found" });
   }
@@ -74,7 +53,7 @@ app.get('/applicants', async (req, res) => {
 
 app.post('/applicants', async (req, res) => {
   const { name, email, phone, dob, resumeLink } = req.body;
-  const applicant = new Applicant({ name, email, phone, dob, resumeLink });
+  const applicant: IApplicant[] = new Applicant({ name, email, phone, dob, resumeLink });
   await applicant.save();
   res.status(202).json(applicant);
 });
