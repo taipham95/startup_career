@@ -36,7 +36,7 @@ function CareerHeader() {
             <a class="p-[20px]" href="/careers" rel="noreferrer">
               Careers
             </a>
-          </li>
+          </li>          
         </ul>
         <button class="md:hidden" title="Open Drawer">
           <svg
