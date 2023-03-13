@@ -12,17 +12,17 @@ function CareerHeader() {
           />
         </a>
         <ul class="h-full hidden md:flex">
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue transition-all svelte-15jlsr3">
+          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
             <a class="p-[20px]" href="/products" rel="noreferrer">
               Products
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue transition-all svelte-15jlsr3">
+          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
             <a class="p-[20px]" href="/team" rel="noreferrer">
               Team
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue transition-all svelte-15jlsr3">
+          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
             <a
               class="p-[20px]"
               href="https://axie.substack.com/"
@@ -32,11 +32,11 @@ function CareerHeader() {
               Blog
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue transition-all svelte-15jlsr3 active">
+          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3 active">
             <a class="p-[20px]" href="/careers" rel="noreferrer">
               Careers
             </a>
-          </li>
+          </li>          
         </ul>
         <button class="md:hidden" title="Open Drawer">
           <svg
