@@ -6,8 +6,8 @@ export interface IJob {
     location: string;
     type: string;
     tags: string[];
-    created_at: number; // assuming timestamp is a Unix timestamp in seconds
-    updated_at: number; // assuming timestamp is a Unix timestamp in seconds
+    created_at: Date; // assuming timestamp is a Unix timestamp in seconds
+    updated_at: Date; // assuming timestamp is a Unix timestamp in seconds
     available: boolean;
     descriptions: {
       title: string;
@@ -23,8 +23,8 @@ export interface IJob {
     location: { type: String, required: true },
     type: { type: String, required: true },
     tags: { type: String, required: true },
-    created_at: { type: Number, required: true },
-    updated_at: { type: Number, required: true },
+    created_at: { type: Date, required: true },
+    updated_at: { type: Date, required: true },
     available: { type: Boolean, required: true },
     descriptions: {
         title: { type: String, required: true },
