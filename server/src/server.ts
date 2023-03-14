@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose, { ConnectOptions } from "mongoose";
-import Job, { IJob } from './job.model';
+import Job, {IJob} from './job.model';
 import Applicant, { IApplicant } from './applicant.model';
 
 const app = express();

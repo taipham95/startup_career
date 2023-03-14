@@ -17,6 +17,6 @@ export interface IApplicant {
     resumeLink: { type: String, required: true }
   });
   
-  const Applicant = mongoose.model<IApplicant>('Job', applicantSchema);
+  const Applicant = mongoose.model<IApplicant>('Applicant', applicantSchema);
   
   export default Applicant;
