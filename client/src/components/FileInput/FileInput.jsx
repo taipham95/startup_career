@@ -1,15 +1,30 @@
-import React, {useState}from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { storage } from "../../services/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const FileInput = (props) => {
-  const [inputs, setInputs] = useState({});
-  const {type, inputName, value, onHandleInput} = props;
-  const onHandleChange = (e) => {
-    console.log(e);
-    const {value} = e.target;
-    console.log("files: ", value);
-    /* setInputs({[name]: value});
-    onHandleInput({[name]: value}); */
-  };
+const FileInput = () => {
+  const [formId, setFormId] = useState(23); //formId is id's candidate was created when candidate submit
+  const [file, setFile] = useState({});
+  const [urlFile, setUrlFile] = useState("");
+  // Function for upload file
+  useEffect(() => {
+    if (Object.keys(file).length !== 0) {
+      const metadata = { contentType: file[0].type };
+      const storageRef = ref(storage, `${formId}/${file[0].name}`);
+      uploadBytes(storageRef, file[0], metadata).then((snapshot) => {
+        console.log("Uploaded a file!");
+        getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
+          (url) => {
+            setUrlFile(url);
+            console.log(url);
+          }
+        );
+      });
+      setFile({});
+    }
+  }, [file, formId]);
+
   return (
     <div class="flex items-center justify-center w-full">
       <label
@@ -33,11 +48,18 @@ const FileInput = (props) => {
             ></path>
           </svg> */}
           <p class="mb-2 text-base font-light">
-            <span class="font-normal text-sky-400">Upload a file&nbsp;</span><span className="text-gray-500 dark:text-gray-400">or drag and drop here</span>
+            <span class="font-normal text-sky-400">Upload a file&nbsp;</span>
+            <span className="text-gray-500 dark:text-gray-400">
+              or drag and drop here
+            </span>
           </p>
         </div>
-        <input id="dropzone-file" type={type} className="hidden"        
-        name={inputName} value={value || ""} onChange={onHandleChange} />
+        <input
+          id="dropzone-file"
+          type="file"
+          class="hidden"
+          onChange={(e) => setFile(e.target.files)}
+        />
       </label>
     </div>
   );
