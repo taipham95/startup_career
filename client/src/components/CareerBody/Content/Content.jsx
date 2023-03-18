@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
+
 import CardItem from '../Components/CardItem/CardItem';
 const Content = () => {
 
@@ -126,12 +128,14 @@ const Content = () => {
                   
                     .map((item) => {
                         return (
+                            <Link to={`/item/${item.id}`}>
                             <CardItem
                                 id={item.id}
                                 title={item.title}
                                 descriptions={item.descriptions}
                                 position={item.position}
                             />
+                            </Link>
                         );
                     })}
             </div>
