@@ -11,7 +11,8 @@ module.exports = {
       },
       boxShadow:{
         "hov": "0px 0px 25px 5px  rgb(203 213 225) "
-      }
+      },
+      
     },
   },
   plugins: [require('flowbite/plugin')],
