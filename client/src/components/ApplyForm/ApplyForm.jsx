@@ -15,6 +15,7 @@ const ApplyForm = () => {
     // using destructuring or rest operator
     // setInfo({...info, [name]:value});
     setInfo({ ...info, ...response });
+    setProfile({ ...info, ...response });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const ApplyForm = () => {
     setInfo({});
   };
 
-  const onHandleClearProfile = () => {
+  const onHandleClearProfile = (e) => {
     e.preventDefault();
     setProfile({});
   };
@@ -154,7 +155,7 @@ const ApplyForm = () => {
                 text="School"
                 inputName="school"
                 required={true}
-                value={info["school"]}
+                value={profile["school"]}
                 onHandleInput={onHandleInput}
                 option=""
               />
@@ -172,7 +173,7 @@ const ApplyForm = () => {
                 text="Degree"
                 inputName="degree"
                 required={false}
-                value={info["degree"]}
+                value={profile["degree"]}
                 onHandleInput={onHandleInput}
                 option="OPTION"
               />
@@ -207,7 +208,7 @@ const ApplyForm = () => {
                 text="Title"
                 inputName="title"
                 required={true}
-                value={info["title"]}
+                value={profile["title"]}
                 onHandleInput={onHandleInput}
                 option=""
               />
@@ -216,7 +217,7 @@ const ApplyForm = () => {
                 text="Company"
                 inputName="company"
                 required={false}
-                value={info["company"]}
+                value={profile["company"]}
                 onHandleInput={onHandleInput}
                 option="OPTION"
               />
@@ -225,7 +226,7 @@ const ApplyForm = () => {
                 text="Industry"
                 inputName="industry"
                 required={false}
-                value={info["industry"]}
+                value={profile["industry"]}
                 onHandleInput={onHandleInput}
                 option="OPTION"
               />
