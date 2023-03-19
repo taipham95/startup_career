@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useState}from "react";
 
-const FileInput = () => {
+const FileInput = (props) => {
+  const [inputs, setInputs] = useState({});
+  const {type, inputName, value, onHandleInput} = props;
+  const onHandleChange = (e) => {
+    console.log(e);
+    const {value} = e.target;
+    console.log("files: ", value);
+    /* setInputs({[name]: value});
+    onHandleInput({[name]: value}); */
+  };
   return (
     <div class="flex items-center justify-center w-full">
       <label
-        for="dropzone-file"
+        forhtml="dropzone-file"
         class="flex flex-col items-center justify-center w-full h-24 border-[1px] border-gray-300 border-dashed rounded-2xl cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
       >
         <div class="flex flex-col items-center justify-center px-4 pt-5 pb-6">
@@ -27,7 +36,8 @@ const FileInput = () => {
             <span class="font-normal text-sky-400">Upload a file&nbsp;</span><span className="text-gray-500 dark:text-gray-400">or drag and drop here</span>
           </p>
         </div>
-        <input id="dropzone-file" type="file" class="hidden" />
+        <input id="dropzone-file" type={type} className="hidden"        
+        name={inputName} value={value || ""} onChange={onHandleChange} />
       </label>
     </div>
   );
