@@ -5,7 +5,7 @@ const ProfileInput = (props) => {
   const {type, text, inputName, required, option, value, onHandleInput} = props;
   const onHandleChange = (e) => {
     const {name, value} = e.target;
-    console.log({name, value});
+    // console.log({name, value});
     setInputs({[name]: value});
     onHandleInput({[name]: value});
   };

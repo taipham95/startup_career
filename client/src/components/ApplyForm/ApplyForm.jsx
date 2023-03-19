@@ -164,7 +164,7 @@ const ApplyForm = () => {
                 text="Field of study"
                 inputName="fieldOfStudy"
                 required={false}
-                value={info["fieldOfStudy"]}
+                value={profile["fieldOfStudy"]}
                 onHandleInput={onHandleInput}
                 option="OPTION"
               />
