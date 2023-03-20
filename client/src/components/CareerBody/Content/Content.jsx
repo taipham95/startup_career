@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
-
 import CardItem from '../Components/CardItem/CardItem';
+import { Link } from 'react-router-dom';
 const Content = () => {
 
     const jobList = [
@@ -63,6 +62,7 @@ const Content = () => {
     }
     const handleReset=()=>{
         setKey("");
+        // vì sao khi set bằng location hay department thì lại lỗi
         setSelect1("");
         setSelect2("");
     }
@@ -86,13 +86,13 @@ const Content = () => {
                         <input value={key} onChange={handleChangeKey} type="search" id="default-search" className=" block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." required />
                     </div>
 
-                    <select onChange={handleChangeSelect1} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5">
+                    <select value={select1} onChange={handleChangeSelect1} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5">
                         <option selected value="">Location</option>
                         <option value="Remote">Remote</option>
                         <option value="Vietnam">Vietnam</option>
                         <option value="United States">United States</option>
                     </select>
-                    <select onChange={handleChangeSelect2} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/5">
+                    <select value={select2} onChange={handleChangeSelect2} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/5">
                         <option selected value="">Department</option>
                         <option value="Art">Art</option>
                         <option value="Engineer">Engineer</option>
@@ -128,7 +128,7 @@ const Content = () => {
                   
                     .map((item) => {
                         return (
-                            <Link to={`/item/${item.id}`}>
+                            <Link to={`/careers/${item.id}`}>
                             <CardItem
                                 id={item.id}
                                 title={item.title}

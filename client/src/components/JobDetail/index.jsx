@@ -1,7 +1,60 @@
 import React from "react";
-
+import { Link, useParams } from "react-router-dom";
 function JobDetail() {
+  const param = useParams()
+  const jobList = [
+    {
+      id: 1,
+      title: "DevOps Engineer",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 2,
+      title: "QA Engineer",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 3,
+      title: "Senior Game Engineer",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 4,
+      title: "Product Designer",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 5,
+      title: "Senior Analytics Engineer",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 6,
+      title: "Growth Data Analyst (APAC Remote/HCMC, relocation support available)",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Engineer"
+    },
+    {
+      id: 7,
+      title: "Social Media Specialist",
+      descriptions: "United States , Michigan Center - Full-time",
+      position: "Growth"
+    },
+    {
+      id: 8,
+      title: "Marketing Creative Manager",
+      descriptions: "VietNam , Ho Chi Minh City - Full-time",
+      position: "Growth"
+    }
+  ]
+  const joblist2 = jobList.find(item => item.id == param.id)
   return (
+
     <main class="flex-1 flex flex-col w-full items-center relative">
       <header
         class="md:bg-[url('https://skymavis.com/_app/immutable/assets/axie-concept-f5e52a79.png')] 
@@ -9,10 +62,14 @@ function JobDetail() {
       page-header flex flex-col items-center text-center p-[64px_20px] xl:p-[95px_28px_95px] 2xl:p-[95px_500px_95px] 3xl:p-[95px_600px_95px] bg-no-repeat bg-cover bg-center transition-all w-full"
       >
         <div class="bg-[#4c98ff] mb-2 px-3 py-0.5 rounded	">
-          <p class="text-white text-sm">Engineer</p>
+          {/* <p class="text-white text-sm">Engineer</p> */}
+          <p class="text-white text-sm">{joblist2.position}</p>
+
         </div>
-        <div class="text-3xl font-bold mb-5">DevOps Engineer</div>
-        Vietnam, Ho Chi Minh City - Full-time
+        {/* <div class="text-3xl font-bold mb-5">DevOps Engineer</div> */}
+        <div class="text-3xl font-bold mb-5">{joblist2.title}</div>
+        {/* Vietnam, Ho Chi Minh City - Full-time */}
+        {joblist2.descriptions}
       </header>
       <div class="flex flex-col text-left  max-w-[856px] p-5 xl:p-0">
         <div class="text-[#1D273D] detail-job pt-10 xl:pt-[79px] ">
@@ -163,10 +220,11 @@ function JobDetail() {
           <div />
         </div>
       </div>
-      <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-full mb-[50px] mt-[30px] py-[5px] px-[54px]">
+      <Link to={`/careers/${param.id}/apply`}> <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-full mb-[50px] mt-[30px] py-[5px] px-[54px]">
         Apply
-      </button>
+      </button></Link>
     </main>
+
   );
 }
 
