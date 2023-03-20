@@ -10,13 +10,19 @@ const ApplyForm = () => {
   const [showEducation, setShowEducation] = useState(false);
   const [showExp, setShowExp] = useState(false);
 
-  const onHandleInput = (response) => {
+  const onHandleInfo = (response) => {
     const { name, value } = response;
+    setInfo({ ...info, ...response });
+  };
+
+  const onHandleProfile = (response) => {
+    // const { name, value } = response;
+    console.log(response);
     // using destructuring or rest operator
     // setInfo({...info, [name]:value});
-    setInfo({ ...info, ...response });
-    setProfile({ ...info, ...response });
+    setProfile({ ...profile, ...response });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -64,7 +70,7 @@ const ApplyForm = () => {
                 inputName="firstName"
                 required={true}
                 value={info["firstName"]}
-                onHandleInput={onHandleInput}
+                onHandleInfo={onHandleInfo}
               />
               <Input
                 type="text"
@@ -72,7 +78,7 @@ const ApplyForm = () => {
                 inputName="lastName"
                 required={true}
                 value={info["lastName"]}
-                onHandleInput={onHandleInput}
+                onHandleInfo={onHandleInfo}
               />
             </div>
             <Input
@@ -81,7 +87,7 @@ const ApplyForm = () => {
               inputName="email"
               required={true}
               value={info["email"]}
-              onHandleInput={onHandleInput}
+              onHandleInfo={onHandleInfo}
             />
             <Input
               type="text"
@@ -89,7 +95,7 @@ const ApplyForm = () => {
               inputName="headline"
               required={false}
               value={info["headline"]}
-              onHandleInput={onHandleInput}
+              onHandleInfo={onHandleInfo}
               option="OPTION"
             />
             <DropdownInput
@@ -98,7 +104,7 @@ const ApplyForm = () => {
               inputName="phone"
               required={true}
               value={info["phone"]}
-              onHandleInput={onHandleInput}
+              onHandleInfo={onHandleInfo}
             />
             <Input
               type="text"
@@ -106,7 +112,7 @@ const ApplyForm = () => {
               inputName="address"
               required={false}
               value={info["address"]}
-              onHandleInput={onHandleInput}
+              onHandleInfo={onHandleInfo}
               option="OPTION"
             />
           </div>
@@ -156,7 +162,7 @@ const ApplyForm = () => {
                 inputName="school"
                 required={true}
                 value={profile["school"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option=""
               />
               <ProfileInput
@@ -165,7 +171,7 @@ const ApplyForm = () => {
                 inputName="fieldOfStudy"
                 required={false}
                 value={profile["fieldOfStudy"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option="OPTION"
               />
               <ProfileInput
@@ -174,7 +180,7 @@ const ApplyForm = () => {
                 inputName="degree"
                 required={false}
                 value={profile["degree"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option="OPTION"
               />
             </div>
@@ -209,7 +215,7 @@ const ApplyForm = () => {
                 inputName="title"
                 required={true}
                 value={profile["title"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option=""
               />
               <ProfileInput
@@ -218,7 +224,7 @@ const ApplyForm = () => {
                 inputName="company"
                 required={false}
                 value={profile["company"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option="OPTION"
               />
               <ProfileInput
@@ -227,7 +233,7 @@ const ApplyForm = () => {
                 inputName="industry"
                 required={false}
                 value={profile["industry"]}
-                onHandleInput={onHandleInput}
+                onHandleProfile={onHandleProfile}
                 option="OPTION"
               />
               
@@ -259,8 +265,8 @@ const ApplyForm = () => {
               type="file"
               text="file"
               inputName="fileUpload"
-              value={info["fileUpload"]}
-              onHandleInput={onHandleInput}
+              // value={profile["fileUpload"]}
+              onHandleProfile={onHandleProfile}
             />
           </div>
         </div>

@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import { storage } from "../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const FileInput = () => {
+const FileInput = (props) => {
   const [formId, setFormId] = useState(23); //formId is id's candidate was created when candidate submit
   const [file, setFile] = useState({});
-  const [urlFile, setUrlFile] = useState("");
+  const {inputName, onHandleProfile} = props;
+  const onHandleChange = (e) => {
+    setFile(e.target.files);
+  };
   // Function for upload file
   useEffect(() => {
     if (Object.keys(file).length !== 0) {
@@ -16,15 +19,13 @@ const FileInput = () => {
         console.log("Uploaded a file!");
         getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
           (url) => {
-            setUrlFile(url);
-            console.log(url);
+            onHandleProfile({[inputName]: url});
           }
         );
       });
       setFile({});
     }
   }, [file, formId]);
-
   return (
     <div class="flex items-center justify-center w-full">
       <label
@@ -57,8 +58,9 @@ const FileInput = () => {
         <input
           id="dropzone-file"
           type="file"
+          // name={inputName}
           class="hidden"
-          onChange={(e) => setFile(e.target.files)}
+          onChange={onHandleChange}
         />
       </label>
     </div>

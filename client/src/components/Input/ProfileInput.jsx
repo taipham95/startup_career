@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const ProfileInput = (props) => {
   const [inputs, setInputs] = useState({});
-  const {type, text, inputName, required, option, value, onHandleInput} = props;
+  const {type, text, inputName, required, option, value, onHandleProfile} = props;
   const onHandleChange = (e) => {
     const {name, value} = e.target;
     // console.log({name, value});
     setInputs({[name]: value});
-    onHandleInput({[name]: value});
+    onHandleProfile({[name]: value});
   };
   
   return (
