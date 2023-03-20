@@ -2,7 +2,7 @@ import express from 'express';
 import Applicant, { IApplicant } from '../models/applicant.model';
 const router = express.Router();
 
-router.get('/:id', async (req, res) => {
+router.get('/applicants', async (req, res) => {
   const applicants: IApplicant[] = await Applicant.find();
   if (applicants.length === 0) {
     return res.status(404).json({ message: "No applicants found" });
@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
   res.json(applicants);
 });
 
-router.post('/', async (req, res) => {
+router.post('/applicants', async (req, res) => {
   const { name, email, phone, dob, resumeLink } = req.body;
   const applicant = new Applicant({ name, email, phone, dob, resumeLink });
   applicant.save((err, doc) => {

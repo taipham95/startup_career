@@ -1,7 +1,6 @@
 import express from 'express';
 // import jobDetail from "./JobDetail"
 import applyApp from "./Apply"
-
 const router = express.Router();
 
 // //Job detail KHANG
