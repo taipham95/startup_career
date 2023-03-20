@@ -70,8 +70,7 @@ const Select = ({ props }) => {
     <>
       <button
         id="dropdown-button"
-        data-dropdown-toggle="dropdown-states"
-        className="flex-shrink-0 z-10 inline-flex items-center py-1.5 md:py-2.5 px-2 md:px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
+        className="flex-shrink-0 z-10 relative inline-flex items-center py-1.5 md:py-2.5 px-2 md:px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
         type="button"
         onClick={() => onHandleDropdown()}
       >
@@ -101,10 +100,10 @@ const Select = ({ props }) => {
         </svg>
       </button>
       <div
-        id="dropdown-states"
-        class={`w-72 h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ${
+        class={`absolute w-72 h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ${
           !open ? "hidden" : ""
         }`}
+        style={{inset: '0px auto auto 0px', margin: '0px', transform: 'translate3d(142.5px, 770px, 0px)'}}
       >
         <ul
           class="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
