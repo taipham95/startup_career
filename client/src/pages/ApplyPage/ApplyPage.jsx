@@ -10,11 +10,11 @@ const ApplyPage = () => {
   return (
     <div className="apply-page box-border mx-auto w-full min-h-full flex flex-row flex-wrap align-middle">
       <HeroBanner />
-      <div className="bg-transparent container md:px-20 mx-auto py-12 max-w-[80%] lg:max-w-[60%]">
+      <div className="bg-transparent container md:px-14 mx-auto py-12 max-w-[90%] lg:max-w-[85%]">
         <div className="flex flex-row gap-1 items-center text-[#57627B] focus:text-gray-400 hover:text-sky-500">
           <FontAwesomeIcon icon={faAnglesLeft} size="xs" beat />
           <a
-            href="#"
+            href="/careers"
             className="uppercase text-left font-extrabold text-xs transition duration-150"
           >
             Back to Job Description
