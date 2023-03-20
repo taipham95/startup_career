@@ -11,13 +11,13 @@ const ApplyForm = () => {
   const [showExp, setShowExp] = useState(false);
 
   const onHandleInfo = (response) => {
-    const { name, value } = response;
+    // const { name, value } = response;
     setInfo({ ...info, ...response });
   };
 
   const onHandleProfile = (response) => {
     // const { name, value } = response;
-    console.log(response);
+    // console.log(response);
     // using destructuring or rest operator
     // setInfo({...info, [name]:value});
     setProfile({ ...profile, ...response });
