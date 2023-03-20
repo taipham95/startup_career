@@ -1,22 +1,24 @@
+import { BrowserRouter as Router, NavLink, Routes, Route } from 'react-router-dom';
 import CareerHeader from "./components/CareerHeader";
-// import ApplyPage from "./pages/ApplyPage/ApplyPage";
 import CareerFooter from "./components/CareerFooter";
-import JobDetail from "./components/JobDetail";
+import ApplyPage from './pages/ApplyPage/ApplyPage';
+import JobDetail from './components/JobDetail';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import CareerPage from './components/CareerPage/CareerPage';
 
-import Header from "./components/CareerBody/Header/Header";
-import Content from "./components/CareerBody/Content/Content";
-import ApplyPage from "./pages/ApplyPage/ApplyPage";
 function App() {
   return (
-    <div className="min-h-screen flex flex-col ml-0">
+    <Router>
       <CareerHeader />
-      <main className="flex-1 w-full">
-        {/* <Header/> */}
-        {/* <Content/> */}
-        <ApplyPage />
-      </main>
+      <Routes>
+        <Route exact path="/" element={<CareerPage />} />
+        <Route exact path="/careers" element={<CareerPage />} />
+        <Route exact path="/careers/:id" element={<JobDetail />} />
+        <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
       <CareerFooter />
-    </div>
+    </Router>
   );
 }
 

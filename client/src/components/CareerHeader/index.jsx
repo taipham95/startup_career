@@ -1,16 +1,16 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function CareerHeader() {
   return (
     <header className="w-full h-[70px] md:h-[80px] sticky top-0 z-[90] flex items-center border border-solid border-[#eef3fb] bg-white">
       <div class="w-full md:container flex justify-between items-center mx-auto px-[24px]">
-        <a class="cursor-pointer" href="/" rel="noreferrer">
+        <Link to={"/careers"}>  <a class="cursor-pointer" href="/" rel="noreferrer">
           <img
             width="178"
             src="https://www.skymavis.com/images/branding.svg"
             alt="sky-mavis-branding"
           />
-        </a>
+        </a></Link>
         <ul class="h-full hidden md:flex">
           <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
             <a class="p-[20px]" href="/products" rel="noreferrer">
@@ -32,11 +32,11 @@ function CareerHeader() {
               Blog
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3 active">
+          <Link to="/careers"> <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3 active">
             <a class="p-[20px]" href="/careers" rel="noreferrer">
               Careers
             </a>
-          </li>          
+          </li>      </Link>
         </ul>
         <button class="md:hidden" title="Open Drawer">
           <svg
