@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { dataServices } from "../../utils/dataService";
+import BeatLoader from "react-spinners/BeatLoader";
 import "flowbite";
 
 const Select = ({ props }) => {
@@ -9,9 +10,11 @@ const Select = ({ props }) => {
   const [countryName, setCountryName] = useState("");
   const [code, setCode] = useState("");
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   /* fetch all countries */
   const fetchData = async () => {
+    setLoading(true);
     const res = await dataServices.getData(
       "https://restcountries.com/v3.1/all"
     );
@@ -22,6 +25,7 @@ const Select = ({ props }) => {
     setFlagAlt(init.flags.alt);
     setCountryName(init.name.common);
     setCode(init.idd.root + init.idd.suffixes);
+    setLoading(false);
   };
   
   const phoneCodes =
@@ -70,11 +74,11 @@ const Select = ({ props }) => {
     <>
       <button
         id="dropdown-button"
-        className="flex-shrink-0 z-10 relative inline-flex items-center py-1.5 md:py-2.5 px-2 md:px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
+        className="flex-shrink-0 z-10 relative inline-flex justify-center items-center py-1.5 md:py-2.5 px-2 md:px-4 text-sm font-medium text-center text-gray-800 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-sky-200 focus:outline-none focus:ring-transparent dark:focus:ring-transparent dark:bg-gray-600 dark:hover:bg-gray-700"
         type="button"
         onClick={() => onHandleDropdown()}
       >
-        <div className="w-full flex flex-row justify-items-stretch gap-3">
+        {loading ? <BeatLoader color="#0ea5e9" size={8}/> : (<><div className="phone-code w-full flex flex-row justify-items-stretch gap-3">
           <img
             src={flagURL}
             alt={flagAlt}
@@ -97,7 +101,8 @@ const Select = ({ props }) => {
             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
             clipRule="evenodd"
           ></path>
-        </svg>
+        </svg></>)}
+        
       </button>
       <div
         class={`absolute w-72 h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ${

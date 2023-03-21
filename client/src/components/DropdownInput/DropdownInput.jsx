@@ -4,7 +4,7 @@ import "flowbite";
 import Select from "../Select/Select";
 
 const DropdownInput = (props) => {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({});  
   const {type, text, inputName, required, option, value, onHandleInfo} = props;
   const onHandleChange = (e) => {
     const {name, value} = e.target;
