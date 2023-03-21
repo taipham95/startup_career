@@ -2,8 +2,8 @@ import mongoose, { Schema } from 'mongoose';
 // Variable declaration
 export interface IApplicant {
     personal: {
-      fname: String;
-      lname: String;
+      firstName: String;
+      lastName: String;
       email: String;
       headline: String;
       phone: String;
@@ -13,8 +13,8 @@ export interface IApplicant {
       school: String;
       foStudy: String;
       degree: String;
-      sDate: String;
-      eDate: String;
+      startDate: String;
+      endDate: String;
     };
     experience: {
       title: String;
@@ -32,8 +32,8 @@ export interface IApplicant {
   // Schema is database combination of rules 
   const applicantSchema: Schema = new mongoose.Schema({
     personal: {
-      fname: { type: String, required: true },
-      lname: { type: String, required: true },
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
       email: { type: String, required: true },
       headline: { type: String },
       phone: { type: String, required: true },
@@ -43,8 +43,8 @@ export interface IApplicant {
       school: { type: String },
       foStudy: { type: String },
       degree: { type: String },
-      sDate: { type: String },
-      eDate: { type: String }
+      startDate: { type: String },
+      endDate: { type: String }
     },
     experience: {
       title: { type: String },

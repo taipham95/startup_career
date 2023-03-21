@@ -54,16 +54,17 @@ const fetchApply = async (req: any, res: any) => {
 };
 
 const createApply = async (req: any, res: any) => {
+
   try {
     const applicationBody = req.body;
     const { resumeLink, coverLetter, dob } = req.body;
 
     const { 
-      fname, 
-      lname, 
-      headline, 
-      phone, 
-      address, 
+      firstName, 
+      lastName, 
+      headline,
+      phone,
+      address,
       email
     } = applicationBody.personal
 
@@ -97,8 +98,8 @@ const createApply = async (req: any, res: any) => {
 
     const apply = new Applicant({
       personal: {
-        fname, 
-        lname, 
+        firstName, 
+        lastName, 
         headline, 
         phone, 
         address, 
