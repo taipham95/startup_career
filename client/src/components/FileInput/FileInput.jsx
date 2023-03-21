@@ -8,8 +8,10 @@ const FileInput = (props) => {
   const [file, setFile] = useState({});
   const {inputName, onHandleProfile} = props;
   const onHandleChange = (e) => {
-    setFile(e.target.files);
+    setFile(e.target.files);    
   };
+  // get file name to show to UI
+  // file.length>0 && console.log(file[0]);
   // Function for upload file
   useEffect(() => {
     if (Object.keys(file).length !== 0) {
@@ -58,10 +60,12 @@ const FileInput = (props) => {
         <input
           id="dropzone-file"
           type="file"
+          required={true}
           // name={inputName}
           class="hidden"
           onChange={onHandleChange}
         />
+        
       </label>
     </div>
   );

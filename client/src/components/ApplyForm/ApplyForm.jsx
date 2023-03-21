@@ -4,27 +4,26 @@ import FileInput from "../FileInput/FileInput";
 import Input from "../Input/Input";
 import ProfileInput from "../Input/ProfileInput";
 
-const ApplyForm = () => {
-  const [info, setInfo] = useState({});
+const ApplyForm = () => {  
+  const [personal, setInfo] = useState({});
   const [profile, setProfile] = useState({});
   const [showEducation, setShowEducation] = useState(false);
   const [showExp, setShowExp] = useState(false);
 
+  const userInfo = personal && profile ? {personal, profile} : {};
+  
+
   const onHandleInfo = (response) => {
     // const { name, value } = response;
-    setInfo({ ...info, ...response });
+    setInfo({ ...personal, ...response });
   };
 
   const onHandleProfile = (response) => {
     // const { name, value } = response;
     // console.log(response);
     // using destructuring or rest operator
-    // setInfo({...info, [name]:value});
+    // setInfo({...personal, [name]:value});
     setProfile({ ...profile, ...response });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
   };
 
   const onShowEducation = () => {
@@ -42,6 +41,13 @@ const ApplyForm = () => {
 
   const onHandleClearProfile = (e) => {
     e.preventDefault();
+    setProfile({});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("userInfo", userInfo);
+    setInfo({});
     setProfile({});
   };
 
@@ -69,7 +75,7 @@ const ApplyForm = () => {
                 text="First Name"
                 inputName="firstName"
                 required={true}
-                value={info["firstName"]}
+                value={personal["firstName"]}
                 onHandleInfo={onHandleInfo}
               />
               <Input
@@ -77,7 +83,7 @@ const ApplyForm = () => {
                 text="Last Name"
                 inputName="lastName"
                 required={true}
-                value={info["lastName"]}
+                value={personal["lastName"]}
                 onHandleInfo={onHandleInfo}
               />
             </div>
@@ -86,7 +92,7 @@ const ApplyForm = () => {
               text="Email"
               inputName="email"
               required={true}
-              value={info["email"]}
+              value={personal["email"]}
               onHandleInfo={onHandleInfo}
             />
             <Input
@@ -94,7 +100,7 @@ const ApplyForm = () => {
               text="Headline"
               inputName="headline"
               required={false}
-              value={info["headline"]}
+              value={personal["headline"]}
               onHandleInfo={onHandleInfo}
               option="OPTION"
             />
@@ -103,7 +109,7 @@ const ApplyForm = () => {
               text="Phone"
               inputName="phone"
               required={true}
-              value={info["phone"]}
+              value={personal["phone"]}
               onHandleInfo={onHandleInfo}
             />
             <Input
@@ -111,7 +117,7 @@ const ApplyForm = () => {
               text="Address"
               inputName="address"
               required={false}
-              value={info["address"]}
+              value={personal["address"]}
               onHandleInfo={onHandleInfo}
               option="OPTION"
             />
@@ -160,7 +166,7 @@ const ApplyForm = () => {
                 type="text"
                 text="School"
                 inputName="school"
-                required={true}
+                required={showEducation ? true : false}
                 value={profile["school"]}
                 onHandleProfile={onHandleProfile}
                 option=""
@@ -213,7 +219,7 @@ const ApplyForm = () => {
                 type="text"
                 text="Title"
                 inputName="title"
-                required={true}
+                required={showExp ? true : false}
                 value={profile["title"]}
                 onHandleProfile={onHandleProfile}
                 option=""
@@ -264,8 +270,7 @@ const ApplyForm = () => {
             <FileInput
               type="file"
               text="file"
-              inputName="fileUpload"
-              // value={profile["fileUpload"]}
+              inputName="resumeLink"
               onHandleProfile={onHandleProfile}
             />
           </div>
@@ -305,7 +310,7 @@ const ApplyForm = () => {
         </div>
 
         <button
-          type="button"
+          type="submit"
           className="min-w-fit z-10 w-fit mx-auto mt-8 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
         >
           Submit application

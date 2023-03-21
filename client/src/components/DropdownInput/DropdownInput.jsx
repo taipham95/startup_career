@@ -8,7 +8,7 @@ const DropdownInput = (props) => {
   const {type, text, inputName, required, option, value, onHandleInfo} = props;
   const onHandleChange = (e) => {
     const {name, value} = e.target;
-    console.log({name, value});
+    // console.log({name, value});
     setInputs({[name]: value});
     onHandleInfo({[name]: value});
   };
