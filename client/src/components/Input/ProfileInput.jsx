@@ -5,7 +5,6 @@ const ProfileInput = (props) => {
   const {type, text, inputName, required, option, value, onHandleProfile} = props;
   const onHandleChange = (e) => {
     const {name, value} = e.target;
-    // console.log({name, value});
     setInputs({[name]: value});
     onHandleProfile({[name]: value});
   };
@@ -22,8 +21,7 @@ const ProfileInput = (props) => {
         value={value || ""}
         placeholder={text}
         onChange={onHandleChange}
-      />
-      {/* {required ? <span className="text-[0.7rem] md:text-xs absolute bottom-[-1.5rem] left-0 opacity-0 p-0 m-0 peer-focus:opacity-100 peer-focus:text-red-500">This field is required</span> : ""} */}
+      />      
       <label
         forhtml={inputName}
         className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 

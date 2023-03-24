@@ -3,7 +3,6 @@ import DropdownInput from "../DropdownInput/DropdownInput";
 import FileInput from "../FileInput/FileInput";
 import Input from "../Input/Input";
 import ProfileInput from "../Input/ProfileInput";
-// import PopupModal from "../PopupModal/PopupModal";
 import Swal from "sweetalert2";
 
 const ApplyForm = () => {
@@ -32,19 +31,16 @@ const ApplyForm = () => {
   };
 
   const onHandleInfo = (response) => {
-    // const { name, value } = response;
     setInfo({ ...personal, ...response });
   };
 
   const onHandleProfile = (response) => {    
     // using destructuring or rest operator
     /* const { name, value } = response;
-    setProfile({...personal, [name]:value}); */
-    // console.log(response);    
+    setProfile({...personal, [name]:value}); */    
     setProfile({ ... profile, ...response });
   };
 
-  // console.log(userInfo.profile);
   const onShowEducation = () => {
     setShowEducation(!showEducation);
   };
@@ -64,8 +60,7 @@ const ApplyForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("userInfo", userInfo);
+    e.preventDefault();    
     setInfo({});
     setProfile({});
   };
@@ -344,8 +339,7 @@ useEffect(() => {
             Submit application
           </button>
         </div>
-      </form>
-      {/* {userInfo && <PopupModal fileName={userInfo["profile"].fileName} />} */}
+      </form>      
     </>
   );
 };

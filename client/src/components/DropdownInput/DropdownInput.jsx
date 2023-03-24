@@ -8,7 +8,6 @@ const DropdownInput = (props) => {
   const [phoneNum, setPhoneNum] = useState("");
   const onHandleChange = (e) => {
     const {name, value} = e.target;
-    // console.log({name, value});
     setInputs({[name]: phoneNum.concat(value)});  
     onHandleInfo({[name]: value});
   };
