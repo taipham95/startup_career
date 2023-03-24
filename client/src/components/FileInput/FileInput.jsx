@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { storage } from "../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import PopupModal from "../PopupModal/PopupModal";
 
 const FileInput = (props) => {
   const [formId, setFormId] = useState(23); //formId is id's candidate was created when candidate submit
@@ -23,10 +24,11 @@ const FileInput = (props) => {
       uploadBytes(storageRef, file[0], metadata).then((snapshot) => {
         // console.log(`${file[0].name} uploaded`);
         setFileName(file[0].name);
+        onHandleProfile({"fileName": file[0].name});
         setUploaded(true);
         getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
           (url) => {            
-            onHandleProfile({[inputName]: url});
+            onHandleProfile({...{"fileName": file[0].name}, ... {[inputName]: url}});            
           }
         );
       });
@@ -39,7 +41,7 @@ const FileInput = (props) => {
         forhtml="dropzone-file"
         class="flex flex-col items-center justify-center w-full h-24 border-[1px] border-gray-300 border-dashed rounded-2xl cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
       >
-        <div class="flex flex-col items-center justify-center px-4 pt-5 pb-6">
+        <div class="w-full mx-auto flex flex-col items-center justify-center px-4 pt-5 pb-6">
           {/* <svg
             aria-hidden="true"
             class="w-10 h-10 mb-3 text-gray-400"
@@ -55,17 +57,18 @@ const FileInput = (props) => {
               d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
             ></path>
           </svg> */}
-          <p className={`${uploaded ? 'hidden' : 'block'} mb-2 text-center text-sm md:text-base font-light text-sky-400`}>
+          <p className={`mb-2 text-center text-sm md:text-base font-light text-sky-400`}>
             <span className="font-normal text-sky-400">Upload a file&nbsp;</span><br/>
             <span className="text-gray-500 dark:text-gray-400">
               or drag and drop here
             </span>
           </p>
-          <p className={`${uploaded ? 'block' : 'hidden'} mb-2 text-center text-xs xs:text-sm md:text-base font-light text-rose-400`}>{fileName} 
+         
+         {/*  <p className={`${uploaded ? 'block' : 'hidden'} mb-2 text-center text-xs xs:text-sm md:text-base font-light text-rose-400`}>{fileName} 
             <br/><span className="text-gray-500 dark:text-gray-400">
             uploaded!
             </span>
-          </p>
+          </p> */}
         </div>
         <input
           id="dropzone-file"
