@@ -8,8 +8,7 @@ const ApplyForm = () => {
   const [personal, setInfo] = useState({});
   const [profile, setProfile] = useState({});
   const [showEducation, setShowEducation] = useState(false);
-  const [showExp, setShowExp] = useState(false);
-
+  const [showExp, setShowExp] = useState(false);  
   const userInfo = personal && profile ? {personal, profile} : {};
   
 
@@ -56,7 +55,7 @@ const ApplyForm = () => {
       <div className="w-full flex flex-col gap-6">
         <div className="w-full px-4 flex flex-col">
           <div className="flex flex-row">
-            <h4 className="text-xl md:text-2xl font-bold text-left grow">
+            <h4 className="text-base md:text-2xl font-bold text-left grow">
               Personal Info
             </h4>
             <button
@@ -68,8 +67,8 @@ const ApplyForm = () => {
             </button>
           </div>
           <hr className="w-full h-px mt-4 mb-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-          <div className="w-full flex flex-wrap gap-9">
-            <div className="w-full flex flex-wrap gap-6">
+          <div className="w-full flex flex-wrap gap-6 sm:gap-9">
+            <div className="w-full flex flex-col sm:flex-row gap-6">
               <Input
                 type="text"
                 text="First Name"
@@ -87,6 +86,7 @@ const ApplyForm = () => {
                 onHandleInfo={onHandleInfo}
               />
             </div>
+            <div className="w-full flex flex-col sm:flex-row gap-6">
             <Input
               type="email"
               text="Email"
@@ -102,8 +102,10 @@ const ApplyForm = () => {
               required={false}
               value={personal["headline"]}
               onHandleInfo={onHandleInfo}
-              option="OPTION"
+              option={true}
             />
+            </div>
+            
             <DropdownInput
               type="tel"
               text="Phone"
@@ -119,7 +121,7 @@ const ApplyForm = () => {
               required={false}
               value={personal["address"]}
               onHandleInfo={onHandleInfo}
-              option="OPTION"
+              option={true}
             />
           </div>
         </div>
@@ -127,7 +129,7 @@ const ApplyForm = () => {
         {/* Profile */}
         <div className="flex flex-col px-4 pt-8">
           <div className="flex flex-row">
-            <h4 className="text-xl md:text-2xl font-bold text-left grow">
+            <h4 className="text-base md:text-2xl font-bold text-left grow">
               Profile
             </h4>
             <button
@@ -160,7 +162,7 @@ const ApplyForm = () => {
             <div
               className={`${
                 !showEducation ? "hidden" : "block"
-              } bg-slate-100 rounded-2xl py-8 px-4 flex flex-col gap-9 justify-items-stretch`}
+              } bg-slate-100 rounded-2xl py-8 px-4 flex flex-col gap-6 justify-items-stretch`}
             >
               <ProfileInput
                 type="text"
@@ -178,7 +180,7 @@ const ApplyForm = () => {
                 required={false}
                 value={profile["fieldOfStudy"]}
                 onHandleProfile={onHandleProfile}
-                option="OPTION"
+                option={true}
               />
               <ProfileInput
                 type="text"
@@ -187,7 +189,7 @@ const ApplyForm = () => {
                 required={false}
                 value={profile["degree"]}
                 onHandleProfile={onHandleProfile}
-                option="OPTION"
+                option={true}
               />
             </div>
           </div>
@@ -213,7 +215,7 @@ const ApplyForm = () => {
             <div
               className={`${
                 !showExp ? "hidden" : "block"
-              } bg-slate-100 rounded-2xl py-8 px-4 flex flex-col gap-9 justify-items-stretch`}
+              } bg-slate-100 rounded-2xl py-8 px-4 flex flex-col gap-6 justify-items-stretch`}
             >
               <ProfileInput
                 type="text"
@@ -231,7 +233,7 @@ const ApplyForm = () => {
                 required={false}
                 value={profile["company"]}
                 onHandleProfile={onHandleProfile}
-                option="OPTION"
+                option={true}
               />
               <ProfileInput
                 type="text"
@@ -240,7 +242,7 @@ const ApplyForm = () => {
                 required={false}
                 value={profile["industry"]}
                 onHandleProfile={onHandleProfile}
-                option="OPTION"
+                option={true}
               />
               
               <div className="relative font-light text-sm">
@@ -248,7 +250,7 @@ const ApplyForm = () => {
                 name="summary"
                 id="summary"
                 rows="6"
-                className="peer p-3 w-full text-sm text-gray-900 font-light bg-slate-100 focus:placeholder-transparent placeholder:text-sm rounded-2xl border-[1px] border-gray-500 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="peer p-3 w-full text-sm text-gray-900 font-light bg-slate-100 focus:placeholder-transparent placeholder:text-sm rounded-2xl border-[1px] border-gray-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-transparent dark:focus:ring-transparent dark:focus:border-sky-300 focus:border-sky-300"
                 placeholder="Summary"
               ></textarea>
               <label forhtml="sumary"
@@ -279,7 +281,7 @@ const ApplyForm = () => {
         {/* Detail */}
         <div className="w-full relative px-4">
           <div className="flex flex-row">
-            <h4 className="text-xl md:text-2xl font-bold text-left grow">
+            <h4 className="text-base md:text-2xl font-bold text-left grow">
               Detail
             </h4>
             <button
@@ -301,10 +303,10 @@ const ApplyForm = () => {
           <textarea
             name="coverLetter"
             rows="6"
-            className="block p-3 w-full text-sm text-gray-900 font-light bg-white rounded-2xl border-[1px] border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-3 w-full text-sm text-gray-900 font-light bg-white rounded-2xl border-[1px] border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-transparent dark:focus:ring-transparent dark:focus:border-sky-300 focus:border-sky-300"
             placeholder="Write something about you here..."
           ></textarea>
-          <div className="absolute -z-5 max-w-[12rem] w-[12rem] top-[17.5rem] -left-[3.5rem] md:max-w-[14rem] md:w-[14rem] md:top-[16rem] md:-left-[12rem] lg:max-w-[17rem] lg:w-[17rem] lg:top-[13rem] lg:-left-[15.5rem] ">
+          <div className="absolute z-[-5] max-w-[13.5rem] w-[13.5rem] top-[14.5rem] -left-[3.5rem] md:max-w-[16rem] md:w-[16rem] md:top-[12.5rem] md:-left-[8.5rem] lg:max-w-[18rem] lg:w-[18rem] lg:top-[11.5rem] lg:-left-[12.5rem] ">
             <img src="/MessyDoodle.png" />
           </div>
         </div>

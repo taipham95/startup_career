@@ -1255,7 +1255,7 @@
       "integrity": "sha512-x5tMwzF2lTH8pyv8yeZRodItP2IVlzzmBuD1M7BjawWgg9XAvktqJJ91Qjgoaf8qJpHQ8FEU9VxRfOkLhh86QA==",
       "hasInstallScript": true,
       "dependencies": {
-        "@fortawesome/fontawesome-common-types": "6.3.0"
+        "@fortawesome/-common-types": "6.3.0"
       },
       "engines": {
         "node": ">=6"

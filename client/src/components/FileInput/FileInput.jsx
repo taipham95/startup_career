@@ -6,21 +6,26 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FileInput = (props) => {
   const [formId, setFormId] = useState(23); //formId is id's candidate was created when candidate submit
   const [file, setFile] = useState({});
-  const {inputName, onHandleProfile} = props;
+  const [fileName, setFileName] = useState("");
+  const {inputName, onHandleProfile} = props;  
+  const [uploaded, setUploaded] = useState(false);
   const onHandleChange = (e) => {
     setFile(e.target.files);    
   };
+
   // get file name to show to UI
-  // file.length>0 && console.log(file[0]);
+  // file.length>0 && console.log(file[0].name);
   // Function for upload file
   useEffect(() => {
     if (Object.keys(file).length !== 0) {
       const metadata = { contentType: file[0].type };
       const storageRef = ref(storage, `${formId}/${file[0].name}`);
       uploadBytes(storageRef, file[0], metadata).then((snapshot) => {
-        console.log("Uploaded a file!");
+        // console.log(`${file[0].name} uploaded`);
+        setFileName(file[0].name);
+        setUploaded(true);
         getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
-          (url) => {
+          (url) => {            
             onHandleProfile({[inputName]: url});
           }
         );
@@ -50,10 +55,15 @@ const FileInput = (props) => {
               d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
             ></path>
           </svg> */}
-          <p class="mb-2 text-base font-light">
-            <span class="font-normal text-sky-400">Upload a file&nbsp;</span>
+          <p className={`${uploaded ? 'hidden' : 'block'} mb-2 text-center text-sm md:text-base font-light text-sky-400`}>
+            <span className="font-normal text-sky-400">Upload a file&nbsp;</span><br/>
             <span className="text-gray-500 dark:text-gray-400">
               or drag and drop here
+            </span>
+          </p>
+          <p className={`${uploaded ? 'block' : 'hidden'} mb-2 text-center text-xs xs:text-sm md:text-base font-light text-rose-400`}>{fileName} 
+            <br/><span className="text-gray-500 dark:text-gray-400">
+            uploaded!
             </span>
           </p>
         </div>
