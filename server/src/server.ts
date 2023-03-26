@@ -3,12 +3,12 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import apiRouter from '../src/routes/routes'
 import connectToDB from "./config/db"
-import dotenv from "dotenv"
+// import dotenv from "dotenv"
 
 const app = express();
 const PORT = 8001;
 
-dotenv.config()
+// dotenv.config()
 // Connect mongodb
 connectToDB()
 
@@ -19,6 +19,7 @@ app.use(express.json());
 // Setup routes
 app.use('/careers', apiRouter);
 
+// Test Call Sever
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
