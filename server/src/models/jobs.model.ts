@@ -33,5 +33,6 @@ export interface IJob {
   });
   
   const Job = mongoose.model<IJob>('Job', jobSchema);
-  
+  // export default Job;
+   // export default Job;
   export default Job;
