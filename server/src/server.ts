@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import apiRouter from '../src/routes/routes'
+// import apiRouter from '../src/routes/routes'
 import connectToDB from "./config/db"
 // import dotenv from "dotenv"
 
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Setup routes
-app.use('/careers', apiRouter);
+// app.use('/careers', apiRouter);
 
 // Test Call Sever
 app.get("/", (req, res) => {

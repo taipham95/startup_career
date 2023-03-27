@@ -1,62 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { CareersContext } from '../../../Context/CareersContext';
 import CardItem from '../Components/CardItem/CardItem';
 import { Link } from 'react-router-dom';
 const Content = () => {
 
-    const jobList = [
-        {
-            id:1,
-            title: "DevOps Engineer",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:2,
-            title: "QA Engineer",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:3,
-            title: "Senior Game Engineer",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:4,
-            title: "Product Designer",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:5,
-            title: "Senior Analytics Engineer",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:6,
-            title: "Growth Data Analyst (APAC Remote/HCMC, relocation support available)",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Engineer"
-        },
-        {
-            id:7,
-            title: "Social Media Specialist",
-            descriptions: "United States , Michigan Center - Full-time",
-            position: "Growth"
-        },
-        {
-            id:8,
-            title: "Marketing Creative Manager",
-            descriptions: "VietNam , Ho Chi Minh City - Full-time",
-            position: "Growth"
-        }
-    ]
+    // const jobList = [
+    //     {
+    //         id:1,
+    //         title: "DevOps Engineer",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:2,
+    //         title: "QA Engineer",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:3,
+    //         title: "Senior Game Engineer",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:4,
+    //         title: "Product Designer",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:5,
+    //         title: "Senior Analytics Engineer",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:6,
+    //         title: "Growth Data Analyst (APAC Remote/HCMC, relocation support available)",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Engineer"
+    //     },
+    //     {
+    //         id:7,
+    //         title: "Social Media Specialist",
+    //         descriptions: "United States , Michigan Center - Full-time",
+    //         position: "Growth"
+    //     },
+    //     {
+    //         id:8,
+    //         title: "Marketing Creative Manager",
+    //         descriptions: "VietNam , Ho Chi Minh City - Full-time",
+    //         position: "Growth"
+    //     }
+    // ]
+
+
+
 
     const [key, setKey] = useState("");
     const [select1,setSelect1]=useState("");
     const [select2,setSelect2]=useState("");
+    const {jobsData}=useContext(CareersContext)
     const handleChangeKey = (e) => {
         setKey(e.target.value);
     }
@@ -115,7 +120,7 @@ const Content = () => {
             <div className=' p-2 '>
                 <div className=' text-3xl font-bold border-b-2 pb-7 '>{jobList.length} total position</div>
                 {/* <CardItem/> */}
-                {jobList
+                {jobsData
                     // filter item by keyword
                     .filter((item) => {
                         return (
@@ -128,12 +133,12 @@ const Content = () => {
                   
                     .map((item) => {
                         return (
-                            <Link to={`/careers/${item.id}`}>
+                            <Link to={`/careers/${item._id}`}>
                             <CardItem
-                                id={item.id}
+                                id={item._id}
                                 title={item.title}
-                                descriptions={item.descriptions}
-                                position={item.position}
+                                location={item.location}
+                                tags={item.tags}
                             />
                             </Link>
                         );
