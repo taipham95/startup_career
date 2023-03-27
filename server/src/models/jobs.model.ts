@@ -11,6 +11,7 @@ export interface IJob {
     descriptions: {
       title: String;
       description: String;
+      detailDescription: String[]; // List Array DetailJob
     }[];
     requirements: String[];
   }
@@ -24,8 +25,9 @@ export interface IJob {
     updated_at: { type: Date, default: Date.now() },
     available: { type: Boolean, required: true },
     descriptions: [{
-        title: { type: String, required: true },
-        description: { type: String, required: true },
+        title: { type: String },
+        description: { type: String },
+        detailDescription: { type: Array },
       }],
     requirements: { type: Array, required: true }
   });
