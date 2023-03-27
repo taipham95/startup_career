@@ -59,18 +59,16 @@ const createJob = async (req: any, res: any) => {
     const { 
         title,
         location,
+        type,
         tags,
         created_at,
         updated_at,
         available,
-        descriptions: {
-            title: titleDescriptions,
-            description,
-        },
+        descriptions,
         requirements,                                                                                                               
       } = req.body;
 
-    // kiem tra mail va link job da ton tai chua
+    // kiem tra title da ton tai chua
     const existingTitle = await Job.findOne( { title } );
 
     if (existingTitle) {
@@ -82,14 +80,12 @@ const createJob = async (req: any, res: any) => {
     const job = new Job({
         title,
         location,
+        type,
         tags,
         created_at,
         updated_at,
         available,
-        descriptions: {
-          titleDescriptions,
-            description,
-        },
+        descriptions,
         requirements,
     });
 
@@ -109,7 +105,16 @@ const createJob = async (req: any, res: any) => {
 const updateJob = async (req: any, res: any) => {
   try {
     const { id } = req.params;
-    const { username, email } = req.body;
+    const { 
+      title, 
+      location,
+      type,
+      tags, 
+      updated_at, 
+      available,
+      descriptions,
+      requirements,
+    } = req.body;
 
     const isValid = validationMongoId(id);
 
@@ -118,17 +123,23 @@ const updateJob = async (req: any, res: any) => {
         message: 'Job is valid',
       });
     }
-    const existingUser = await Job.findById(id);
+    const existingJob = await Job.findById(id);
 
-    if (!existingUser) {
+    if (!existingJob) {
       return res.status(400).json({
         msg: 'Job not exists',
       });
     }
 
     await Job.findByIdAndUpdate(id, {
-      username,
-      email,
+      title, 
+      location,
+      type,
+      tags, 
+      updated_at: new Date(Date.now()),
+      available,
+      descriptions,
+      requirements,
     });
 
     res.json({

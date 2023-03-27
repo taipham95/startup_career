@@ -1,31 +1,33 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 // Variable declaration
 export interface IJob {
-    title: string;
-    location: string;
-    tags: string[];
-    created_at: Date; // assuming timestamp is a Unix timestamp in seconds
-    updated_at: Date; // assuming timestamp is a Unix timestamp in seconds
-    available: boolean;
+    title: String;
+    location: String;
+    type: String;        // Full time, part time
+    tags: String[];      // Remote, Engineer
+    created_at: Date; 
+    updated_at: Date;
+    available: Boolean;
     descriptions: {
-      title: string;
-      description: string;
+      title: String;
+      description: String;
     }[];
-    requirements: string[];
+    requirements: String[];
   }
   // Schema is database combination of rules
   const jobSchema: Schema = new mongoose.Schema({
     title: { type: String, required: true },
     location: { type: String, required: true },
-    tags: { type: String, required: true },
-    created_at: { type: Date },
-    updated_at: { type: Date },
+    type: { type: String, required: true },
+    tags: { type: Array, required: true },
+    created_at: { type: Date, default: Date.now() },
+    updated_at: { type: Date, default: Date.now() },
     available: { type: Boolean, required: true },
-    descriptions: {
-        title: { type: String },
-        description: { type: String },
-      },
-    requirements: { type: Object, required: true }
+    descriptions: [{
+        title: { type: String, required: true },
+        description: { type: String, required: true },
+      }],
+    requirements: { type: Array, required: true }
   });
   
   const Job = mongoose.model<IJob>('Job', jobSchema);

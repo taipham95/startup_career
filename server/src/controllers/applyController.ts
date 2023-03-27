@@ -65,7 +65,7 @@ const createApply = async (req: any, res: any) => {
       headline,
       phone,
       address,
-      email
+      email,
     } = applicationBody.personal
 
     const { 
@@ -73,17 +73,17 @@ const createApply = async (req: any, res: any) => {
       foStudy, 
       degree, 
       startDate, 
-      endDate
+      endDate,
     } = applicationBody.education
 
-    const { 
+    const {
       title, 
       company, 
       industry, 
       summary, 
       sDate, 
       eDate,
-      workHere
+      workHere,
     } = applicationBody.experience
 
     // kiem tra mail va link job da ton tai chua
@@ -103,14 +103,14 @@ const createApply = async (req: any, res: any) => {
         headline, 
         phone, 
         address, 
-        email
+        email,
       },
       education: {
         school,
         foStudy, 
         degree, 
         startDate, 
-        endDate
+        endDate,
       },
       experience: {
         title,
@@ -119,11 +119,11 @@ const createApply = async (req: any, res: any) => {
         summary,
         sDate,
         eDate,
-        workHere
+        workHere,
       },
       resumeLink,
       coverLetter,
-      dob
+      dob,
     });
 
     await apply.save();
