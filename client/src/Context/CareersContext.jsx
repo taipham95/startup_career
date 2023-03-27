@@ -7,7 +7,7 @@ export const AppProvider=({children})=>{
     const [jobsData,setJobsData]=useState();
     useEffect(()=>{
         const handleFetchJobs=async()=>{
-            const response=await axios.get();
+            const response=await axios.get("http://localhost:8001/");
             setJobsData(response.data.data)
             console.log(response.data.data)
         }

@@ -118,7 +118,7 @@ const Content = () => {
             </div>
 
             <div className=' p-2 '>
-                <div className=' text-3xl font-bold border-b-2 pb-7 '>{jobList.length} total position</div>
+                <div className=' text-3xl font-bold border-b-2 pb-7 '>{jobsData.length} total position</div>
                 {/* <CardItem/> */}
                 {jobsData
                     // filter item by keyword
