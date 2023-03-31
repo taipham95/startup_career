@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import apiRouter from '../src/routes/routes'
+import apiRouter from "./routes/Routes"
 import connectToDB from "./config/db"
 // import dotenv from "dotenv"
 
