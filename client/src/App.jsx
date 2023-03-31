@@ -1,14 +1,17 @@
-import { BrowserRouter as Router, NavLink, Routes, Route } from 'react-router-dom';
-import { AppProvider } from './Context/CareersContext';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AppProvider } from "./Context/CareersContext";
 import CareerHeader from "./components/CareerHeader";
 import CareerFooter from "./components/CareerFooter";
-import ApplyPage from './pages/ApplyPage/ApplyPage';
-import JobDetail from './components/JobDetail';
-import PageNotFound from './components/PageNotFound/PageNotFound';
-import CareerPage from './components/CareerPage/CareerPage';
+import ApplyPage from "./pages/ApplyPage/ApplyPage";
+import JobDetail from "./components/JobDetail";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
+import CareerPage from "./components/CareerPage/CareerPage";
+import AdminPage from "./pages/AdminPage";
+
 function App() {
   return (
     <AppProvider>
+      {/* <AdminPage /> */}
       <Router>
         <CareerHeader />
         <Routes>
