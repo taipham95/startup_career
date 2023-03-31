@@ -1,5 +1,5 @@
 import express from 'express';
-import applyApp from "./apply"
+import applyApp from "./Apply"
 import jobs from './jobs'
 const router = express.Router();
 

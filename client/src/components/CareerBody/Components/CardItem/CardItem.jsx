@@ -6,7 +6,7 @@ const CardItem = (props) => {
                 <div className='text-2xl font-bold mb-2'>{props.title}</div>
                 <div className='text-base text-gray-500'>{props.location}</div>
             </div>
-            <div>
+            <div className='flex gap-2'>
                 {
                     props.tags.map((tag) => {
                         return (
