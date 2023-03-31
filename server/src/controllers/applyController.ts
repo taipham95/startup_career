@@ -57,37 +57,18 @@ const createApply = async (req: any, res: any) => {
 
   try {
     const applicationBody = req.body;
-    const { resumeLink, coverLetter, dob } = req.body;
 
     const { 
-      firstName, 
-      lastName, 
-      headline,
-      phone,
-      address,
-      email,
-    } = applicationBody.personal
-
-    const { 
-      school, 
-      foStudy, 
-      degree, 
-      startDate, 
-      endDate,
-    } = applicationBody.education
-
-    const {
-      title, 
-      company, 
-      industry, 
-      summary, 
-      sDate, 
-      eDate,
-      workHere,
-    } = applicationBody.experience
+      personal,
+      education,
+      experience,
+      profile, 
+      coverLetter, 
+      dob,
+    } = req.body;
 
     // kiem tra mail va link job da ton tai chua
-    const existingResume = await Applicant.findOne( { resumeLink } );
+    const existingResume = await Applicant.findOne( { "profile.resumeLink": applicationBody.profile.resumeLink } );
     const existingEmail = await Applicant.findOne( { "personal.email": applicationBody.personal.email } );
     
     if (existingResume && existingEmail) {
@@ -97,31 +78,10 @@ const createApply = async (req: any, res: any) => {
     }
 
     const apply = new Applicant({
-      personal: {
-        firstName, 
-        lastName, 
-        headline, 
-        phone, 
-        address, 
-        email,
-      },
-      education: {
-        school,
-        foStudy, 
-        degree, 
-        startDate, 
-        endDate,
-      },
-      experience: {
-        title,
-        company,
-        industry,
-        summary,
-        sDate,
-        eDate,
-        workHere,
-      },
-      resumeLink,
+      personal,
+      education,
+      experience,
+      profile,
       coverLetter,
       dob,
     });
