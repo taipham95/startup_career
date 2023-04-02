@@ -15,6 +15,8 @@ export interface IJob {
     }[];
     requirements: String[];
   }
+
+  
   // Schema is database combination of rules
   const jobSchema: Schema = new mongoose.Schema({
     title: { type: String, required: true },

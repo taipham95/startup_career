@@ -11,8 +11,8 @@ import AdminPage from "./pages/AdminPage";
 function App() {
   return (
     <AppProvider>
-      {/* <AdminPage /> */}
-      <Router>
+      <AdminPage />
+      {/* <Router>
         <CareerHeader />
         <Routes>
           <Route exact path="/" element={<CareerPage />} />
@@ -22,9 +22,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <CareerFooter />
-      </Router>
+      </Router> */}
     </AppProvider>
-    // <AdminPage/>
   );
 }
 
