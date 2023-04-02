@@ -13,11 +13,11 @@ const JobStatistics = () => {
     setValue(newValue);
   };
   return (
-    <main class="w-full">
-      <section class="flex justify-between px-8 py-2 ">
-        <p class="font-semibold py-1">Job Statistics</p>
-        <div class="flex w-[300px] ">
-          <p class="text-xs py-[9px]">Filter:</p>
+    <main>
+      <section className="flex justify-between px-4 py-2 ">
+        <p className="font-semibold py-1">Job Statistics</p>
+        <div className="flex w-[300px] ">
+          <p className="text-xs py-[9px] pr-1">Filter:</p>
           <Datepicker
             toggleIcon={() => (
               <svg
@@ -26,7 +26,7 @@ const JobStatistics = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                class="w-5 h-5 stroke-slate-400 pb-1"
+                className="w-5 h-5 stroke-slate-400 pb-1"
               >
                 <path
                   strokeLinecap="round"
@@ -48,7 +48,7 @@ const JobStatistics = () => {
           />
           <button
             type="button"
-            class="flex items-center h-6 ml-2 px-3 mt-2 focus:transition-none text-xs font-medium text-center focus:outline-0 text-white bg-indigo-700 hover:bg-indigo-800  rounded-[5px]  dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900"
+            className="flex items-center h-6 ml-2 px-3 mt-2 focus:transition-none text-xs font-medium text-center focus:outline-0 text-white bg-indigo-700 hover:bg-indigo-800  rounded-[5px]  dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ const JobStatistics = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              class="w-5 h-5 pr-2"
+              className="w-5 h-5 pr-2"
             >
               <path
                 strokeLinecap="round"
@@ -70,67 +70,83 @@ const JobStatistics = () => {
       </section>
       {/* JOBS STATISTICS */}
       <section>
-        <div class="grid grid-rows-2 grid-flow-col  h-[350px] w-full px-6 py-3">
+        <div className="grid grid-rows-2 grid-flow-col  h-[350px] w-full px-6 py-3">
           {/* 1 */}
-          <div class="row-span-1  border-l-[1.5px] border-t-[1.5px] border-slate-300 rounded-ss-md flex items-center  pl-5 -pr-5">
+          <div className="row-span-1  border-l-[1.5px] border-t-[1.5px] border-slate-300 rounded-ss-md flex items-center  pl-5 -pr-5">
             
-            <div class="text-sm dark:text-white">
-              <div class="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
+            <div className="text-sm dark:text-white">
+              <div className="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
                 Total Employees
               </div>
-              <div class="font-bold pb-1  text-xl flex">
+              <div className="font-bold pb-1  text-xl flex">
                 300{" "}
+<<<<<<< HEAD
                 <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300  text-green-500 rounded-md" >+49%</mark></div>
+=======
+                <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+>>>>>>> 59bd003 (change apply update)
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
                 Employees
               </div>
             </div>
           </div>
           {/* 2 */}
-          <div class="row-span-1 border-l-[1.5px] border-b-[1.5px] border-t-0 border-slate-300 rounded-es-md flex items-center  pl-5 -pr-5">
+          <div className="row-span-1 border-l-[1.5px] border-b-[1.5px] border-t-0 border-slate-300 rounded-es-md flex items-center  pl-5 -pr-5">
           
-          <div class="text-sm dark:text-white">
-              <div class="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
+          <div className="text-sm dark:text-white">
+              <div className="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
               Job View
               </div>
-              <div class="font-bold pb-1  text-xl flex">
+              <div className="font-bold pb-1  text-xl flex">
               4400{" "}
+<<<<<<< HEAD
                 <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
+=======
+                <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+>>>>>>> 59bd003 (change apply update)
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
               viewers
               </div>
             </div>
           </div>
           {/* 3 */}
-          <div class="pl-5 -pr-5 row-span-1 border-t-[1.5px] border-slate-300 flex items-center "><div class="text-sm dark:text-white">
-              <div class="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
+          <div className="pl-5 -pr-5 row-span-1 border-t-[1.5px] border-slate-300 flex items-center "><div className="text-sm dark:text-white">
+              <div className="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
               Resigned Employees
               </div>
-              <div class="font-bold pb-1  text-xl flex">
+              <div className="font-bold pb-1  text-xl flex">
               23{" "}
+<<<<<<< HEAD
                 <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-red-300 rounded-md text-red-500" >-49%</mark></div>
+=======
+                <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-red-300  text-red-500" >-49%</mark></div>
+>>>>>>> 59bd003 (change apply update)
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
               Employees
               </div>
             </div></div>
             {/* 4 */}
-          <div class="pl-5 -pr-5 row-span-1 border-b-[1.5px] border-slate-300 flex items-center "><div class="text-sm dark:text-white">
-              <div class="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
+          <div className="pl-5 -pr-5 row-span-1 border-b-[1.5px] border-slate-300 flex items-center "><div className="text-sm dark:text-white">
+              <div className="text-xs font-se text-gray-700 pb-2 dark:text-gray-400">
                 Job Aplied
               </div>
-              <div class="font-bold pb-1  text-xl flex">
+              <div className="font-bold pb-1  text-xl flex">
                 1266{" "}
+<<<<<<< HEAD
                 <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
+=======
+                <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+>>>>>>> 59bd003 (change apply update)
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
                 Applicants
               </div>
             </div></div>
             {/* Chart  job statistics*/}
-          <div class="row-span-2 col-span-4 border-[1.5px] border-slate-300 rounded-r-md flex justify-center items-center">
+          <div className="row-span-2 col-span-4 border-[1.5px] border-slate-300 rounded-r-md flex justify-center items-center">
             <BarChart/>
           </div>
         </div>

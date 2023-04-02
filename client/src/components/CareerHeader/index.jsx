@@ -3,28 +3,28 @@ import { Link } from "react-router-dom";
 function CareerHeader() {
   return (
     <header className="w-full h-[70px] md:h-[80px] sticky top-0 z-[90] flex items-center border border-solid border-[#eef3fb] bg-white">
-      <div class="w-full md:container flex justify-between items-center mx-auto px-[24px]">
-        <Link to={"/careers"}>  <a class="cursor-pointer" href="/" rel="noreferrer">
+      <div className="w-full md:container flex justify-between items-center mx-auto px-[24px]">
+        <Link to={"/careers"}>  <a className="cursor-pointer" href="/" rel="noreferrer">
           <img
             width="178"
             src="https://www.skymavis.com/images/branding.svg"
             alt="sky-mavis-branding"
           />
         </a></Link>
-        <ul class="h-full hidden md:flex">
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
-            <a class="p-[20px]" href="/products" rel="noreferrer">
+        <ul className="h-full hidden md:flex">
+          <li className="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
+            <a className="p-[20px]" href="/products" rel="noreferrer">
               Products
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
-            <a class="p-[20px]" href="/team" rel="noreferrer">
+          <li className="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
+            <a className="p-[20px]" href="/team" rel="noreferrer">
               Team
             </a>
           </li>
-          <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
+          <li className="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3">
             <a
-              class="p-[20px]"
+              className="p-[20px]"
               href="https://axie.substack.com/"
               target="_blank"
               rel="noreferrer"
@@ -32,13 +32,13 @@ function CareerHeader() {
               Blog
             </a>
           </li>
-          <Link to="/careers"> <li class="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3 active">
-            <a class="p-[20px]" href="/careers" rel="noreferrer">
+          <Link to="/careers"> <li className="cursor-pointer h-full grid place-items-center font-semibold hover:text-blue-500 transition-all svelte-15jlsr3 active">
+            <a className="p-[20px]" href="/careers" rel="noreferrer">
               Careers
             </a>
           </li>      </Link>
         </ul>
-        <button class="md:hidden" title="Open Drawer">
+        <button className="md:hidden" title="Open Drawer">
           <svg
             width="48"
             height="48"
