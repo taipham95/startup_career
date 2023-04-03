@@ -1,8 +1,8 @@
 const Sidebar = () => {
   return (
-    <main class="flex flex-col justify-between h-[100vh] w-[200px] font-medium border-r-[1.5px]">
+    <main class="flex flex-col justify-between h-[100vh]  font-medium border-r-[1.5px]">
       <div>
-        <div class="flex justify-between items-center border-b-[1.5px] h-[70px]">
+        <div class="flex justify-between items-center border-b-[1.5px] h-[70px] pl-2">
           <img width="100" src="https://skymavis.com/images/branding.svg"></img>
           <div class="bg-slate-200 h-5 w-5 rounded-md p-[2px] mr-2">
             <svg

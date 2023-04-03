@@ -2,7 +2,7 @@ import DoughnutChart from "../DoughnutChart";
 
 const EmployeesStatus = () => {
   return (
-    <section class="px-4 py-2 flex justify-between">
+    <section class="px-4 py-2 flex justify-between w-full" >
       <div class=" flex flex-col  w-2/3">
         <div class="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
           <div>
@@ -37,13 +37,13 @@ const EmployeesStatus = () => {
                 <th scope="col" class="px-3 py-3 font-semibold">
                   Employee Name
                 </th>
-                <th scope="col" class="px-3 py-3 font-semibold">
+                <th scope="col" class="px-6 py-3 font-semibold">
                   Job Title
                 </th>
-                <th scope="col" class="px-3 py-3 font-semibold">
+                <th scope="col" class="px-6 py-3 font-semibold">
                   Team Lead
                 </th>
-                <th scope="col" class="px-3 py-3 font-semibold">
+                <th scope="col" class="px-6 py-3 font-semibold">
                   Status
                 </th>
               </tr>
