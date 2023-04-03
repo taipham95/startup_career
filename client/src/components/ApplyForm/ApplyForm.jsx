@@ -38,7 +38,7 @@ const ApplyForm = () => {
     // using destructuring or rest operator
     /* const { name, value } = response;
     setProfile({...personal, [name]:value}); */    
-    setProfile({ ... profile, ...response });
+    setProfile({ ... profile, ...response });    
   };
 
   const onShowEducation = () => {
@@ -60,7 +60,8 @@ const ApplyForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();        
+    console.log(userInfo);
     setInfo({});
     setProfile({});
   };
