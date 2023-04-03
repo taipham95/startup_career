@@ -60,7 +60,7 @@ export interface IApplicant {
     profile: {
       resumeLink: { type: String, required: true },
     },
-    coverLetter: { type: String, required: true },
+    coverLetter: { type: String },
     dob: { type: Date, default: Date.now() }
   });
 
