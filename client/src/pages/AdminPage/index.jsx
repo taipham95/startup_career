@@ -2,6 +2,7 @@ import EmployeesStatus from "./Overview/EmployeesStatus";
 import JobStatistics from "./Overview/JobStatistics";
 import SearchAndInforAdmin from "./SearchAndInforAdmin";
 import Sidebar from "./Sidebar";
+import CandidatesPage from "./CandidatesPage";
 
 const AdminPage = () => {
   return (
@@ -9,8 +10,9 @@ const AdminPage = () => {
       <Sidebar class="w=[25%]" />
       <div class="flex flex-col w-[100%]">
         <SearchAndInforAdmin />
-        <JobStatistics />
-        <EmployeesStatus />
+        {/* <JobStatistics />
+        <EmployeesStatus /> */}
+        <CandidatesPage />
       </div>
     </main>
   );
