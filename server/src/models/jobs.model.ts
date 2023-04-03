@@ -29,7 +29,7 @@ export interface IJob {
         detail: { type: String },
         bullets: { type: Array },
       }],
-    requirements: { type: Array, required: true }
+    requirements: { type: Array }
   });
   
   const Job = mongoose.model<IJob>('Job', jobSchema);

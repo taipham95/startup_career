@@ -142,7 +142,7 @@ const Select = (props) => {
       </button>
       <div
         // id="dropdown-states"
-        class={`absolute top-[4.25rem] left-0 max-width-100 w-full sm:w-[45%] h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white rounded-lg drop-shadow-md dark:bg-gray-700 ${
+        class={`absolute top-[4.25rem] left-0 max-width-100 w-full sm:w-[45%] lg:w-[40%] h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white rounded-lg drop-shadow-md dark:bg-gray-700 ${
           isOpen ? "" : "hidden"
         }`}
       >

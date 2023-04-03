@@ -24,6 +24,7 @@ function App() {
         <CareerFooter />
       </Router>
     </AppProvider>
+    // <AdminPage/>
   );
 }
 
