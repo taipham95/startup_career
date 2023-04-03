@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { dataServices } from "../../utils/dataService";
+import { dataServices } from "../../services/dataService";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
