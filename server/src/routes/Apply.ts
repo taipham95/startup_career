@@ -8,7 +8,7 @@ router.get("/:id", applyController.fetchApply);
 
 router.post("/", applyController.createApply);
 
-// router.put("/:id", async (req, res) => {});
+router.put("/:id", applyController.updateApply);
 
 router.delete("/:id", applyController.deleteApply);
 
