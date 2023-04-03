@@ -10,21 +10,21 @@ import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
-    // <AppProvider>
-    //   {/* <AdminPage /> */}
-    //   <Router>
-    //     <CareerHeader />
-    //     <Routes>
-    //       <Route exact path="/" element={<CareerPage />} />
-    //       <Route exact path="/careers" element={<CareerPage />} />
-    //       <Route exact path="/careers/:id" element={<JobDetail />} />
-    //       <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
-    //       <Route path="*" element={<PageNotFound />} />
-    //     </Routes>
-    //     <CareerFooter />
-    //   </Router>
-    // </AppProvider>
-    <AdminPage/>
+    <AppProvider>
+      {/* <AdminPage /> */}
+      <Router>
+        <CareerHeader />
+        <Routes>
+          <Route exact path="/" element={<CareerPage />} />
+          <Route exact path="/careers" element={<CareerPage />} />
+          <Route exact path="/careers/:id" element={<JobDetail />} />
+          <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <CareerFooter />
+      </Router>
+    </AppProvider>
+    // <AdminPage/>
   );
 }
 
