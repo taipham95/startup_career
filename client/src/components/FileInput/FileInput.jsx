@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import { storage } from "../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -13,6 +14,24 @@ const FileInput = (props) => {
     setFile(e.target.files);    
   };
 
+  const showAlert = (mess) => {
+    Swal.fire({
+      icon: "success",
+      title: "Successful",
+      text: `${mess} uploaded`,
+      allowOutsideClick: true,
+      allowEscapeKey: true,
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  };
+
   // Function for upload file
   useEffect(() => {
     if (Object.keys(file).length !== 0) {
@@ -23,8 +42,10 @@ const FileInput = (props) => {
         onHandleProfile({"fileName": file[0].name});
         setUploaded(true);
         getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
-          (url) => {            
-            onHandleProfile({...{"fileName": file[0].name}, ... {[inputName]: url}});            
+          (url) => {          
+            showAlert(file[0].name);  
+            // onHandleProfile({...{"fileName": file[0].name}, ... {[inputName]: url}});            
+            onHandleProfile({... {[inputName]: url}});            
           }
         );
       });
