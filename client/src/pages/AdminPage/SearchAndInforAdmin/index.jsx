@@ -1,6 +1,6 @@
 const SearchAndInforAdmin = () => {
   return (
-    <section class="h-[70px] flex items-center min-w-[600px] border-b-slate-300 border-b-[1px]">
+    <section class="h-[70px] flex items-center w-full border-b-slate-300 border-b-[1px]">
       <form class="w-3/4 pl-3 ">
         <label
           for="default-search"
