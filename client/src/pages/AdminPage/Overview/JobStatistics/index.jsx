@@ -80,11 +80,7 @@ const JobStatistics = () => {
               </div>
               <div className="font-bold pb-1  text-xl flex">
                 300{" "}
-<<<<<<< HEAD
-                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300  text-green-500 rounded-md" >+49%</mark></div>
-=======
                 <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
->>>>>>> 59bd003 (change apply update)
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 Employees
@@ -100,11 +96,7 @@ const JobStatistics = () => {
               </div>
               <div className="font-bold pb-1  text-xl flex">
               4400{" "}
-<<<<<<< HEAD
-                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
-=======
                 <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
->>>>>>> 59bd003 (change apply update)
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
               viewers
@@ -118,11 +110,7 @@ const JobStatistics = () => {
               </div>
               <div className="font-bold pb-1  text-xl flex">
               23{" "}
-<<<<<<< HEAD
-                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-red-300 rounded-md text-red-500" >-49%</mark></div>
-=======
                 <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-red-300  text-red-500" >-49%</mark></div>
->>>>>>> 59bd003 (change apply update)
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
               Employees
@@ -135,11 +123,7 @@ const JobStatistics = () => {
               </div>
               <div className="font-bold pb-1  text-xl flex">
                 1266{" "}
-<<<<<<< HEAD
-                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
-=======
                 <div className="ml-1 text-[10px] font-medium "><mark className="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
->>>>>>> 59bd003 (change apply update)
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 Applicants
