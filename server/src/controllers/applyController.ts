@@ -65,6 +65,8 @@ const createApply = async (req: any, res: any) => {
       profile, 
       coverLetter, 
       dob,
+      teamLead,
+      status,
     } = req.body;
 
     // kiem tra mail va link job da ton tai chua
@@ -84,6 +86,8 @@ const createApply = async (req: any, res: any) => {
       profile,
       coverLetter,
       dob,
+      teamLead,
+      status,
     });
 
     await apply.save();
@@ -98,6 +102,40 @@ const createApply = async (req: any, res: any) => {
     });
   }
 };
+
+
+const updateApply= async (req:any, res:any)=>{
+  try{
+    const {id}=req.params;
+
+    const isValid=validationMongoId(id);
+
+    if(!isValid){
+      res.status(404).json({
+        message:"Apply is valid",
+      })
+    }
+    
+    const existingApply= await Applicant.findById(id)
+
+    if(!existingApply){
+      return res.status(404).json({
+         message:"Apply not exists",
+      })
+    }
+
+    await Applicant.findByIdAndUpdate(id,req.body);
+
+    res.json({
+      message: 'Success Update Apply',
+    });
+  } catch (error:any){
+    res.status(400).json({
+      message: error.toString(),
+    })
+  }
+}
+
 
 const deleteApply = async (req: any, res: any) => {
   try {
@@ -121,4 +159,4 @@ const deleteApply = async (req: any, res: any) => {
   }
 };
 
-export default { fetchAllApply, fetchApply, createApply, deleteApply };
+export default { fetchAllApply, fetchApply, createApply, updateApply, deleteApply };

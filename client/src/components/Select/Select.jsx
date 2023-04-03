@@ -147,7 +147,7 @@ const Select = (props) => {
         }`}
       >
         <ul
-          class="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
+          className="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
           aria-labelledby="states-button"
         >
           {phoneCodes}
