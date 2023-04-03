@@ -13,8 +13,8 @@ export interface IApplicant {
       school: String;
       foStudy: String;
       degree: String;
-      startDate: String;
-      endDate: String;
+      sDate: String;
+      eDate: String;
     };
     experience: {
       title: String;
@@ -25,7 +25,9 @@ export interface IApplicant {
       eDate: String;
       workHere: Boolean;
     };
-    resumeLink: String;
+    profile: {
+      resumeLink: String,
+    };
     coverLetter: String;
     dob: Date,
   }
@@ -43,8 +45,8 @@ export interface IApplicant {
       school: { type: String },
       foStudy: { type: String },
       degree: { type: String },
-      startDate: { type: String },
-      endDate: { type: String }
+      sDate: { type: String },
+      eDate: { type: String }
     },
     experience: {
       title: { type: String },
@@ -55,7 +57,9 @@ export interface IApplicant {
       eDate: { type: String },
       workHere: { type: Boolean }
     },
-    resumeLink: { type: String, required: true },
+    profile: {
+      resumeLink: { type: String, required: true },
+    },
     coverLetter: { type: String, required: true },
     dob: { type: Date, default: Date.now() }
   });

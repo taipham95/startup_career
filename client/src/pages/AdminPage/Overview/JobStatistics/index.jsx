@@ -13,11 +13,11 @@ const JobStatistics = () => {
     setValue(newValue);
   };
   return (
-    <main>
-      <section class="flex justify-between px-4 py-2 ">
+    <main class="w-full">
+      <section class="flex justify-between px-8 py-2 ">
         <p class="font-semibold py-1">Job Statistics</p>
         <div class="flex w-[300px] ">
-          <p class="text-xs py-[9px] pr-1">Filter:</p>
+          <p class="text-xs py-[9px]">Filter:</p>
           <Datepicker
             toggleIcon={() => (
               <svg
@@ -80,7 +80,7 @@ const JobStatistics = () => {
               </div>
               <div class="font-bold pb-1  text-xl flex">
                 300{" "}
-                <div class="ml-1 text-[10px] font-medium "><mark class="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300  text-green-500 rounded-md" >+49%</mark></div>
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
                 Employees
@@ -96,7 +96,7 @@ const JobStatistics = () => {
               </div>
               <div class="font-bold pb-1  text-xl flex">
               4400{" "}
-                <div class="ml-1 text-[10px] font-medium "><mark class="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
               viewers
@@ -110,7 +110,7 @@ const JobStatistics = () => {
               </div>
               <div class="font-bold pb-1  text-xl flex">
               23{" "}
-                <div class="ml-1 text-[10px] font-medium "><mark class="p-[1px] bg-red-300  text-red-500" >-49%</mark></div>
+                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-red-300 rounded-md text-red-500" >-49%</mark></div>
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
               Employees
@@ -123,7 +123,7 @@ const JobStatistics = () => {
               </div>
               <div class="font-bold pb-1  text-xl flex">
                 1266{" "}
-                <div class="ml-1 text-[10px] font-medium "><mark class="p-[1px] bg-green-300  text-green-500" >+49%</mark></div>
+                <div class="ml-1 text-[10px] font-medium "><mark class="px-[3px] bg-green-300 rounded-md text-green-500" >+49%</mark></div>
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
                 Applicants
