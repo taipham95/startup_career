@@ -107,16 +107,6 @@ const createApply = async (req: any, res: any) => {
 const updateApply= async (req:any, res:any)=>{
   try{
     const {id}=req.params;
-    const {
-      personal,
-      education,
-      experience,
-      resumeLink,
-      coverLetter,
-      dob,
-      teamLead,
-      status,
-    } = req.body;
 
     const isValid=validationMongoId(id);
 
@@ -134,16 +124,7 @@ const updateApply= async (req:any, res:any)=>{
       })
     }
 
-    await Applicant.findByIdAndUpdate(id,{
-      personal,
-      education,
-      experience,
-      resumeLink,
-      coverLetter,
-      dob,
-      teamLead,
-      status,
-    });
+    await Applicant.findByIdAndUpdate(id,req.body);
 
     res.json({
       message: 'Success Update Apply',

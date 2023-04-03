@@ -37,6 +37,34 @@ function JobDetail() {
               <p>
                 <br />
               </p>
+
+              {joblist2.descriptions.map((description) => {
+                return (
+                  <div>
+                    <p>
+                      <strong>
+                        {description.title}
+                      </strong>
+                    </p>
+                    <p className="p-1">
+                      {description.detail}
+                    </p>
+                    <ul className="list-disc pl-4">
+                    {
+                      description.bullets.map((bullet)=>{
+                        return(
+                          <li>{bullet}</li>
+                        )
+                      })
+                    }
+                    </ul>
+                  </div>
+                );
+              })}
+
+              {/*
+
+
               <p>
                 <strong>About Sky Mavis</strong>
               </p>
@@ -45,7 +73,10 @@ function JobDetail() {
               <p>
                 <strong>About the Role</strong>
               </p>
-              <p className="p-1">{joblist2.descriptions[1].description}</p>
+              <p className="p-1">{joblist2.descriptions[1].description}</p> 
+
+
+*/}
 
               <h1 className="text-2xl font-medium mt-3">Requirements</h1>
               <ul className="list-disc pl-4">
