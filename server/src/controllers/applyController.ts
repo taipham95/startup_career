@@ -43,7 +43,7 @@ const fetchApply = async (req: any, res: any) => {
     }
 
     res.json({
-      message: 'Success Get An Application',
+      message: 'Success Get Application',
       data: apply,
     });
   } catch (error: any) {
@@ -93,7 +93,7 @@ const createApply = async (req: any, res: any) => {
     await apply.save();
 
     res.json({
-      message: 'Success Upload Application',
+      message: 'Success Create New Application',
     })} 
     
     catch (error: any) {
@@ -103,12 +103,13 @@ const createApply = async (req: any, res: any) => {
   }
 };
 
-
 const updateApply= async (req:any, res:any)=>{
-  try{
-    const {id}=req.params;
 
-    const isValid=validationMongoId(id);
+  try {
+
+    const { id } = req.params;
+
+    const isValid = validationMongoId(id);
 
     if(!isValid){
       res.status(404).json({
@@ -127,7 +128,7 @@ const updateApply= async (req:any, res:any)=>{
     await Applicant.findByIdAndUpdate(id,req.body);
 
     res.json({
-      message: 'Success Update Apply',
+      message: 'Success Update Application',
     });
   } catch (error:any){
     res.status(400).json({

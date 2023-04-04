@@ -64,8 +64,8 @@ export interface IApplicant {
     },
     coverLetter: { type: String },
     dob: { type: Date, default: Date.now() },
-    teamLead:{type: String},
-    status: { type: String}
+    teamLead: { type: String },
+    status: { type: String }
   });
 
   const Applicant = mongoose.model<IApplicant>('Applicant', applicantSchema);
