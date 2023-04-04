@@ -11,12 +11,12 @@ const ApplyPage = () => {
   const param = useParams();
   const { jobsData } = useContext(CareersContext);
   const joblist2 = jobsData.find((item) => item._id == param.id);
-  // console.log(joblist2);
+  console.log(joblist2);
   return (
     <div>
       {joblist2 ? (
         <div className="apply-page box-border mx-auto w-full min-h-full flex flex-row flex-wrap align-middle">
-          <HeroBanner
+          <HeroBanner key={joblist2.id}
             title={joblist2.title}
             location={joblist2.location}
             tags={joblist2.tags}
