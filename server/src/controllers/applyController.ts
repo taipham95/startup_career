@@ -75,7 +75,7 @@ const createApply = async (req: any, res: any) => {
     await apply.save();
 
     res.json({
-      message: "Success Upload Application",
+      message: "Success Create New Application",
     });
   } catch (error: any) {
     res.status(400).json({
