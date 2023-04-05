@@ -11,11 +11,11 @@ import AdminPage from "./pages/AdminPage";
 function App() {
   return (
     <AppProvider>
-      {/* <AdminPage /> */}
+      <AdminPage />
 
 
 
-      <Router>
+      {/* <Router>
         <CareerHeader />
         <Routes>
           <Route exact path="/" element={<CareerPage />} />
@@ -25,7 +25,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <CareerFooter />
-      </Router>
+      </Router> */}
     </AppProvider>
   );
 }
