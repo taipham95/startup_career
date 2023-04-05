@@ -58,7 +58,7 @@ const CandidatesPage =()=>{
                             <tr key ={candidate.id}>
                                 <td>{candidate.id}</td>
                                 <td>{candidate.name}</td>
-                                <td>{candidate.position}</td>
+                                <td>{candidate.positizon}</td>
                                 <td>{candidate.salary}</td>
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
