@@ -24,7 +24,6 @@ function App() {
         <CareerFooter />
       </Router>
     </AppProvider>
-
   );
 }
 

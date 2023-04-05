@@ -5,14 +5,12 @@ import Sidebar from "./Sidebar";
 
 const AdminPage = () => {
   return (
-    <main className="flex justify-center ">
-      <div className=" flex justify-start border-[1.5px] border-slate-300 ">
-        <Sidebar />
-        <div className="flex flex-col">
-          <SearchAndInforAdmin />
-          <JobStatistics />
-          <EmployeesStatus />
-        </div>
+    <main class="flex justify-center w-[100%]">
+      <Sidebar class="w=[25%]" />
+      <div class="flex flex-col w-[100%]">
+        <SearchAndInforAdmin />
+        <JobStatistics />
+        <EmployeesStatus />
       </div>
     </main>
   );
