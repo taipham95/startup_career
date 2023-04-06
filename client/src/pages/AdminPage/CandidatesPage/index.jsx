@@ -84,42 +84,6 @@ const CandidatesPage = () => {
 
   return (
     <div class="bg-white px-4 pt-3 pb-4 flex-1">
-      {/* 
-            <div>
-            <strong>Candidate List</strong>
-            <div class=''>  
-                   
-                        <div className='flex text-amber-400 w-full justify-between'>
-                            <div>NAME</div>
-                            <div>POSITION</div>
-                            <div>SALARY</div>
-                            <div>STATUS</div>
-                        </div>
-                   
-                    
-                        {CandidatesData.map(candidate => (
-                            <tr key ={candidate.id}>
-                                
-                                <td>{candidate.name}</td>
-                                <td>{candidate.position}</td>
-                                <td>{candidate.salary}</td>
-
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">{candidate.status}</span>
-									</span>
-								</td>
-
-                            </tr>
-                        ))}
-                    
-                
-            </div>
-            </div> 
-            */}
 
       <section class="px-4 py-2">
         <div class="">
