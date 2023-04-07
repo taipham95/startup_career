@@ -12,7 +12,7 @@ const fetchAllJob = async (req: any, res: any) => {
     }
 
     res.json({
-      message: 'Success Get All',
+      message: 'Success Get All Jobs',
       data: jobs,
     })}
 
@@ -43,7 +43,7 @@ const fetchJob = async (req: any, res: any) => {
     }
 
     res.json({
-      message: 'Success Get An Job',
+      message: 'Success Get Job',
       data: job,
     })} 
     catch (error: any) {
@@ -88,7 +88,7 @@ const createJob = async (req: any, res: any) => {
     await job.save();
 
     res.json({
-      message: 'Success Upload',
+      message: 'Success Create New Job',
     })} 
     
     catch (error: any) {
@@ -101,7 +101,6 @@ const createJob = async (req: any, res: any) => {
 const updateJob = async (req: any, res: any) => {
   try {
     const { id } = req.params;
-  
 
     const isValid = validationMongoId(id);
 
