@@ -66,7 +66,7 @@ const createApply = async (req: any, res: any) => {
 
     if (existingResume && existingEmail) {
       return res.status(400).json({
-        msg: "Applications exists",
+        message: "Applications exists",
       });
     }
 
