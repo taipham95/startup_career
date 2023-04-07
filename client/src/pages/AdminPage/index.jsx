@@ -10,9 +10,9 @@ const AdminPage = () => {
       <Sidebar class="w=[25%]" />
       <div class="flex flex-col w-[100%]">
         <SearchAndInforAdmin />
-        {/* <JobStatistics />
-        <EmployeesStatus /> */}
-        <CandidatesPage />
+        <JobStatistics />
+        <EmployeesStatus />
+        {/* <CandidatesPage /> */}
       </div>
     </main>
   );
