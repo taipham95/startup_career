@@ -1,14 +1,14 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import apiRouter from "./routes/Routes"
 import connectToDB from "./config/db"
-// import dotenv from "dotenv"
 
 const app = express();
 const PORT = 8001;
 
-// dotenv.config()
 // Connect mongodb
 connectToDB()
 
