@@ -29,7 +29,7 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Application is valid",
+        message: "Application not valid",
       });
     }
 
