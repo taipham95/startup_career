@@ -34,7 +34,7 @@ const Content = () => {
                     <div className='w-2/3 m-auto'>
                     <div className=' flex justify-between mt-20 mb-8'>
                         <div className="w-88 flex  justify-around ">
-                            <div class="relative w-1/3">
+                            <div className="relative w-1/3">
                                 <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </div>

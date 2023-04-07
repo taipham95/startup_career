@@ -15,6 +15,8 @@ export interface IJob {
     }[];
     requirements: String[];
   }
+
+  
   // Schema is database combination of rules
   const jobSchema: Schema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -29,7 +31,7 @@ export interface IJob {
         detail: { type: String },
         bullets: { type: Array },
       }],
-    requirements: { type: Array, required: true }
+    requirements: { type: Array }
   });
   
   const Job = mongoose.model<IJob>('Job', jobSchema);

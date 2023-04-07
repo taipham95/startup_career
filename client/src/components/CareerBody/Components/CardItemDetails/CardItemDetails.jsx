@@ -65,7 +65,7 @@ const CardItemDetails =()=>{
         <div className="min-h-screen flex flex-col ml-0">
             <CareerHeader/>
             <div>{joblist2.title}</div>
-            <a class="bg-[#4C98FF] rounded-[31px] p-[12px_54px] text-white text-center text-base font-semibold hover:bg-light-blue">Apply Now</a>
+            <a className="bg-[#4C98FF] rounded-[31px] p-[12px_54px] text-white text-center text-base font-semibold hover:bg-light-blue">Apply Now</a>
             <CareerFooter/>
         </div>
         </Link>

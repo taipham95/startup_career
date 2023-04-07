@@ -30,6 +30,8 @@ export interface IApplicant {
     };
     coverLetter: String;
     dob: Date,
+    teamLead: String,
+    status: String
   }
   // Schema is database combination of rules 
   const applicantSchema: Schema = new mongoose.Schema({
@@ -60,8 +62,10 @@ export interface IApplicant {
     profile: {
       resumeLink: { type: String, required: true },
     },
-    coverLetter: { type: String, required: true },
-    dob: { type: Date, default: Date.now() }
+    coverLetter: { type: String },
+    dob: { type: Date, default: Date.now() },
+    teamLead: { type: String },
+    status: { type: String }
   });
 
   const Applicant = mongoose.model<IApplicant>('Applicant', applicantSchema);
