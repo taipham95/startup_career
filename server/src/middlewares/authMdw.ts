@@ -39,7 +39,7 @@ const adminMdw = (req:any, res:any, next:any) => {
   }
 }
 
-// Check Role employer
+// Check Role employer apply
 const employerMdw = (req:any, res:any, next:any) => {
   const decoded = req.user 
   if (decoded.role === 'employer' || decoded.role === 'admin') {
@@ -51,7 +51,7 @@ const employerMdw = (req:any, res:any, next:any) => {
   }
 }
 
-// Check Role HR
+// Check Role Content Job
 const inditerMdw = (req:any, res:any, next:any) => {
   const decoded = req.user 
   if (decoded.role === 'content' || decoded.role === 'admin') {
