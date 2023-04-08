@@ -92,7 +92,7 @@ const updateApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Apply is valid",
+        message: "Apply not valid",
       });
     }
 
@@ -122,7 +122,7 @@ const deleteApply = async (req: any, res: any) => {
     const isValid = validationMongoId(id);
     if (!isValid) {
       res.status(404).json({
-        message: "Application is valid",
+        message: "Application not valid",
       });
     }
 
