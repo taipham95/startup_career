@@ -29,7 +29,7 @@ const fetchJob = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Job is valid",
+        message: 'Job not valid',
       });
     }
 
@@ -54,34 +54,18 @@ const fetchJob = async (req: any, res: any) => {
 
 const createJob = async (req: any, res: any) => {
   try {
-    const {
-      title,
-      location,
-      type,
-      tags,
-      available,
-      descriptions,
-      requirements,
-    } = req.body;
+    const { title } = req.body;
 
     // kiem tra title da ton tai chua
     const existingTitle = await Job.findOne({ title });
 
     if (existingTitle) {
       return res.status(400).json({
-        msg: "Applications exists",
+        message: 'Applications exists',
       });
     }
 
-    const job = new Job({
-      title,
-      location,
-      type,
-      tags,
-      available,
-      descriptions,
-      requirements,
-    });
+    const job = new Job(req.body);
 
     await job.save();
 
@@ -103,14 +87,14 @@ const updateJob = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Job is valid",
+        message: 'Job not valid',
       });
     }
     const existingJob = await Job.findById(id);
 
     if (!existingJob) {
       return res.status(400).json({
-        msg: "Job not exists",
+        message: 'Job not exists',
       });
     }
 
@@ -132,7 +116,7 @@ const deleteJob = async (req: any, res: any) => {
     const isValid = validationMongoId(id);
     if (!isValid) {
       res.status(404).json({
-        message: "Job is valid",
+        message: 'Job not valid',
       });
     }
 
