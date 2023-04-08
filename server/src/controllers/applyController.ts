@@ -29,7 +29,7 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Application is valid",
+        message: "Application not valid",
       });
     }
 
@@ -66,7 +66,7 @@ const createApply = async (req: any, res: any) => {
 
     if (existingResume && existingEmail) {
       return res.status(400).json({
-        msg: "Applications exists",
+        message: "Applications exists",
       });
     }
 
