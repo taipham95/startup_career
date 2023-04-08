@@ -5,7 +5,7 @@ import Register from './register'
 
 const router = express.Router();
 
-//API user , register ... http://localhost:8001/admin/users
+//API User Admin ... http://localhost:8001/admin/users
 router.use('/users', UserAdmin)
 
 // API login, authenticator ... http://localhost:8001/admin/login
