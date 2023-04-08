@@ -29,7 +29,7 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: "Application is valid",
+        message: "Application not valid",
       });
     }
 
@@ -66,7 +66,7 @@ const createApply = async (req: any, res: any) => {
 
     if (existingResume && existingEmail) {
       return res.status(400).json({
-        msg: "Applications exists",
+        message: "Applications exists",
       });
     }
 
@@ -84,40 +84,37 @@ const createApply = async (req: any, res: any) => {
   }
 };
 
+const updateApply = async (req: any, res: any) => {
+  try {
+    const { id } = req.params;
 
+    const isValid = validationMongoId(id);
 
-const updateApply= async (req:any, res:any)=>{
-  try{
-    const {id}=req.params;
-
-    const isValid=validationMongoId(id);
-
-    if(!isValid){
+    if (!isValid) {
       res.status(404).json({
-        message:"Apply is valid",
-      })
+        message: "Apply not valid",
+      });
     }
-    
-    const existingApply= await Applicant.findById(id)
 
-    if(!existingApply){
+    const existingApply = await Applicant.findById(id);
+
+    if (!existingApply) {
       return res.status(404).json({
-         message:"Apply not exists",
-      })
+        message: "Apply not exists",
+      });
     }
 
-    await Applicant.findByIdAndUpdate(id,req.body);
+    await Applicant.findByIdAndUpdate(id, req.body);
 
     res.json({
-      message: 'Success Update Apply',
+      message: "Success Update Apply",
     });
-  } catch (error:any){
+  } catch (error: any) {
     res.status(400).json({
       message: error.toString(),
-    })
+    });
   }
-}
-
+};
 
 const deleteApply = async (req: any, res: any) => {
   try {
@@ -125,7 +122,7 @@ const deleteApply = async (req: any, res: any) => {
     const isValid = validationMongoId(id);
     if (!isValid) {
       res.status(404).json({
-        message: "Application is valid",
+        message: "Application not valid",
       });
     }
 

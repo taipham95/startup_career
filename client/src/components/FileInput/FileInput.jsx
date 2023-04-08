@@ -16,13 +16,14 @@ const FileInput = (props) => {
 
   const showAlert = (mess) => {
     Swal.fire({
-      icon: "success",
-      title: "Successful",
-      text: `${mess} uploaded`,
+      // icon: "success",
+      html: `<h3 style="font-size: 24px;">${mess}</h3><br/><p style="color:#000000;font-size: 16px;">uploaded successful</p>`,
+      // text: 'uploaded successful',
+      color: '#f98080',
       allowOutsideClick: true,
       allowEscapeKey: true,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
       },
@@ -39,12 +40,10 @@ const FileInput = (props) => {
       const storageRef = ref(storage, `${formId}/${file[0].name}`);
       uploadBytes(storageRef, file[0], metadata).then((snapshot) => {
         setFileName(file[0].name);
-        onHandleProfile({"fileName": file[0].name});
         setUploaded(true);
         getDownloadURL(ref(storage, `${formId}/${file[0].name}`)).then(
           (url) => {          
-            showAlert(file[0].name);  
-            // onHandleProfile({...{"fileName": file[0].name}, ... {[inputName]: url}});            
+            showAlert(file[0].name);                      
             onHandleProfile({... {[inputName]: url}});            
           }
         );
