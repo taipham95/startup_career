@@ -4,6 +4,7 @@ import FileInput from "../FileInput/FileInput";
 import Input from "../Input/Input";
 import ProfileInput from "../Input/ProfileInput";
 import { dataServices } from "../../services/dataService";
+import Swal from "sweetalert2";
 
 
 const ApplyForm = () => {
@@ -11,26 +12,43 @@ const ApplyForm = () => {
   const [profile, setProfile] = useState({});
   const [showEducation, setShowEducation] = useState(false);
   const [showExp, setShowExp] = useState(false);
-  const [textField, setTextField] = useState("");
-  const {coverLetter} = textField;
-  const userInfo = personal && profile && textField? { personal, profile, coverLetter} : {};
+  const [coverLetter, setCoverLetter] = useState("");
+  const [uploadErr, setUploadError] = useState("");
+
+  const showAlert = (mess) => {
+    Swal.fire({
+      icon: "success",
+      title: "Successful",
+      text: mess,
+      allowOutsideClick: true,
+      allowEscapeKey: true,
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  };
 
   const onHandleTextChange = (e) => {
     const {name, value} = e.target;
-    setTextField( { [name]: value } );
+    // setTextField( { [name]: value } );
+    setCoverLetter(value);
   }
 
   const onHandleInfo = (response) => {
     setInfo({ ...personal, ...response });
   };
 
-  const onHandleProfile = (response) => {
-    console.log(response);    
+  const onHandleProfile = (response) => {    
     // using destructuring or rest operator
     /* const { name, value } = response;
     setProfile({...personal, [name]:value}); */    
     // const {resumeLink} = response;
-    setProfile({ ... profile, ...response });      
+    setProfile({ ... profile, ... response });      
   };
 
   const onShowEducation = () => {
@@ -51,17 +69,31 @@ const ApplyForm = () => {
     setProfile({});
   };
 
+  const onHandleClearDetail = (e) => {
+    e.preventDefault();
+    setCoverLetter("");
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault();        
-    console.log("userInfo", userInfo);
-    dataServices.postApply(userInfo);
+    e.preventDefault();            
+    const userInfo = { personal, profile, coverLetter} ;
+    // console.log("userInfo", userInfo);
+    try {
+      dataServices.postApply(userInfo);
+      setUploadError(false);
+    }
+    catch (err) {
+      console.log(err);
+      setUploadError(true);
+    }
+    if(!uploadErr) {
+      showAlert("Submit successfully!");
+    }
     setInfo({});
     setProfile({});
-    setTextField("");
+    setCoverLetter("");
   };
-/* useEffect(() => {
-  userInfo["profile"].fileName && showAlert(userInfo["profile"].fileName);
-}, [userInfo]); */
+
   return (
     <>
       <form className="pt-6 w-full" onSubmit={handleSubmit}>
@@ -300,6 +332,7 @@ const ApplyForm = () => {
               </h4>
               <button
                 type="button"
+                onClick={(e) => onHandleClearDetail(e)}
                 className="clear-btn w-[6rem] md:w-[10rem] inline-block text-right font-normal text-sky-400 transition duration-150 ease-in-out hover:text-sky-700 focus:text-gray-500 focus:outline-none focus:ring-0 active:text-primary-700"
               >
                 Clear
@@ -319,7 +352,7 @@ const ApplyForm = () => {
             <textarea
               name="coverLetter"
               rows="6"
-              value={textField.coverLetter}
+              value={coverLetter}
               onChange={onHandleTextChange}
               className="block p-3 w-full text-sm text-gray-900 font-light bg-white rounded-2xl border-[1px] border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-transparent dark:focus:ring-transparent dark:focus:border-sky-300 focus:border-sky-300"
               placeholder="Write something about you here..."
