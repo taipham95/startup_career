@@ -8,6 +8,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
 import CandidatesPage from "./pages/AdminPage/CandidatesPage";
+import JobCreatorPage from "./pages/JobCreatorPage/JobCreatorPage";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       {/* <AdminPage /> */}
       <Router>
         <CareerHeader />
-        <Routes>
+        {/* <Routes>
           <Route exact path="/" element={<CareerPage />} />
           <Route exact path="/careers" element={<CareerPage />} />
           <Route exact path="/careers/:id" element={<JobDetail />} />
@@ -23,6 +24,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           
         </Routes>
+        </Routes> */}
+        <JobCreatorPage />
         <CareerFooter />
       </Router>
     </AppProvider>
