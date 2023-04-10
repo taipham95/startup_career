@@ -15,7 +15,7 @@ const TextEditor = () => {
       [{ 'direction': 'rtl' }],   
       [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      [{ 'color': ["#ffffff"] }, { 'background': ["#ffffff"] }],          // dropdown with defaults from theme
+      [{ 'color': ['#e60000', '#9933ff', '#00ff00'] }, { 'background': ["#ffffff"] }],          // dropdown with defaults from theme
       [{ 'font': [] }],
       [{ 'align': [] }],
       ['clean']                                         // remove formatting button
@@ -34,6 +34,10 @@ const TextEditor = () => {
     "indent",
     "link",
     "image",
+    "color",
+    "background",
+    "size",
+    "script",
   ];
   return (
     <ReactQuill
