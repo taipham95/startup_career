@@ -7,23 +7,23 @@ import JobDetail from "./components/JobDetail";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
+import EmployeesHome from "./pages/AdminPage/Employees/EmployeesHome";
+import DetailEmploy from "./pages/AdminPage/Employees/DetailEmploy";
+import { EmployeeProvider } from "./Context/EmployeeDataContext";
+import FromModal from "./pages/AdminPage/Employees/FromModal";
 
 function App() {
   return (
-    <AppProvider>
-      <AdminPage />
-      {/* <Router>
-        <CareerHeader />
-        <Routes>
-          <Route exact path="/" element={<CareerPage />} />
-          <Route exact path="/careers" element={<CareerPage />} />
-          <Route exact path="/careers/:id" element={<JobDetail />} />
-          <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <CareerFooter />
-      </Router> */}
-    </AppProvider>
+      <EmployeeProvider>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<AdminPage />} />
+            <Route exact path="/employ" element={<EmployeesHome />} />
+            <Route exact path="/detail/:id/edit" element={<DetailEmploy/>} />
+            <Route exact path="/modal" element={<FromModal/>} />
+          </Routes>
+        </Router>
+      </EmployeeProvider>
   );
 }
 
