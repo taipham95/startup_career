@@ -40,15 +40,7 @@ const DetailEmploy = (props) => {
         event.preventDefault();
         try {
             const updateResponse = await EmployService.UpdateById(id, employForm);
-            setEmploysData(employee.map((employsData) => {
-                if (employsData._id == id) {
-                    return {
-                        ...employsData,
-                        ...employForm,
-                    }
-                } 
-                return employsData
-            }))
+            setEmploysData(updateResponse.data.newData)
             navigate("/employ")
         } catch (error) {
             console.log(error);
