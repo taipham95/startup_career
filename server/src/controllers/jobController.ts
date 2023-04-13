@@ -12,7 +12,7 @@ const fetchAllJob = async (req: any, res: any) => {
     }
 
     res.json({
-      message: 'Success Get All',
+      message: 'Success Get All Jobs',
       data: jobs,
     })}
 
@@ -43,7 +43,7 @@ const fetchJob = async (req: any, res: any) => {
     }
 
     res.json({
-      message: 'Success Get An Job',
+      message: 'Success Get Job',
       data: job,
     })} 
     catch (error: any) {
@@ -61,8 +61,6 @@ const createJob = async (req: any, res: any) => {
         location,
         type,
         tags,
-        created_at,
-        updated_at,
         available,
         descriptions,
         requirements,                                                                                                               
@@ -82,8 +80,6 @@ const createJob = async (req: any, res: any) => {
         location,
         type,
         tags,
-        created_at,
-        updated_at,
         available,
         descriptions,
         requirements,
@@ -92,7 +88,7 @@ const createJob = async (req: any, res: any) => {
     await job.save();
 
     res.json({
-      message: 'Success Upload',
+      message: 'Success Create New Job',
     })} 
     
     catch (error: any) {
@@ -105,16 +101,6 @@ const createJob = async (req: any, res: any) => {
 const updateJob = async (req: any, res: any) => {
   try {
     const { id } = req.params;
-    const { 
-      title, 
-      location,
-      type,
-      tags, 
-      updated_at, 
-      available,
-      descriptions,
-      requirements,
-    } = req.body;
 
     const isValid = validationMongoId(id);
 
@@ -131,16 +117,7 @@ const updateJob = async (req: any, res: any) => {
       });
     }
 
-    await Job.findByIdAndUpdate(id, {
-      title, 
-      location,
-      type,
-      tags, 
-      updated_at: new Date(Date.now()),
-      available,
-      descriptions,
-      requirements,
-    });
+    await Job.findByIdAndUpdate(id, req.body);
 
     res.json({
       message: 'Success Update Job',

@@ -1,5 +1,5 @@
 import Applicant from "../models/applicant.model";
-import validationMongoId from '../helper/validationMongoId'
+import validationMongoId from "../helper/validationMongoId";
 
 const fetchAllApply = async (req: any, res: any) => {
   try {
@@ -7,16 +7,15 @@ const fetchAllApply = async (req: any, res: any) => {
 
     if (!apply) {
       res.status(404).json({
-        message: 'Not Found',
+        message: "Not Found",
       });
     }
 
     res.json({
-      message: 'Success Get All',
+      message: "Success Get All",
       data: apply,
-    })}
-
-    catch (error: any) {
+    });
+  } catch (error: any) {
     res.status(400).json({
       message: error.toString(),
     });
@@ -30,7 +29,7 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: 'Application is valid',
+        message: "Application is valid",
       });
     }
 
@@ -38,12 +37,12 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!apply) {
       res.status(404).json({
-        message: 'Not Found',
+        message: "Not Found",
       });
     }
 
     res.json({
-      message: 'Success Get An Application',
+      message: "Success Get An Application",
       data: apply,
     });
   } catch (error: any) {
@@ -54,85 +53,63 @@ const fetchApply = async (req: any, res: any) => {
 };
 
 const createApply = async (req: any, res: any) => {
-
   try {
     const applicationBody = req.body;
-    const { resumeLink, coverLetter, dob } = req.body;
-
-    const { 
-      firstName, 
-      lastName, 
-      headline,
-      phone,
-      address,
-      email,
-    } = applicationBody.personal
-
-    const { 
-      school, 
-      foStudy, 
-      degree, 
-      startDate, 
-      endDate,
-    } = applicationBody.education
-
-    const {
-      title, 
-      company, 
-      industry, 
-      summary, 
-      sDate, 
-      eDate,
-      workHere,
-    } = applicationBody.experience
 
     // kiem tra mail va link job da ton tai chua
-    const existingResume = await Applicant.findOne( { resumeLink } );
-    const existingEmail = await Applicant.findOne( { "personal.email": applicationBody.personal.email } );
-    
+    const existingResume = await Applicant.findOne({
+      "profile.resumeLink": applicationBody.profile.resumeLink,
+    });
+    const existingEmail = await Applicant.findOne({
+      "personal.email": applicationBody.personal.email,
+    });
+
     if (existingResume && existingEmail) {
       return res.status(400).json({
-        msg: 'Applications exists',
+        msg: "Applications exists",
       });
     }
 
-    const apply = new Applicant({
-      personal: {
-        firstName, 
-        lastName, 
-        headline, 
-        phone, 
-        address, 
-        email,
-      },
-      education: {
-        school,
-        foStudy, 
-        degree, 
-        startDate, 
-        endDate,
-      },
-      experience: {
-        title,
-        company,
-        industry,
-        summary,
-        sDate,
-        eDate,
-        workHere,
-      },
-      resumeLink,
-      coverLetter,
-      dob,
-    });
+    const apply = new Applicant(req.body);
 
     await apply.save();
 
     res.json({
-      message: 'Success Upload Application',
-    })} 
-    
-    catch (error: any) {
+      message: "Success Create New Application",
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      message: error.toString(),
+    });
+  }
+};
+
+const updateApply = async (req: any, res: any) => {
+  try {
+    const { id } = req.params;
+
+    const isValid = validationMongoId(id);
+
+    if (!isValid) {
+      res.status(404).json({
+        message: "Apply is valid",
+      });
+    }
+
+    const existingApply = await Applicant.findById(id);
+
+    if (!existingApply) {
+      return res.status(404).json({
+        message: "Apply not exists",
+      });
+    }
+
+    await Applicant.findByIdAndUpdate(id, req.body);
+
+    res.json({
+      message: "Success Update Apply",
+    });
+  } catch (error: any) {
     res.status(400).json({
       message: error.toString(),
     });
@@ -145,14 +122,14 @@ const deleteApply = async (req: any, res: any) => {
     const isValid = validationMongoId(id);
     if (!isValid) {
       res.status(404).json({
-        message: 'Application is valid',
+        message: "Application is valid",
       });
     }
 
     await Applicant.findByIdAndDelete(id);
 
     res.json({
-      message: 'Success Delete Application',
+      message: "Success Delete Application",
     });
   } catch (error: any) {
     res.status(400).json({
@@ -161,4 +138,10 @@ const deleteApply = async (req: any, res: any) => {
   }
 };
 
-export default { fetchAllApply, fetchApply, createApply, deleteApply };
+export default {
+  fetchAllApply,
+  fetchApply,
+  createApply,
+  updateApply,
+  deleteApply,
+};

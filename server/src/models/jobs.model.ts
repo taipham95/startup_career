@@ -10,11 +10,13 @@ export interface IJob {
     available: Boolean;
     descriptions: {
       title: String;
-      description: String;
-      detailDescription: String[]; // List Array DetailJob
+      detail: String;
+      bullets: String[]; // List Array DetailJob
     }[];
     requirements: String[];
   }
+
+  
   // Schema is database combination of rules
   const jobSchema: Schema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -26,12 +28,12 @@ export interface IJob {
     available: { type: Boolean, required: true },
     descriptions: [{
         title: { type: String },
-        description: { type: String },
-        detailDescription: { type: Array },
+        detail: { type: String },
+        bullets: { type: Array },
       }],
-    requirements: { type: Array, required: true }
+    requirements: { type: Array }
   });
   
   const Job = mongoose.model<IJob>('Job', jobSchema);
-  
+
   export default Job;

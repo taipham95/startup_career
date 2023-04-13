@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { dataServices } from "../../utils/dataService";
+import { dataServices } from "../../services/dataService";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -142,12 +142,12 @@ const Select = (props) => {
       </button>
       <div
         // id="dropdown-states"
-        class={`absolute top-[4.25rem] left-0 max-width-100 w-full sm:w-[45%] h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white rounded-lg drop-shadow-md dark:bg-gray-700 ${
+        class={`absolute top-[4.25rem] left-0 max-width-100 w-full sm:w-[45%] lg:w-[40%] h-[20rem] py-4 overflow-y-auto overflow-x-hidden z-10 focus:outline-none outline-none bg-white rounded-lg drop-shadow-md dark:bg-gray-700 ${
           isOpen ? "" : "hidden"
         }`}
       >
         <ul
-          class="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
+          className="py-0 text-sm font-light text-gray-700 dark:text-gray-200"
           aria-labelledby="states-button"
         >
           {phoneCodes}

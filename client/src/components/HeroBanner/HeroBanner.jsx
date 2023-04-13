@@ -8,7 +8,7 @@ const HeroBanner = (props) => {
         {
           props.tags.map((tag) => {
             return (
-              <span class="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+              <span className="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
                 {tag}
               </span>
             )

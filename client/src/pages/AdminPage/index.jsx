@@ -6,16 +6,13 @@ import CandidatesPage from "./CandidatesPage";
 
 const AdminPage = () => {
   return (
-    <main class="flex justify-center ">
-      <div class=" flex justify-start border-[1.5px] border-slate-300 ">
-        <Sidebar />
-        <div class="flex flex-col">
-          <SearchAndInforAdmin />
-          {/* <JobStatistics /> */}
-          {/* <EmployeesStatus /> */}
-          <CandidatesPage />
-        </div>
-        
+    <main class="flex justify-center w-[100%]">
+      <Sidebar class="w=[25%]" />
+      <div class="flex flex-col w-[100%]">
+        <SearchAndInforAdmin />
+        <JobStatistics />
+        <EmployeesStatus />
+        {/* <CandidatesPage /> */}
       </div>
     </main>
   );

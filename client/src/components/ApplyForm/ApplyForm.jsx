@@ -3,42 +3,34 @@ import DropdownInput from "../DropdownInput/DropdownInput";
 import FileInput from "../FileInput/FileInput";
 import Input from "../Input/Input";
 import ProfileInput from "../Input/ProfileInput";
-import Swal from "sweetalert2";
+import { dataServices } from "../../services/dataService";
+
 
 const ApplyForm = () => {
   const [personal, setInfo] = useState({});
   const [profile, setProfile] = useState({});
   const [showEducation, setShowEducation] = useState(false);
   const [showExp, setShowExp] = useState(false);
-  const userInfo = personal && profile ? { personal, profile } : {};
+  const [textField, setTextField] = useState("");
+  const {coverLetter} = textField;
+  const userInfo = personal && profile && textField? { personal, profile, coverLetter} : {};
 
-  const showAlert = (mess) => {
-    Swal.fire({
-      icon: "success",
-      title: "Successful",
-      text: `${mess} uploaded`,
-      allowOutsideClick: true,
-      allowEscapeKey: true,
-      showConfirmButton: false,
-      timer: 1500,
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
-    });
-  };
+  const onHandleTextChange = (e) => {
+    const {name, value} = e.target;
+    setTextField( { [name]: value } );
+  }
 
   const onHandleInfo = (response) => {
     setInfo({ ...personal, ...response });
   };
 
-  const onHandleProfile = (response) => {    
+  const onHandleProfile = (response) => {
+    console.log(response);    
     // using destructuring or rest operator
     /* const { name, value } = response;
     setProfile({...personal, [name]:value}); */    
-    setProfile({ ... profile, ...response });
+    // const {resumeLink} = response;
+    setProfile({ ... profile, ...response });      
   };
 
   const onShowEducation = () => {
@@ -60,13 +52,16 @@ const ApplyForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();        
+    console.log("userInfo", userInfo);
+    dataServices.postApply(userInfo);
     setInfo({});
     setProfile({});
+    setTextField("");
   };
-useEffect(() => {
+/* useEffect(() => {
   userInfo["profile"].fileName && showAlert(userInfo["profile"].fileName);
-}, [userInfo]);
+}, [userInfo]); */
   return (
     <>
       <form className="pt-6 w-full" onSubmit={handleSubmit}>
@@ -324,6 +319,8 @@ useEffect(() => {
             <textarea
               name="coverLetter"
               rows="6"
+              value={textField.coverLetter}
+              onChange={onHandleTextChange}
               className="block p-3 w-full text-sm text-gray-900 font-light bg-white rounded-2xl border-[1px] border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:ring-transparent dark:focus:ring-transparent dark:focus:border-sky-300 focus:border-sky-300"
               placeholder="Write something about you here..."
             ></textarea>

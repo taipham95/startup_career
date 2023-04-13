@@ -12,6 +12,8 @@ function App() {
   return (
     <AppProvider>
       <AdminPage />
+      {/* <Router>
+      <AdminPage />
 
 
 

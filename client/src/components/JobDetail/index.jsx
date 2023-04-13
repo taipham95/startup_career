@@ -11,52 +11,60 @@ function JobDetail() {
   return (
     <div>
       {jobsData ? (
-        <main class="flex-1 flex justify-center flex-col w-full items-center relative">
+        <main className="flex-1 flex justify-center flex-col w-full items-center relative">
           <header
-            class="md:bg-[url('https://skymavis.com/_app/immutable/assets/axie-concept-f5e52a79.png')] 
+            className="md:bg-[url('https://skymavis.com/_app/immutable/assets/axie-concept-f5e52a79.png')] 
           max-md:bg-[url('https://skymavis.com/_app/immutable/assets/ImageBackgroundJobDetailMobile-2dbabf27.png')]
           page-header flex flex-col items-center text-center p-[64px_20px] xl:p-[95px_28px_95px] 2xl:p-[95px_500px_95px] 3xl:p-[95px_600px_95px] bg-no-repeat bg-cover bg-center transition-all w-full"
           >
-            <div class=" 	flex gap-2">
+            <div className=" 	flex gap-2">
               {joblist2.tags.map((tag) => {
                 return (
-                  <p class="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                  <p className="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
                     {tag}
                   </p>
                 );
               })}
             </div>
-            <div class="text-4xl xl:text-5xl font-bold mb-5 mt-5">
+            <div className="text-4xl xl:text-5xl font-bold mb-5 mt-5">
               {joblist2.title}
             </div>
             {joblist2.location}
           </header>
-          <div class="flex flex-col text-left  max-w-[856px] p-5 xl:p-0">
-            <div class="text-[#1D273D] detail-job pt-10 xl:pt-[79px] ">
-              <h1 class="text-2xl font-medium">Descriptions</h1>
+          <div className="flex flex-col text-left  max-w-[856px] p-5 xl:p-0">
+            <div className="text-[#1D273D] detail-job pt-10 xl:pt-[79px] ">
+              <h1 className="text-2xl font-medium">Descriptions</h1>
               <p>
                 <br />
               </p>
-              <p>
-                <strong>About Sky Mavis</strong>
-              </p>
-              <p class="p-1">{joblist2.descriptions[0].description}</p>
 
-              <p>
-                <strong>About the Role</strong>
-              </p>
-              <p class="p-1">{joblist2.descriptions[1].description}</p>
+              {joblist2.descriptions.map((description) => {
+                return (
+                  <div>
+                    <p>
+                      <strong>{description.title}</strong>
+                    </p>
+                    <p className="p-1">{description.detail}</p>
+                    <ul className="list-disc pl-4">
+                      {description.bullets.map((bullet) => {
+                        return <li>{bullet}</li>;
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+              <p className="p-1">{joblist2.descriptions[1].description}</p>
 
-              <h1 class="text-2xl font-medium mt-3">Requirements</h1>
-              <ul class="list-disc pl-4">
+              <h1 className="text-2xl font-medium mt-3">Requirements</h1>
+              <ul className="list-disc pl-4">
                 {joblist2.requirements.map((item) => {
                   return <li>{item}</li>;
                 })}
               </ul>
             </div>
             <div>
-              <h1 class="text-2xl font-medium mt-3 mb-2">Benefits</h1>
-              <p class="flex gap-x-2 my-5">
+              <h1 className="text-2xl font-medium mt-3 mb-2">Benefits</h1>
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -66,7 +74,7 @@ function JobDetail() {
                 that is making a positive impact and changing people’s lives
                 globally
               </p>
-              <p class="flex gap-x-2 my-5">
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -75,7 +83,7 @@ function JobDetail() {
                 A fast-paced, active, and fun working environment where
                 everything revolves around games and cute beings
               </p>
-              <p class="flex gap-x-2 my-5">
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -84,7 +92,7 @@ function JobDetail() {
                 A competitive salary package that fits your skills, experiences,
                 and contributions
               </p>
-              <p class="flex gap-x-2 my-5">
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -92,7 +100,7 @@ function JobDetail() {
                 />
                 Freedom, autonomy & ownership around your work
               </p>
-              <p class="flex gap-x-2 my-5">
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -100,7 +108,7 @@ function JobDetail() {
                 />
                 Contribute to making revolutionary games
               </p>
-              <p class="flex gap-x-2 my-5">
+              <p className="flex gap-x-2 my-5">
                 <img
                   title=""
                   alt=""
@@ -109,7 +117,7 @@ function JobDetail() {
                 Acquire new and unique skills as we usher in a new era of
                 digital ownership
               </p>
-              <p class="flex gap-x-2 mt-5">
+              <p className="flex gap-x-2 mt-5">
                 <img
                   title=""
                   alt=""
@@ -121,7 +129,7 @@ function JobDetail() {
             </div>
           </div>
           <Link to={`/careers/${param.id}/apply`}>
-            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-full mb-[50px] mt-[30px] py-[5px] px-[54px]">
+            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-full mb-[50px] mt-[30px] py-[5px] px-[54px]">
               Apply
             </button>
           </Link>
