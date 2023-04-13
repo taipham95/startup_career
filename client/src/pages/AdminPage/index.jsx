@@ -6,9 +6,9 @@ import CandidatesPage from "./CandidatesPage";
 
 const AdminPage = () => {
   return (
-    <main class="flex justify-center w-[100%]">
-      <Sidebar class="w=[25%]" />
-      <div class="flex flex-col w-[100%]">
+    <main className="flex justify-center w-[100%]">
+      <Sidebar className="w=[25%]" />
+      <div className="flex flex-col w-[100%]">
         <SearchAndInforAdmin />
         <JobStatistics />
         <EmployeesStatus />

@@ -83,11 +83,11 @@ const CandidatesPage = () => {
   }, [sort2])
 
   return (
-    <div class="bg-white px-4 pt-3 pb-4 flex-1">
+    <div className="bg-white px-4 pt-3 pb-4 flex-1">
       {/* 
             <div>
             <strong>Candidate List</strong>
-            <div class=''>  
+            <div className=''>  
                    
                         <div className='flex text-amber-400 w-full justify-between'>
                             <div>NAME</div>
@@ -104,12 +104,12 @@ const CandidatesPage = () => {
                                 <td>{candidate.position}</td>
                                 <td>{candidate.salary}</td>
 
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">{candidate.status}</span>
+                                            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+									<span className="relative">{candidate.status}</span>
 									</span>
 								</td>
 
@@ -121,18 +121,18 @@ const CandidatesPage = () => {
             </div> 
             */}
 
-      <section class="px-4 py-2">
-        <div class="">
-          <div class="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
+      <section className="px-4 py-2">
+        <div className="">
+          <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
             <div>
-              <p class="font-semibold">Candidate List</p>
+              <p className="font-semibold">Candidate List</p>
             </div>
 
             {
               check ? (
                 <button onClick={() => setCheck(false)}
                   type="button"
-                  class="flex  text-slate-500 bg-white border border-gray-200 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-3 py-1 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                  className="flex  text-slate-500 bg-white border border-gray-200 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-3 py-1 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@ const CandidatesPage = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    class="w-5 h-5 pr-1"
+                    className="w-5 h-5 pr-1"
                   >
                     <path
                       strokeLinecap="round"
@@ -148,12 +148,12 @@ const CandidatesPage = () => {
                       d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
                     />
                   </svg>
-                  <div class="pt-[1px]">Filter & Sort</div>
+                  <div className="pt-[1px]">Filter & Sort</div>
                 </button>
               ) :
                 (
                   <div className="w-3/5 flex justify-around">
-                    <div class="relative w-3/5">
+                    <div className="relative w-3/5">
                       <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                       </div>
@@ -179,20 +179,20 @@ const CandidatesPage = () => {
 
 
           </div>
-          <div class="relative overflow-x-auto border-[1.5px] rounded-lg w-full">
-            <table class="w-full  text-sm text-center text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
+          <div className="relative overflow-x-auto border-[1.5px] rounded-lg w-full">
+            <table className="w-full  text-sm text-center text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  <th scope="col" className="px-3 py-3 font-semibold">
                     Name
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  <th scope="col" className="px-3 py-3 font-semibold">
                     Job Title
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  <th scope="col" className="px-3 py-3 font-semibold">
                     Salary
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  <th scope="col" className="px-3 py-3 font-semibold">
                     Status
                   </th>
                 </tr>
@@ -208,34 +208,34 @@ const CandidatesPage = () => {
                     })
                     .map((item) => {
                       return (
-                        <tr class="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr className="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                           <th
                             scope="row"
-                            class="flex items-center px-6 py-1 text-gray-900 whitespace-nowrap dark:text-white"
+                            className="flex items-center px-6 py-1 text-gray-900 whitespace-nowrap dark:text-white"
                           >
                             <img
-                              class="w-10 h-10 rounded-full object-cover"
+                              className="w-10 h-10 rounded-full object-cover"
                               src="https://huanluyenchothanhtai.com/wp-content/uploads/2019/07/mau-mat-husky.jpg"
                               alt="Jese image"
                             ></img>
 
-                            <div class="text-xs font-semibold pl-3">{item.name}</div>
+                            <div className="text-xs font-semibold pl-3">{item.name}</div>
                           </th>
-                          <td class="px-6 py-4 text-xs">{item.position}</td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.salary}</div>
+                          <td className="px-6 py-4 text-xs">{item.position}</td>
+                          <td className="px-6 py-4">
+                            <div className="text-xs ">{item.salary}</div>
                           </td>
-                          <td class="pl-6 pr-2 py-4">
+                          <td className="pl-6 pr-2 py-4">
                             {
                               item.status == "Onboarding" ?
                                 (
-                                  <mark class="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
+                                  <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
                                     {item.status}
                                   </mark>
                                 )
                                 :
                                 (
-                                  <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold  rounded-md">
+                                  <mark className="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold  rounded-md">
                                     {item.status}
                                   </mark>
                                 )
@@ -250,28 +250,28 @@ const CandidatesPage = () => {
               </tbody>
             </table>
             <nav
-              class="flex items-center justify-between py-2 pt-1 pl-2"
+              className="flex items-center justify-between py-2 pt-1 pl-2"
               aria-label="Table navigation"
             >
-              <span class="text-xs font-normal text-gray-500 dark:text-gray-400">
+              <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
                 Showing{" "}
-                <span class="font-semibold text-gray-900 dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
                   1-5
                 </span>{" "}
                 of{" "}
-                <span class="font-semibold text-gray-900 dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
                   1000
                 </span>
               </span>
-              <ul class="inline-flex items-center -space-x-px">
+              <ul className="inline-flex items-center -space-x-px">
                 <li>
                   <a
                     href="#"
-                    class="block px-2 py-2 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="block px-2 py-2 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
-                    <span class="sr-only">Previous</span>
+                    <span className="sr-only">Previous</span>
                     <svg
-                      class="w-4 h-4"
+                      className="w-4 h-4"
                       aria-hidden="true"
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -288,7 +288,7 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
                     1
                   </a>
@@ -296,7 +296,7 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
                     2
                   </a>
@@ -304,7 +304,7 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
                     3
                   </a>
@@ -312,7 +312,7 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
                     ...
                   </a>
@@ -320,7 +320,7 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
                     100
                   </a>
@@ -328,11 +328,11 @@ const CandidatesPage = () => {
                 <li>
                   <a
                     href="#"
-                    class="block px-1 py-1 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="block px-1 py-1 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
-                    <span class="sr-only">Previous</span>
+                    <span className="sr-only">Previous</span>
                     <svg
-                      class="w-4 h-4"
+                      className="w-4 h-4"
                       aria-hidden="true"
                       fill="currentColor"
                       viewBox="0 0 20 20"
