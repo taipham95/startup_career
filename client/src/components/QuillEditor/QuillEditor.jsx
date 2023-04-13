@@ -9,21 +9,11 @@ const QuillEditor = (props) => {
   const {placeholder,onEditorChange} = props;
   
   const handleChange = (html) => {
-    /* console.log(editor.getContents());
-    const contents = editor.getContents().ops;   
-    contents.forEach(element => {
-      const {insert, attributes} = element;
-      console.log({insert, attributes});
-    }); */
-    // console.log(editor.getHTML()); // rich text
-    // console.log(editor.getText()); // plain text
-    // console.log(editor.getLength()); // number of characters
-    console.log('html', html);
+    // console.log('html', html);
     setEditorHtml(html);
     onEditorChange(html);
 };
 
-  // console.log(value);
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"], // toggled buttons

@@ -146,10 +146,10 @@ const Content = () => {
               })}
           </div>
           {visibleCount < jobsData.length && (
-            <div class="flex items-center justify-center svelte-1jp7mce">
+            <div className="flex items-center justify-center svelte-1jp7mce">
               <button
                 onClick={showMore}
-                class="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
+                className="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
               >
                 Show more
               </button>

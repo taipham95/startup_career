@@ -7,16 +7,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const AdminPage = () => {
   return (
     <Router>
-    <main class="flex justify-center w-[100%]">
-      <Sidebar class="w=[25%]" />
-      <div class="flex flex-col w-[100%]">
-        <SearchAndInforAdmin />
-        <Routes>
-          <Route exact path="/" element={<Overview />} />
-          <Route exact path="/candidates" element={<CandidatesPage />} />
-        </Routes>
-      </div>
-    </main>
+      <main class="flex justify-center w-[100%]">
+        <Sidebar class="w=[25%]" />
+        <div class="flex flex-col w-[100%]">
+          <SearchAndInforAdmin />
+          <Routes>
+            <Route exact path="/" element={<Overview />} />
+            <Route exact path="/candidates" element={<CandidatesPage />} />
+          </Routes>
+        </div>
+      </main>
     </Router>
   );
 };
