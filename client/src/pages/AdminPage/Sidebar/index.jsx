@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <main className="flex flex-col justify-between h-[100vh] w-[200px] font-medium border-r-[1.5px]">
@@ -24,7 +26,8 @@ const Sidebar = () => {
 
         <div className="pl-2 text-sm text-slate-500">
           <p className="text-[12px] pt-2">General</p>
-          <div className=" flex py-2 cursor-grab">
+          
+          <Link to={"/"}><div className=" flex py-2 cursor-grab">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -41,6 +44,8 @@ const Sidebar = () => {
             </svg>
             <p className=" pl-1">Overview</p>
           </div>
+          </Link>
+
           <div className=" flex py-2 cursor-grab">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +100,8 @@ const Sidebar = () => {
 
             <p className=" pl-1">Jobs</p>
           </div>
-          <div className=" flex pt-2 pb-4  cursor-grab">
+          
+          <Link to={"/candidates"}><div className=" flex pt-2 pb-4  cursor-grab">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -113,6 +119,8 @@ const Sidebar = () => {
 
             <p className=" pl-1">Candidates</p>
           </div>
+          </Link>
+
           <p className="w-[180px] border-b-[1.5px]"></p>
           <p className="text-[12px] pt-2">Support</p>
           <div className=" flex py-2 cursor-grab">

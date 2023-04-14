@@ -7,6 +7,7 @@ import JobDetail from "./components/JobDetail";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
+import CandidatesPage from "./pages/AdminPage/CandidatesPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/careers/:id" element={<JobDetail />} />
           <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
           <Route path="*" element={<PageNotFound />} />
+          
         </Routes>
         <CareerFooter />
       </Router>
