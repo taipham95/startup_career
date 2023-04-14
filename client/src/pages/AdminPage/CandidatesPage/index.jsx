@@ -3,34 +3,127 @@ import { useState, useEffect } from "react"
 const CandidatesPage = () => {
   const CandidatesData = [
     {
-      name: "Aohn Doe 1",
+      id: 1, 
+      name: "Lewis N. Clark",
+      totalcomp: "$2,650",
+      salary: "$2,400",
+      actual: "$2,400",
+      recurring: "$100",
+      offset: "$0",
+      offcycle: "$0",
+      unpaid: "$150",
       position: "DevOps Engineer",
-      salary: "5000",
-      status: "Onboarding",
+      status: "Completed",
     },
     {
-      name: "Cohn Doe 2",
-      position: "Senior Game Engineer",
-      salary: "4000",
-      status: "Onboarding",
+      id: 2, 
+      name: "Christian Mingle",
+      totalcomp: "$4,250",
+      salary: "$4,200",
+      actual: "$4,100",
+      recurring: "$50",
+      offset: "$0",
+      offcycle: "100$",
+      unpaid: "$0",
+      position: "DevOps Engineer",
+      status: "Need Setup",
+    },{
+      id: 3, 
+      name: "Sara Bellum",
+      totalcomp: "$1,150",
+      salary: "$1,050",
+      actual: "$1050",
+      recurring: "$0",
+      offset: "$100",
+      offcycle: "$0",
+      unpaid: "$0",
+      position: "DevOps Engineer",
+      status: "Completed",
     },
     {
-      name: "Eohn Doe 3",
-      position: "Product Designer",
-      salary: "4000",
-      status: "Offboarding",
-    },
-    {
-      name: "Dohn Doe 4",
-      position: "Social Media Specialist",
-      salary: "3500",
-      status: "Onboarding",
-    },
-    {
-      name: "Bohn Doe 5",
-      position: "Senior Game Designer - Homeland",
-      salary: "5000",
-      status: "Offboarding",
+      id: 4, 
+      name: "Frank Senbeans",
+      totalcomp: "$3,150",
+      salary: "$2,950",
+      actual: "$2,950",
+      recurring: "$100",
+      offset: "$0",
+      offcycle: "$0",
+      unpaid: "$100",
+      position: "DevOps Engineer",
+      status: "Completed",
+    },{
+      id: 5, 
+      name: "Jerome Bell",
+      totalcomp: "$7,259",
+      salary: "$7,000",
+      actual: "$7,000",
+      recurring: "$59",
+      offset: "$100",
+      offcycle: "$0",
+      unpaid: "$100",
+      position: "DevOps Engineer",
+      status: "Completed",
+    },{
+      id: 6, 
+      name: "Marvin McKinney",
+      totalcomp: "$2,890",
+      salary: "$2,500",
+      actual: "$2,500",
+      recurring: "$190",
+      offset: "$100",
+      offcycle: "$100",
+      unpaid: "$0",
+      position: "DevOps Engineer",
+      status: "Need Setup",
+    },{
+      id: 7, 
+      name: "Albert Flores",
+      totalcomp: "$2,650",
+      salary: "$2,400",
+      actual: "$2,400",
+      recurring: "$100",
+      offset: "$0",
+      offcycle: "$0",
+      unpaid: "$150",
+      position: "DevOps Engineer",
+      status: "Need Setup",
+    },{
+      id: 8, 
+      name: "Darlene Robertson",
+      totalcomp: "$4,250",
+      salary: "$4,200",
+      actual: "$4,100",
+      recurring: "$50",
+      offset: "$0",
+      offcycle: "100$",
+      unpaid: "$0",
+      position: "DevOps Engineer",
+      status: "Completed",
+    },{
+      id: 9, 
+      name: "Robert Fox",
+      totalcomp: "$1,150",
+      salary: "$1,050",
+      actual: "$1050",
+      recurring: "$0",
+      offset: "$100",
+      offcycle: "$0",
+      unpaid: "$0",
+      position: "DevOps Engineer",
+      status: "Completed",
+    },{
+      id: 10, 
+      name: "Dianne Russell",
+      totalcomp: "$3,150",
+      salary: "$2,950",
+      actual: "$2,950",
+      recurring: "$100",
+      offset: "$0",
+      offcycle: "$0",
+      unpaid: "$100",
+      position: "DevOps Engineer",
+      status: "Need Setup",
     },
   ];
 
@@ -190,7 +283,25 @@ const CandidatesPage = () => {
                     Job Title
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
+                    Total Comp
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
                     Salary
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
+                    Actual
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
+                    Recurring
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
+                    Offset
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
+                    Off Cycle
+                  </th>
+                  <th scope="col" class="px-3 py-3 font-semibold">
+                    Unpaid
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Status
@@ -216,18 +327,36 @@ const CandidatesPage = () => {
                             <img
                               class="w-10 h-10 rounded-full object-cover"
                               src="https://huanluyenchothanhtai.com/wp-content/uploads/2019/07/mau-mat-husky.jpg"
-                              alt="Jese image"
+                              alt="Candidate Avatar"
                             ></img>
 
                             <div class="text-xs font-semibold pl-3">{item.name}</div>
                           </th>
                           <td class="px-6 py-4 text-xs">{item.position}</td>
                           <td class="px-6 py-4">
+                            <div class="text-xs ">{item.totalcomp}</div>
+                          </td>
+                          <td class="px-6 py-4">
                             <div class="text-xs ">{item.salary}</div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="text-xs ">{item.actual}</div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="text-xs ">{item.recurring}</div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="text-xs ">{item.offset}</div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="text-xs ">{item.offcycle}</div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="text-xs ">{item.unpaid}</div>
                           </td>
                           <td class="pl-6 pr-2 py-4">
                             {
-                              item.status == "Onboarding" ?
+                              item.status == "Completed" ?
                                 (
                                   <mark class="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
                                     {item.status}
@@ -235,7 +364,7 @@ const CandidatesPage = () => {
                                 )
                                 :
                                 (
-                                  <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold  rounded-md">
+                                  <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
                                     {item.status}
                                   </mark>
                                 )
@@ -256,7 +385,7 @@ const CandidatesPage = () => {
               <span class="text-xs font-normal text-gray-500 dark:text-gray-400">
                 Showing{" "}
                 <span class="font-semibold text-gray-900 dark:text-white">
-                  1-5
+                  1-10
                 </span>{" "}
                 of{" "}
                 <span class="font-semibold text-gray-900 dark:text-white">
