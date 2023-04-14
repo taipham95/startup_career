@@ -14,7 +14,7 @@ const SwitchButton = (props) => {
       />
       <label
         style={{ background: isAvailable && "#4c98ff" }}
-        className="w-[60%] flex flex-row react-switch-label"
+        className={`${isAvailable ? "w-[50%]" :"w-[30%]" } flex flex-row react-switch-label transition-all duration-300`}
         htmlFor={`react-switch-new`}
       >
         <span className="p-4 grow text-white">{isAvailable && "Available"}</span>
