@@ -129,7 +129,7 @@ const JobCreatorPage = () => {
             type="submit"
             className="min-w-fit w-fit mx-auto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
           >
-            Submit application
+            Save job
           </button>
         </form>
       </div>
