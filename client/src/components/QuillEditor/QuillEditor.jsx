@@ -6,7 +6,7 @@ import "./QuillEditor.css";
 
 const QuillEditor = (props) => {  
   const [editorHtml, setEditorHtml] = useState("");
-  const {placeholder,onEditorChange} = props;
+  const {value, placeholder,onEditorChange} = props;
   
   const handleChange = (html) => {
     // console.log('html', html);
@@ -54,7 +54,7 @@ const QuillEditor = (props) => {
   return (
     <ReactQuill
       theme="snow"
-      value={editorHtml || ""}
+      value={value || ""}
       onChange={handleChange}
       modules={modules}
       formats={formats}
