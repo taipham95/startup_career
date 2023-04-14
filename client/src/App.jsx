@@ -12,12 +12,8 @@ import CandidatesPage from "./pages/AdminPage/CandidatesPage";
 function App() {
   return (
     <AppProvider>
-          {/* <Route exact path="/" element={<AdminPage/>}/> */}
-      <AdminPage />
-
-
-
-      {/* <Router>
+      {/* <AdminPage /> */}
+      <Router>
         <CareerHeader />
         <Routes>
           <Route exact path="/" element={<CareerPage />} />
@@ -28,7 +24,7 @@ function App() {
           
         </Routes>
         <CareerFooter />
-      </Router> */}
+      </Router>
     </AppProvider>
   );
 }
