@@ -13,21 +13,18 @@ import JobCreatorPage from "./pages/JobCreatorPage/JobCreatorPage";
 function App() {
   return (
     <AppProvider>
-      {/* <AdminPage /> */}
-      <Router>
+      <AdminPage />
+      {/* <Router>
         <CareerHeader />
-        {/* <Routes>
+        <Routes>
           <Route exact path="/" element={<CareerPage />} />
           <Route exact path="/careers" element={<CareerPage />} />
           <Route exact path="/careers/:id" element={<JobDetail />} />
           <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
           <Route path="*" element={<PageNotFound />} />
-          
         </Routes>
-        </Routes> */}
-        <JobCreatorPage />
         <CareerFooter />
-      </Router>
+      </Router> */}
     </AppProvider>
   );
 }

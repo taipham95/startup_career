@@ -13,7 +13,7 @@ function JobDetail() {
   console.log(joblist2);
   // const htmlString = `<p><strong>About Sky Mavis</strong></p><p>Sky Mavis, the pioneer behind the blockchain game Axie Infinity, is revolutionizing the virtual gaming world with innovative technology and infrastructure. We are committed to fostering a dynamic and inclusive work culture where individuals can bring their authentic selves to the table. As a team of entrepreneurial disruptors and gamers, we are driven by a shared passion for making a meaningful impact and embracing the challenges and critiques that come with being at the forefront of technological advancement.</p><p><br></p><p><strong>About the Role</strong></p><p>Our DevOps Engineers are responsible for maintaining the robustness and reliability of our system to operate and scale to potentially millions of users. This is not a traditional role - more of a fusion between classic DevOps and Site Reliability Engineering. We are operating at the bleeding edge of blockchain technology, so many of your prerogatives may be experiments that have never been conducted before. You'll need to be bright, nimble, and willing to innovate to succeed in this role. Your day to day might include</p><p><br></p><ul><li>Apply cloud (AWS, Azure, GCP) computing skills to deploy releases and upgrades.</li><li>Apply best practices to improve the company's computing architecture (server monitoring, micro-services management).</li><li>Implement automation tools and frameworks (CI/CD pipelines).</li><li>Improve company engineering tools, procedures, and data security</li></ul>`;
   return (
-    <div id="jobDetail-page">      
+    <div id="jobDetail-page">
       {jobsData ? (
         <main className="flex-1 flex justify-center flex-col w-full items-center relative">
           <header
@@ -22,7 +22,7 @@ function JobDetail() {
           page-header flex flex-col items-center text-center p-[64px_20px] xl:p-[95px_28px_95px] 2xl:p-[95px_500px_95px] 3xl:p-[95px_600px_95px] bg-no-repeat bg-cover bg-center transition-all w-full"
           >
             <div className=" 	flex gap-2">
-              {joblist2.tags.map((tag) => {
+              {joblist2?.tags.map((tag) => {
                 return (
                   <p className="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
                     {tag}
@@ -31,9 +31,9 @@ function JobDetail() {
               })}
             </div>
             <div className="text-4xl xl:text-5xl font-bold mb-5 mt-5">
-              {joblist2.title}
+              {joblist2?.title}
             </div>
-            {joblist2.location}
+            {joblist2?.location}
           </header>
           <div className="flex flex-col text-left  max-w-[856px] p-5 xl:p-0">
             <div className="text-[#1D273D] detail-job pt-10 xl:pt-[79px] ">
@@ -42,9 +42,9 @@ function JobDetail() {
                 <br />
               </p>
               {/* {parse(htmlString)} */}
-              {joblist2.descriptions.map((description) => {
+              {joblist2?.descriptions.map((description) => {
                 return (
-                  <div>                    
+                  <div>
                     <p>
                       <strong>{description.title}</strong>
                     </p>
@@ -57,11 +57,11 @@ function JobDetail() {
                   </div>
                 );
               })}
-              <p className="p-1">{joblist2.descriptions[1].description}</p>
+              <p className="p-1">{joblist2?.descriptions[1].description}</p>
 
               <h1 className="text-2xl font-medium mt-3">Requirements</h1>
               <ul className="list-disc pl-4">
-                {joblist2.requirements.map((item) => {
+                {joblist2?.requirements.map((item) => {
                   return <li>{item}</li>;
                 })}
               </ul>
