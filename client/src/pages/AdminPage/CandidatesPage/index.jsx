@@ -341,21 +341,26 @@ const CandidatesPage = () => {
                         .includes(val.toLowerCase());
                     })
                     .map((item) => {
+                      const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+                      console.log(item.name.split(" ").reduce((acc, cur) => acc += cur[0], ""))
                       return (
-                        <tr className="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                           <th
                             scope="row"
                             className="flex items-center px-6 py-1 text-gray-900 whitespace-nowrap dark:text-white"
                           >
-                            <img
-                              className="w-10 h-10 rounded-full object-cover"
-                              src="https://huanluyenchothanhtai.com/wp-content/uploads/2019/07/mau-mat-husky.jpg"
-                              alt="Candidate Avatar"
-                            ></img>
+                            <div className={`w-12 h-12 flex justify-center items-center rounded-full text-xl text-white uppercase`}
+                            style={{
+                              background: bgColor
+                            }}
+                            >{item.name.split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                            {/* cho-nay-chua-hieu-tai-sao-sai */}
 
                             <div className="text-xs font-semibold pl-3">
                               {item.name}
                             </div>
+
+
                           </th>
                           <td class="px-6 py-4 text-xs">{item.position}</td>
                           <td class="px-6 py-4">
@@ -501,5 +506,6 @@ const CandidatesPage = () => {
     </div>
   );
 };
+
 
 export default CandidatesPage;
