@@ -8,6 +8,7 @@ const Content = () => {
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
   const { jobsData } = useContext(CareersContext);
+
   console.log(jobsData);
   const handleChangeKey = (e) => {
     setKey(e.target.value);
@@ -32,6 +33,23 @@ const Content = () => {
     setVisibleCount(visibleCount + 4); // Tăng số lượng phần tử hiển thị lên 5
   };
 
+  let show=jobsData
+  .filter((item) => {
+    return item.title.toLowerCase().includes(key.toLowerCase());
+  })
+  .filter(
+    (item) =>
+      (select1 === "" ||
+        item.location
+          .toLowerCase()
+          .includes(select1.toLowerCase()) ||
+        item.tags[0]
+          .toLowerCase()
+          .includes(select1.toLowerCase())) &&
+      (select2 === "" ||
+        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+  )
+  
   return (
     <div>
       {jobsData ? (
@@ -111,28 +129,20 @@ const Content = () => {
 
           <div className=" p-2 ">
             <div className=" text-3xl font-bold border-b-2 pb-7 ">
-              {jobsData.length} total position
+              {/* {jobsData.length} total position */}
+
+              {show.length} total position
+
             </div>
 
-            {jobsData
-              .filter((item) => {
-                return item.title.toLowerCase().includes(key.toLowerCase());
-              })
-              .filter(
-                (item) =>
-                  (select1 === "" ||
-                    item.location
-                      .toLowerCase()
-                      .includes(select1.toLowerCase()) ||
-                    item.tags[0]
-                      .toLowerCase()
-                      .includes(select1.toLowerCase())) &&
-                  (select2 === "" ||
-                    item.tags[1].toLowerCase().includes(select2.toLowerCase()))
-              )
-
-              .slice(0, visibleCount)
+            {
+              
+              show.length==0?(<h1>No result</h1>):
+              (
+                show
+                .slice(0, visibleCount)
               .map((item) => {
+               
                 return (
                   <Link to={`/careers/${item._id}`}>
                     <CardItem
@@ -143,7 +153,11 @@ const Content = () => {
                     />
                   </Link>
                 );
-              })}
+                
+              })
+              )
+              
+            }
           </div>
           {visibleCount < jobsData.length && (
             <div className="flex items-center justify-center svelte-1jp7mce">
