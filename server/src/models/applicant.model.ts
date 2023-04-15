@@ -32,6 +32,7 @@ export interface IApplicant {
   dob: Date;
   teamLead: String;
   status: String;
+  salary: String;
 }
 // Schema is database combination of rules
 const applicantSchema: Schema = new mongoose.Schema({
@@ -66,6 +67,7 @@ const applicantSchema: Schema = new mongoose.Schema({
   dob: { type: Date, default: Date.now() },
   teamLead: { type: String },
   status: { type: String },
+  salary: { type: String },
 });
 
 const Applicant = mongoose.model<IApplicant>("Applicant", applicantSchema);

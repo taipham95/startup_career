@@ -4,16 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Import icon cụ thể
 
 const DetailHeader = ()=>{
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
     return(
-        <div className="flex justify-between items-center p-2 h-1/6">
+        <div className="flex justify-between items-center  ">
             <div className="flex items-center">
             {/* <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> */}
-            <FontAwesomeIcon icon={faArrowLeft} />
-                <img className="rounded-[100%] w-[40px] h-[40px]" src="/person-icon.png"></img>
-                <h3 className="p-2">Thinh Phuc</h3>
+            <FontAwesomeIcon icon={faArrowLeft} className="p-2" />
+                {/* <img className="rounded-[100%] w-[40px] h-[40px]" src="/person-icon.png"></img> */}
+                <div style={{backgroundColor:`#${randomColor}`}} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{"Thinh Phuc".split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                <h3 className="p-2 font-medium">Thinh Phuc</h3>
             </div>
             <div>
-                <button className="text-[#b91c1c] bg-[#fda4af] p-3 rounded-[10px]">
+                <button className="text-[#b91c1c] font-medium bg-[#fff1f2] p-3 rounded-[10px]">
                     <FontAwesomeIcon icon={faTrash} /> {/* Sử dụng icon */}
                     Delete
                 </button>
