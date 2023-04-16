@@ -1,5 +1,5 @@
 import Applicant from "../models/applicant.model";
-import validationMongoId from '../helper/validationMongoId'
+import validationMongoId from "../helper/validationMongoId";
 
 const fetchAllApply = async (req: any, res: any) => {
   try {
@@ -7,16 +7,15 @@ const fetchAllApply = async (req: any, res: any) => {
 
     if (!apply) {
       res.status(404).json({
-        message: 'Not Found',
+        message: "Not Found",
       });
     }
 
     res.json({
-      message: 'Success Get All',
+      message: "Success Get All",
       data: apply,
-    })}
-
-    catch (error: any) {
+    });
+  } catch (error: any) {
     res.status(400).json({
       message: error.toString(),
     });
@@ -30,7 +29,7 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!isValid) {
       res.status(404).json({
-        message: 'Application is valid',
+        message: "Application not valid",
       });
     }
 
@@ -38,12 +37,12 @@ const fetchApply = async (req: any, res: any) => {
 
     if (!apply) {
       res.status(404).json({
-        message: 'Not Found',
+        message: "Not Found",
       });
     }
 
     res.json({
-      message: 'Success Get Application',
+      message: "Success Get An Application",
       data: apply,
     });
   } catch (error: any) {
@@ -54,45 +53,29 @@ const fetchApply = async (req: any, res: any) => {
 };
 
 const createApply = async (req: any, res: any) => {
-
   try {
     const applicationBody = req.body;
 
-    const { 
-      personal,
-      education,
-      experience,
-      profile, 
-      coverLetter, 
-      dob,
-      teamLead,
-      status,
-    } = req.body;
-
     // kiem tra mail va link job da ton tai chua
-    const existingResume = await Applicant.findOne( { "profile.resumeLink": applicationBody.profile.resumeLink } );
-    const existingEmail = await Applicant.findOne( { "personal.email": applicationBody.personal.email } );
-    
+    const existingResume = await Applicant.findOne({
+      "profile.resumeLink": applicationBody.profile.resumeLink,
+    });
+    const existingEmail = await Applicant.findOne({
+      "personal.email": applicationBody.personal.email,
+    });
+
     if (existingResume && existingEmail) {
       return res.status(400).json({
-        msg: 'Applications exists',
+        message: "Applications exists",
       });
     }
 
-    const apply = new Applicant({
-      personal,
-      education,
-      experience,
-      profile,
-      coverLetter,
-      dob,
-      teamLead,
-      status,
-    });
+    const apply = new Applicant(req.body);
 
     await apply.save();
 
     res.json({
+<<<<<<< HEAD
       message: 'Success Create New Application',
     })} 
     
@@ -152,6 +135,9 @@ const deleteApply = async (req: any, res: any) => {
 
     res.json({
       message: 'Success Delete Application',
+=======
+      message: "Success Create New Application",
+>>>>>>> d91e5f34a10c129588e3e272e561a922c194fc56
     });
   } catch (error: any) {
     res.status(400).json({
@@ -160,4 +146,66 @@ const deleteApply = async (req: any, res: any) => {
   }
 };
 
-export default { fetchAllApply, fetchApply, createApply, updateApply, deleteApply };
+const updateApply = async (req: any, res: any) => {
+  try {
+    const { id } = req.params;
+
+    const isValid = validationMongoId(id);
+
+    if (!isValid) {
+      res.status(404).json({
+        message: "Apply not valid",
+      });
+    }
+
+    const existingApply = await Applicant.findById(id);
+
+    if (!existingApply) {
+      return res.status(404).json({
+        message: "Apply not exists",
+      });
+    }
+
+    const updateResponse = await Applicant.findByIdAndUpdate(id, req.body);
+
+    res.json({
+      message: "Success Update Apply",
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      message: error.toString(),
+    });
+  }
+};
+
+const deleteApply = async (req: any, res: any) => {
+  try {
+    const { id } = req.params;
+    const isValid = validationMongoId(id);
+    if (!isValid) {
+      res.status(404).json({
+        message: "Application not valid",
+      });
+    }
+
+    const deleteResponse = await Applicant.findByIdAndDelete(id);
+    const newDataApply = await Applicant.find();
+
+    res.json({
+      message: "Success Delete Application",
+      newData: newDataApply,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      message: error.toString(),
+    });
+  }
+};
+
+export default {
+  fetchAllApply,
+  fetchApply,
+  createApply,
+  updateApply,
+  deleteApply,
+};
