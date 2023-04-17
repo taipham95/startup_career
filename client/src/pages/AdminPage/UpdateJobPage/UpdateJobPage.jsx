@@ -1,17 +1,45 @@
-import React, { useState } from "react";
-import "./JobCreatorPage.css";
-import QuillEditor from "../../components/QuillEditor/QuillEditor";
-import { jobTags, jobType } from "../../constants";
+import React, {useState, useContext, useEffect} from 'react';
+import { Link, useParams } from "react-router-dom";
+import { CareersContext } from "../../../Context/CareersContext";
+import QuillEditor from "../../../components/QuillEditor/QuillEditor";
+import { jobTags, jobType } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
-import SwitchButton from "../../components/SwitchButton/SwitchButton";
+import SwitchButton from "../../../components/SwitchButton/SwitchButton";
+import Swal from "sweetalert2";
 
-const JobCreatorPage = () => {
+import "../JobCreatorPage/JobCreatorPage.css";
+
+const UpdateJobPage = () => {
+  const param = useParams();  
+  // context  
+  const { jobsData } = useContext(CareersContext);
+  const jobDetail = jobsData.length>0 && jobsData.find((job) => job._id == param.id);
+
+  // states
   const [jobTitle, setJobTittle] = useState("");
   const [available, setAvailable] = useState(true);
   const [location, setLocation] = useState("");
   const [jobContent, setJobContent] = useState("");
   const [jobTagSelected, setJobTagSelected] = useState([]);
   const [workingSelected, setWorkingSelected] = useState([]);
+  
+  const showAlert = (mess) => {
+    Swal.fire({
+      icon: "success",
+      title: "Successful",
+      text: mess,
+      allowOutsideClick: true,
+      allowEscapeKey: true,
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  };
 
   const onContentChange = (value) => {
     setJobContent(value);
@@ -36,13 +64,38 @@ const JobCreatorPage = () => {
       tags: [jobTagSelected[0].value, workingSelected[0].value],
       title: jobTitle,
     };
-    console.log("jobDetail", jobDetail);
+    console.log("jobDetail updated: ", jobDetail);
+    /*  try {
+      dataServices.postApply(userInfo);
+      setUploadError(false);
+    }
+    catch (err) {
+      console.log(err);
+      setUploadError(true);
+    }
+    if(!uploadErr) {
+      showAlert("Submit successfully!");
+    } */
+    showAlert("Job updated successfully!");
+
     setJobTittle("");
     setJobContent("");
     setJobTagSelected([]);
     setWorkingSelected([]);
     setLocation("");
   };
+
+  useEffect(() => {
+    setJobTittle(jobDetail && jobDetail.title);
+    setAvailable(jobDetail && jobDetail.available);
+    setLocation(jobDetail && jobDetail.location);
+    setJobContent(jobDetail && jobDetail.descriptions[0].detail.concat("<br/><br/>", jobDetail.descriptions[1].detail));
+    const tag1= jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
+    const tag2= jobDetail && jobType.filter((item) => item.value == jobDetail.tags[0]);
+    tag1.length > 0 && setJobTagSelected(tag1);
+    tag2.length > 0 && setWorkingSelected(tag2);
+  }, [jobDetail]);
+
   return (
     <div id="#editor-container" className="h-screen w-full mx-auto">
       <div className="job-form w-full h-full mx-auto py-4 md:py-8">
@@ -56,7 +109,7 @@ const JobCreatorPage = () => {
               <div className="grow font-light text-xs md:text-sm">
                 <input
                   type="tittle"
-                  text={jobTitle}
+                  text={jobDetail && jobDetail.title}
                   id="tittle"
                   name="tittle"
                   required="true"
@@ -69,7 +122,7 @@ const JobCreatorPage = () => {
               </div>
             </div>
             <div className="w-1/3 flex flex-col gap-2">
-              <h4 className="text-sm font-medium">Job Status</h4>
+              <h4 className="text-sm font-medium">Job Available</h4>
               <div className="font-light text-xs md:text-sm">
                 <SwitchButton
                   isAvailable={available}
@@ -135,6 +188,6 @@ const JobCreatorPage = () => {
       </div>
     </div>
   );
-};
+}
 
-export default JobCreatorPage;
+export default UpdateJobPage
