@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./JobCreatorPage.css";
-import QuillEditor from "../../components/QuillEditor/QuillEditor";
-import { jobTags, jobType } from "../../constants";
+import QuillEditor from "../../../components/QuillEditor/QuillEditor";
+import { jobTags, jobType } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
-import SwitchButton from "../../components/SwitchButton/SwitchButton";
+import Swal from "sweetalert2";
+
+import SwitchButton from "../../../components/SwitchButton/SwitchButton";
 
 const JobCreatorPage = () => {
   const [jobTitle, setJobTittle] = useState("");
@@ -12,6 +14,24 @@ const JobCreatorPage = () => {
   const [jobContent, setJobContent] = useState("");
   const [jobTagSelected, setJobTagSelected] = useState([]);
   const [workingSelected, setWorkingSelected] = useState([]);
+
+  const showAlert = (mess) => {
+    Swal.fire({
+      icon: "success",
+      title: "Successful",
+      text: mess,
+      allowOutsideClick: true,
+      allowEscapeKey: true,
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  };
 
   const onContentChange = (value) => {
     setJobContent(value);
@@ -31,12 +51,25 @@ const JobCreatorPage = () => {
     e.preventDefault();
     const jobDetail = {
       available,
-      content: jobContent,
+      descriptions: jobContent,
       location,
       tags: [jobTagSelected[0].value, workingSelected[0].value],
       title: jobTitle,
     };
-    console.log("jobDetail", jobDetail);
+    console.log("jobDetail created: ", jobDetail);
+
+   /*  try {
+      dataServices.postApply(userInfo);
+      setUploadError(false);
+    }
+    catch (err) {
+      console.log(err);
+      setUploadError(true);
+    }
+    if(!uploadErr) {
+      showAlert("Submit successfully!");
+    } */
+    showAlert("New job created successfully!");
     setJobTittle("");
     setJobContent("");
     setJobTagSelected([]);
@@ -69,7 +102,7 @@ const JobCreatorPage = () => {
               </div>
             </div>
             <div className="w-1/3 flex flex-col gap-2">
-              <h4 className="text-sm font-medium">Job Status</h4>
+              <h4 className="text-sm font-medium">Job Available</h4>
               <div className="font-light text-xs md:text-sm">
                 <SwitchButton
                   isAvailable={available}

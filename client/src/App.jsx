@@ -8,7 +8,8 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
 import CandidatesPage from "./pages/AdminPage/CandidatesPage";
-import JobCreatorPage from "./pages/JobCreatorPage/JobCreatorPage";
+import JobCreatorPage from "./pages/AdminPage/JobCreatorPage/JobCreatorPage";
+import UpdateJobPage from "./pages/AdminPage/UpdateJobPage/UpdateJobPage";
 
 function App() {
   return (
@@ -21,8 +22,11 @@ function App() {
           <Route exact path="/careers" element={<CareerPage />} />
           <Route exact path="/careers/:id" element={<JobDetail />} />
           <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
+          <Route exact path="/jobs/create" element={<JobCreatorPage />} />
+          <Route exact path="/jobs/update/:id" element={<UpdateJobPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        
         <CareerFooter />
       </Router> */}
     </AppProvider>
