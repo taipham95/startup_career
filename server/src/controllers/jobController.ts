@@ -99,9 +99,11 @@ const updateJob = async (req: any, res: any) => {
     }
 
     await Job.findByIdAndUpdate(id, req.body);
+    const newDataJob = await Job.find();
 
     res.json({
       message: "Success Update Job",
+      newData: newDataJob,
     });
   } catch (error: any) {
     res.status(400).json({
@@ -121,9 +123,11 @@ const deleteJob = async (req: any, res: any) => {
     }
 
     await Job.findByIdAndDelete(id);
+    const newDataJob = await Job.find();
 
     res.json({
       message: "Success Delete Job",
+      newData: newDataJob,
     });
   } catch (error: any) {
     res.status(400).json({
