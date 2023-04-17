@@ -17,7 +17,9 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  
+
 );
 
 export const options = {
@@ -31,6 +33,16 @@ export const options = {
       text: 'Job Statistics',
       position: 'top' as const
     },
+    animation: {
+      duration: 5000,
+      easing: 'easeInOutQuart',
+      from: {
+        y: '100%'
+      },
+      to: {
+        y: '0%'
+      }
+    }
   },
 };
 

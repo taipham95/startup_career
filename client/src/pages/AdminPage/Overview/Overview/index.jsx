@@ -4,7 +4,7 @@ const Overview =()=>{
     return(
         <div>
             <JobStatistics />
-            <EmployeesStatus />
+            <EmployeesStatus itemsPerPage={5}/>
         </div>
     )
 }

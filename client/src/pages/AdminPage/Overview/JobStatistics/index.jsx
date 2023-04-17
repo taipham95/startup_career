@@ -79,7 +79,7 @@ const JobStatistics = () => {
               <div className="font-bold pb-1  text-xl flex">
                 300{" "}
                 <div className="ml-1 text-[10px] font-medium ">
-                  <mark className="p-[1px] bg-green-300  text-green-500">
+                  <mark className="px-1 bg-green-300  text-green-500 rounded-md">
                     +49%
                   </mark>
                 </div>
@@ -98,7 +98,7 @@ const JobStatistics = () => {
               <div className="font-bold pb-1  text-xl flex">
                 4400{" "}
                 <div className="ml-1 text-[10px] font-medium ">
-                  <mark className="p-[1px] bg-green-300  text-green-500">
+                  <mark className="px-1 bg-green-300  text-green-500 rounded-md">
                     +49%
                   </mark>
                 </div>
@@ -117,7 +117,7 @@ const JobStatistics = () => {
               <div className="font-bold pb-1  text-xl flex">
                 23{" "}
                 <div className="ml-1 text-[10px] font-medium ">
-                  <mark className="p-[1px] bg-red-300  text-red-500">-49%</mark>
+                  <mark className="px-1 bg-red-300  text-red-500 rounded-md">-49%</mark>
                 </div>
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -134,7 +134,7 @@ const JobStatistics = () => {
               <div className="font-bold pb-1  text-xl flex">
                 1266{" "}
                 <div className="ml-1 text-[10px] font-medium ">
-                  <mark className="p-[1px] bg-green-300  text-green-500">
+                  <mark className="px-1 bg-green-300  text-green-500 rounded-md">
                     +49%
                   </mark>
                 </div>
