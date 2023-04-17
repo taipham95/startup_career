@@ -8,11 +8,7 @@ export interface IJob {
     created_at: Date; 
     updated_at: Date;
     available: Boolean;
-    descriptions: {
-      title: String;
-      detail: String;
-      bullets: String[]; // List Array DetailJob
-    }[];
+    content: String;
     requirements: String[];
   }
 
@@ -26,11 +22,7 @@ export interface IJob {
     created_at: { type: Date, default: Date.now() },
     updated_at: { type: Date, default: Date.now() },
     available: { type: Boolean, required: true },
-    descriptions: [{
-        title: { type: String },
-        detail: { type: String },
-        bullets: { type: Array },
-      }],
+    content: { type: String, required: true },
     requirements: { type: Array }
   });
   
