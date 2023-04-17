@@ -21,6 +21,7 @@ export interface IJob {
   const jobSchema: Schema = new mongoose.Schema({
     title: { type: String, required: true },
     location: { type: String, required: true },
+    content: { type: String, required: true },
     type: { type: String, required: true },
     tags: { type: Array, required: true },
     created_at: { type: Date, default: Date.now() },
