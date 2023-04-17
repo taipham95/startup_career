@@ -12,6 +12,7 @@ export const AppProvider = ({ children }) => {
     };
     handleFetchJobs();
   }, []);
+  
   return (
     <CareersContext.Provider value={{ jobsData }}>
       {children}
