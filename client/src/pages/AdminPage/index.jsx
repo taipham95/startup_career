@@ -2,8 +2,12 @@ import SearchAndInforAdmin from "./SearchAndInforAdmin";
 import Sidebar from "./Sidebar";
 import Overview from "./Overview/Overview";
 import CandidatesPage from "./CandidatesPage";
+<<<<<<< HEAD
 import JobCreatorPage from "../JobCreatorPage/JobCreatorPage";
 import UpdateJobPage from "./UpdateJobPage/UpdateJobPage";
+=======
+
+>>>>>>> 4fc90a3 (update POST method)
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import JobCreatorPage from "./JobCreatorPage/JobCreatorPage";
 
