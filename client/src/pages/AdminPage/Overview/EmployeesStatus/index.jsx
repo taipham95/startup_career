@@ -129,7 +129,7 @@ function EmployeesStatus({ itemsPerPage }) {
                   <th scope="col" className="px-3 pl-5 py-3 font-semibold">
                     Team Lead
                   </th>
-                  <th scope="col" className="px-3 pl-7 pl-5 py-3 font-semibold">
+                  <th scope="col" className="px-3  pl-5 py-3 font-semibold">
                     Status
                   </th>
                 </tr>
