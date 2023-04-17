@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CareersContext } from "../../../Context/CareersContext";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
@@ -10,10 +10,11 @@ import Swal from "sweetalert2";
 import "../JobCreatorPage/JobCreatorPage.css";
 
 const UpdateJobPage = () => {
-  const param = useParams();  
-  // context  
+  const param = useParams();
+  // context
   const { jobsData } = useContext(CareersContext);
-  const jobDetail = jobsData.length>0 && jobsData.find((job) => job._id == param.id);
+  const jobDetail =
+    jobsData.length > 0 && jobsData.find((job) => job._id == param.id);
 
   // states
   const [jobTitle, setJobTittle] = useState("");
@@ -22,7 +23,7 @@ const UpdateJobPage = () => {
   const [jobContent, setJobContent] = useState("");
   const [jobTagSelected, setJobTagSelected] = useState([]);
   const [workingSelected, setWorkingSelected] = useState([]);
-  
+
   const showAlert = (mess) => {
     Swal.fire({
       icon: "success",
@@ -33,11 +34,11 @@ const UpdateJobPage = () => {
       showConfirmButton: false,
       timer: 1500,
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: "animate__animated animate__fadeInDown",
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
+        popup: "animate__animated animate__fadeOutUp",
+      },
     });
   };
 
@@ -59,7 +60,7 @@ const UpdateJobPage = () => {
     e.preventDefault();
     const jobDetail = {
       available,
-      descriptions: jobContent,
+      content: jobContent,
       location,
       tags: [jobTagSelected[0].value, workingSelected[0].value],
       title: jobTitle,
@@ -89,9 +90,17 @@ const UpdateJobPage = () => {
     setJobTittle(jobDetail && jobDetail.title);
     setAvailable(jobDetail && jobDetail.available);
     setLocation(jobDetail && jobDetail.location);
-    setJobContent(jobDetail && jobDetail.descriptions[0].detail.concat("<br/><br/>", jobDetail.descriptions[1].detail));
-    const tag1= jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
-    const tag2= jobDetail && jobType.filter((item) => item.value == jobDetail.tags[0]);
+    setJobContent(
+      jobDetail &&
+        jobDetail.descriptions[0].detail.concat(
+          "<br/><br/>",
+          jobDetail.descriptions[1].detail
+        )
+    );
+    const tag1 =
+      jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
+    const tag2 =
+      jobDetail && jobType.filter((item) => item.value == jobDetail.tags[0]);
     tag1.length > 0 && setJobTagSelected(tag1);
     tag2.length > 0 && setWorkingSelected(tag2);
   }, [jobDetail]);
@@ -188,6 +197,6 @@ const UpdateJobPage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default UpdateJobPage
+export default UpdateJobPage;
