@@ -5,6 +5,7 @@ import CandidatesPage from "./CandidatesPage";
 import JobCreatorPage from "../JobCreatorPage/JobCreatorPage";
 import UpdateJobPage from "./UpdateJobPage/UpdateJobPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import JobCreatorPage from "./JobCreatorPage/JobCreatorPage";
 
 const AdminPage = () => {
   return (

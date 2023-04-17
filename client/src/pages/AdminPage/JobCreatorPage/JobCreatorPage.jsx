@@ -3,6 +3,7 @@ import "./JobCreatorPage.css";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, jobType } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
+import { dataServices } from "../../../services/dataService";
 import Swal from "sweetalert2";
 
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
@@ -14,6 +15,7 @@ const JobCreatorPage = () => {
   const [jobContent, setJobContent] = useState("");
   const [jobTagSelected, setJobTagSelected] = useState([]);
   const [workingSelected, setWorkingSelected] = useState([]);
+  const [uploadErr, setUploadError] = useState("");
 
   const showAlert = (mess) => {
     Swal.fire({
@@ -51,15 +53,15 @@ const JobCreatorPage = () => {
     e.preventDefault();
     const jobDetail = {
       available,
-      descriptions: jobContent,
+      content: jobContent,
       location,
       tags: [jobTagSelected[0].value, workingSelected[0].value],
       title: jobTitle,
     };
     console.log("jobDetail created: ", jobDetail);
 
-   /*  try {
-      dataServices.postApply(userInfo);
+    try {
+      dataServices.postJob(jobDetail);
       setUploadError(false);
     }
     catch (err) {
@@ -68,23 +70,25 @@ const JobCreatorPage = () => {
     }
     if(!uploadErr) {
       showAlert("Submit successfully!");
-    } */
-    showAlert("New job created successfully!");
+    }
+    
+    // showAlert("New job created successfully!");
     setJobTittle("");
     setJobContent("");
     setJobTagSelected([]);
     setWorkingSelected([]);
     setLocation("");
   };
+
   return (
     <div id="#editor-container" className="h-screen w-full mx-auto">
-      <div className="job-form w-full h-full mx-auto py-4 md:py-8">
+      <div className="job-form w-full h-full mx-auto">
         <form
-          className=" w-[90%] md:w-[80%] flex flex-col gap-6 h-full bg-white rounded-xl opacity-85 px-10 py-4 mx-auto"
+          className="w-full flex flex-col gap-6 h-full bg-white px-4 md:px-6 py-4 mx-auto"
           onSubmit={handleSubmitJob}
         >
           <div className="w-full flex flex-row flex-wrap justify-between items-center gap-6">
-            <div className="flex flex-col grow gap-2">
+            <div className="flex flex-col w-[75%] sm:w-auto grow-0 sm:grow gap-2">
               <h4 className="text-sm font-medium">Job Title</h4>
               <div className="grow font-light text-xs md:text-sm">
                 <input
@@ -101,7 +105,7 @@ const JobCreatorPage = () => {
                 />
               </div>
             </div>
-            <div className="w-1/3 flex flex-col gap-2">
+            <div className="w-full sm:w-1/3 flex flex-col gap-2">
               <h4 className="text-sm font-medium">Job Available</h4>
               <div className="font-light text-xs md:text-sm">
                 <SwitchButton
