@@ -6,7 +6,7 @@ import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Imp
 const DetailHeader = ()=>{
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
     return(
-        <div className="flex justify-between items-center  ">
+        <div className="flex justify-between items-center text-sm border-b pb-3">
             <div className="flex items-center">
             {/* <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> */}
             <FontAwesomeIcon icon={faArrowLeft} className="p-2" />
