@@ -59,7 +59,7 @@ const UpdateJobPage = () => {
     e.preventDefault();
     const jobDetail = {
       available,
-      descriptions: jobContent,
+      content: jobContent,
       location,
       tags: [jobTagSelected[0].value, workingSelected[0].value],
       title: jobTitle,
