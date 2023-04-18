@@ -15,7 +15,7 @@ const JobCreatorPage = () => {
   const [jobContent, setJobContent] = useState("");
   const [jobTagSelected, setJobTagSelected] = useState([]);
   const [workingSelected, setWorkingSelected] = useState([]);
-  const [uploadErr, setUploadError] = useState("");
+  const [uploadErr, setUploadError] = useState(false);
 
   const showAlert = (mess) => {
     Swal.fire({
@@ -27,11 +27,11 @@ const JobCreatorPage = () => {
       showConfirmButton: false,
       timer: 1500,
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: "animate__animated animate__fadeInDown",
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
+        popup: "animate__animated animate__fadeOutUp",
+      },
     });
   };
 
@@ -49,7 +49,7 @@ const JobCreatorPage = () => {
     setLocation(value);
   };
 
-  const handleSubmitJob = (e) => {
+  const handleSubmitJob = async (e) => {
     e.preventDefault();
     const jobDetail = {
       available,
@@ -61,17 +61,15 @@ const JobCreatorPage = () => {
     console.log("jobDetail created: ", jobDetail);
 
     try {
-      dataServices.postJob(jobDetail);
-      setUploadError(false);
-    }
-    catch (err) {
+      await dataServices.postJob(jobDetail);
+    } catch (err) {
       console.log(err);
       setUploadError(true);
     }
-    if(!uploadErr) {
+    if (!uploadErr) {
       showAlert("Submit successfully!");
     }
-    
+
     // showAlert("New job created successfully!");
     setJobTittle("");
     setJobContent("");
