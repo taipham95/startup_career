@@ -104,10 +104,12 @@ const updateApply = async (req: any, res: any) => {
       });
     }
 
-    const updateResponse = await Applicant.findByIdAndUpdate(id, req.body);
+    await Applicant.findByIdAndUpdate(id, req.body);
+    const newDataApply = await Applicant.find();
 
     res.json({
       message: "Success Update Apply",
+      newData: newDataApply,
     });
   } catch (error: any) {
     res.status(400).json({
@@ -126,7 +128,7 @@ const deleteApply = async (req: any, res: any) => {
       });
     }
 
-    const deleteResponse = await Applicant.findByIdAndDelete(id);
+    await Applicant.findByIdAndDelete(id);
     const newDataApply = await Applicant.find();
 
     res.json({

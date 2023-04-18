@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "./axiosInstance";
-import {APPLY_ENDPOINT} from "../constants";
+import {JOBS_ENDPOINT, APPLY_ENDPOINT} from "../constants";
 
 export const dataServices = {
   getData: async (url) => {
@@ -8,5 +8,8 @@ export const dataServices = {
   },
   postApply: (userInfo) => {
     return axiosInstance.post(APPLY_ENDPOINT, userInfo);
+  },
+  postJob: (jobInfo) => {
+    return axiosInstance.post(JOBS_ENDPOINT, jobInfo);
   }
 }
