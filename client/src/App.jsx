@@ -7,12 +7,15 @@ import JobDetail from "./components/JobDetail";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
+import LoginRegisterPage from "./components/AdminLoginLandingPage/LandingPage/LoginRegisterPage"
 
 function App() {
   return (
     <AppProvider>
+    <LoginRegisterPage/>
+
       {/* <AdminPage /> */}
-      <Router>
+      {/* <Router>
         <CareerHeader />
         <Routes>
           <Route exact path="/" element={<CareerPage />} />
@@ -22,7 +25,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <CareerFooter />
-      </Router>
+      </Router> */}
+      
     </AppProvider>
   );
 }

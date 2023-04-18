@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './LoginRegisterPage.css';
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
@@ -15,37 +14,42 @@ const LoginRegisterPage = ({ setAccessToken }) => {
   };
 
   return (
-    <div className="login-register-page">
-      <div className="form-container">
-        <div className="form-switcher">
-          <span
-            className={showLogin ? 'active' : ''}
+    <div className="w-screen h-screen bg-white flex place-content-center place-items-center">  {/* PAGE-BACKGROUND */}
+
+      <div className="max-w-sm min-h-[400px] w-3/5 h-3/5 bg-gradient-to-r to-[#00c6fb] from-[#005bea] rounded-lg border shadow-blue-500/50 shadow-lg flex-col flex
+      place-content-center place-items-center py-5 relative"> {/* FORM-CONTAINER */}
+        
+        <div className="flex flex-row place-content-center w-11/12 h-auto absolute top-5"> {/* FORM-SWITCHER */}
+          <button /* LOGIN-BUTTON */
+            className={showLogin ? 'active w-36 h-10 bg-white text-blue-500 rounded-md font-semibold' : 'text-white w-36 h-10 font-semibold'}
             onClick={handleLoginClick}
           >
-            Login
-          </span>
-          <span
-            className={!showLogin ? 'active' : ''}
+            LOGIN
+          </button>
+          <button /* REGISTER-BUTTON */
+            className={!showLogin ? 'active w-36 h-10 bg-white text-blue-500 rounded-md font-semibold' : 'text-white w-36 h-10 font-semibold'}
             onClick={handleRegisterClick}
           >
-            Register
-          </span>
+            REGISTER
+          </button>
         </div>
+
         {showLogin ? (
           <LoginForm setAccessToken={setAccessToken} />
         ) : (
           <RegisterForm setAccessToken={setAccessToken} />
         )}
-        <div className="switch-form">
+
+        <div className="flex place-content-center place-items-center absolute bottom-5">
           {showLogin ? (
             <div>
               Don't have an account?{' '}
-              <span onClick={handleRegisterClick}>Register</span>
+              <button className="text-white hover:underline" onClick={handleRegisterClick}>Register</button>
             </div>
           ) : (
             <div>
               Already have an account?{' '}
-              <span onClick={handleLoginClick}>Login</span>
+              <button className="text-white hover:underline" onClick={handleLoginClick}>Log in</button>
             </div>
           )}
         </div>
