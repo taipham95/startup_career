@@ -1,8 +1,11 @@
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
+import useFetchAllEmploy from "../hooks/useFetchAllEmploy";
 export const CareersContext = createContext({});
 export const AppProvider = ({ children }) => {
   const [jobsData, setJobsData] = useState([]);
+  const { employee, setEmploysData } = useFetchAllEmploy();
+
   useEffect(() => {
     console.log("LOGGER");
     const handleFetchJobs = async () => {
@@ -14,7 +17,7 @@ export const AppProvider = ({ children }) => {
   }, []);
   
   return (
-    <CareersContext.Provider value={{ jobsData }}>
+    <CareersContext.Provider value={{ jobsData, employee, setEmploysData }}>
       {children}
     </CareersContext.Provider>
   );
