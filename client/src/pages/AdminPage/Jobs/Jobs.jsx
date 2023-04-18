@@ -144,15 +144,18 @@ const Jobs = () => {
               (
                 show
                 .slice(0, visibleCount)
+                
               .map((item) => {
                
                 return (
+                  <Link to={`/update-job/${item._id}`}>
                     <CardItem
                       id={item._id}
                       title={item.title}
                       location={item.location}
                       tags={item.tags}
                     />
+                    </Link>
                 );
                 
               })

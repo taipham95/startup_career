@@ -5,6 +5,7 @@ import CandidatesPage from "./CandidatesPage";
 import UpdateJobPage from "./UpdateJobPage/UpdateJobPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import JobCreatorPage from "./JobCreatorPage/JobCreatorPage";
+import Jobs from "./Jobs/Jobs";
 
 const AdminPage = () => {
   return (
@@ -16,6 +17,7 @@ const AdminPage = () => {
           <Routes>
             <Route exact path="/" element={<Overview />} />
             <Route exact path="/candidates" element={<CandidatesPage />} />
+            <Route exact path="/jobs" element={<Jobs />} />
             <Route exact path="/create-job" element={<JobCreatorPage />} />
             <Route exact path="/update-job/:id" element={<UpdateJobPage />} />
           </Routes>
