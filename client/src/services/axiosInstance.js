@@ -7,7 +7,8 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Headers": "*",
-    "Accept": "application/x-www-form-urlencoded, text/plain",
+    Accept: "application/x-www-form-urlencoded, text/plain",
+    "Authorization" : `Bearer ${localStorage.getItem("accessToken")}`,
   },
 });
 

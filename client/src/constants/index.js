@@ -14,9 +14,8 @@ export const jobTags = [
   {label: "Legal", value: "Legal" },
   {label: "HR & Admin", value: "HR & Admin" },
 ];
-export const jobType = [
+export const workingTypes = [
   { label: "Remote", value: "Remote" },
-  { label: "Fulltime", value: "Full time" },
-  { label: "Part time", value: "Part time" },
+  { label: "On-site", value: "On-site" },
   { label: "Hybrid", value: "Hybrid" },
 ];
