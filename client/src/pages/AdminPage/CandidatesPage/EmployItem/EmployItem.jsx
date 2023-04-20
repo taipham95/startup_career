@@ -38,7 +38,7 @@ const EmployItem=(props)=>{
                           </td>
                           <td class="px-6 py-4">
                             {/* <div class="text-xs ">{item.salary}</div> */}
-                            <div class="text-xs ">10000</div>
+                            <div class="text-xs ">{salary?salary:"None"}</div>
                           </td>
                           <td class="px-6 py-4">
                             {/* <div class="text-xs ">{item.actual}</div> */}
@@ -60,7 +60,7 @@ const EmployItem=(props)=>{
                           </td>
                           <td class="pl-6 pr-2 py-4">
                             {status ? (
-                              status=="On"?
+                              status=="ON"?
                               <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
                                 {status}
                               </mark>

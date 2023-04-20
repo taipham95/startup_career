@@ -733,8 +733,8 @@ const CandidatesPage = () => {
                 {
                   
                   // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
-                  sortedArray
-                  // employee
+                  // sortedArray
+                  employee
                     .filter((item) => {
                       return item.personal.firstName
                         .toLowerCase()

@@ -59,7 +59,7 @@ const CandidatesDetail = () => {
             {/* <DetailHeader fname={employData?.personal.firstName} lname={employData?.personal.lastName} handleDelete={handleDelete(id)} id={id} /> */}
             <div className="flex justify-between items-center text-sm border-b pb-3">
                 <div className="flex items-center">
-                    <FontAwesomeIcon icon={faArrowLeft} className="p-2" />
+                    <FontAwesomeIcon  onClick={()=>{navigate("/candidates")}} icon={faArrowLeft} className="p-2" />
                     <div style={{ backgroundColor: `#${randomColor}` }} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{(employData?.personal.lastName + " " + employData?.personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                     <h3 className="p-2 font-medium">{employData?.personal.lastName + " " + employData?.personal.firstName}</h3>
                 </div>
@@ -111,8 +111,13 @@ const CandidatesDetail = () => {
                             className={`peer font-medium text-sky border-sky-300 w-full min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-4 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${"dark:focus:border-sky-300 focus:border-sky-300"
                                 }`}
                             placeholder={"Team Lead"}
-                            value={employData?.teamLead}
+                            // value={employData?.teamLead}
+                            // onChange={onChangeHandler}
+                            defaultValue={employData?.teamLead}
+                            
+                            type="text"
                             onChange={onChangeHandler}
+                            name='teamLead'
                         />
                         <label
                             className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
@@ -134,7 +139,11 @@ const CandidatesDetail = () => {
                                 }`}
                             placeholder={"Salary"}
                             // value={employData?.salary}
+                            // onChange={onChangeHandler}
+                            defaultValue={employData?.salary}
+                            type="text"
                             onChange={onChangeHandler}
+                            name='salary'
                         />
                         <label
                             className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
@@ -156,8 +165,12 @@ const CandidatesDetail = () => {
                             className={`peer font-medium text-sky border-sky-300 w-full min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-4 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${"dark:focus:border-sky-300 focus:border-sky-300"
                                 }`}
                             placeholder={"Status"}
-                            value={employData?.status}
+                            // value={employData?.status}
+                            // onChange={onChangeHandler}
+                            defaultValue={employData?.status}
+                            type="text"
                             onChange={onChangeHandler}
+                            name='status'
                         />
                         <label
                             className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
@@ -241,7 +254,7 @@ const CandidatesDetail = () => {
             </div>
             <div className="pl-[35%] p-2">
                 <button onClick={onSubmitHandler} className="rounded-[10px] bg-black text-white text-base font-bold w-[20%] pt-2 pb-2">SAVE</button>
-                <button className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
+                <button onClick={()=>{navigate("/candidates")}} className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
 
             </div>
         </div>
