@@ -518,17 +518,22 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CareersContext } from "../../../Context/CareersContext";
+import EmployItem from "./EmployItem/EmployItem";
+import { Link } from "react-router-dom";
 const CandidatesPage = () => {
-  const {employee}=useContext(CareersContext)
-  console.log(employee);
-  
+ 
 
   const [check, setCheck] = useState(true);
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
-
-  const [sortedArray, setSortedArray] = useState([...employee]);
+  const {employee}=useContext(CareersContext)
+  console.log(employee);
+  // const [sortedArray, setSortedArray] = useState([...employee]); 
+  
+  const [sortedArray, setSortedArray] = useState(employee.slice());
+ 
+  
 
   // const handleSort = () => {
   //   const newArray = [...employee];
@@ -553,7 +558,8 @@ const CandidatesPage = () => {
   useEffect(() => {
     const newArray = [...employee];
     // console.log(newArray)
-    newArray.sort((a, b) => b.name.localeCompare(a.name));
+    newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
+    // console.log("day la newArray", newArray);
 
     if (sort2 == "Z - A") {
       setSortedArray(newArray);
@@ -565,6 +571,10 @@ const CandidatesPage = () => {
       setSortedArray([...employee]);
     }
   }, [sort2]);
+  console.log("day la sortarray : ", sortedArray)
+  console.log("day la employee : ", employee)
+
+  console.log("day la last : ");
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
@@ -698,9 +708,6 @@ const CandidatesPage = () => {
                     Team Lead
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
-                    Status
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
                     Total Comp
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
@@ -722,79 +729,27 @@ const CandidatesPage = () => {
                 </tr>
               </thead>
               <tbody>
+                
                 {
+                  
                   // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
                   sortedArray
+                  // employee
                     .filter((item) => {
-                      return item.name
+                      return item.personal.firstName
+                        .toLowerCase()
+                        .includes(val.toLowerCase())||item.personal.lastName
                         .toLowerCase()
                         .includes(val.toLowerCase());
                     })
+                    
                     .map((item) => {
-                      const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                      console.log(item.name.split(" ").reduce((acc, cur) => acc += cur[0], ""))
-                      return (
-                        <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                          <th
-                            scope="row"
-                            className="flex items-center px-6 py-1 text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            <div className={`w-12 h-12 flex justify-center items-center rounded-full text-xl text-white uppercase`}
-                            style={{
-                              background: bgColor
-                            }}
-                            >{item.name.split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
-                            {/* cho-nay-chua-hieu-tai-sao-sai */}
+                      
+                    return (
+                      // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                            <div className="text-xs font-semibold pl-3">
-                              {item.personal.firstName + " " + item.personal.lastName}
-                            </div>
-
-
-                          </th>
-                          <td class="px-6 py-4 text-xs">{item.experience.title}</td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offset}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offcycle}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.totalcomp}</div> */}
-                            <div class="text-xs ">3000000</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.salary}</div> */}
-                            <div class="text-xs ">1000000</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.actual}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.recurring}</div>
-                          </td>
-                          {/* <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offset}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offcycle}</div>
-                          </td> */}
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.unpaid}</div>
-                          </td>
-                          <td class="pl-6 pr-2 py-4">
-                            {item.status == "Completed" ? (
-                              <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                                {item.status}
-                              </mark>
-                            ) : (
-                              <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
-                                {item.status}
-                              </mark>
-                            )}
-                          </td>
-                        </tr>
-                      );
+                    <EmployItem key={item._id} employee={item}/>
+                    )
                     })
                 }
               </tbody>

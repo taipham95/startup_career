@@ -1,6 +1,7 @@
 import React from "react";
 const Field = (props) => {
     const { text , money} = props
+    const {onChangeHandler}=props;
     return (
         <div className="relative grow font-light text-xs md:text-sm pb-5">
             <input
@@ -14,6 +15,7 @@ const Field = (props) => {
                 // value={value || ""}
                 placeholder={text}
                 value={money}
+                onChange={onChangeHandler}
             // onChange={onHandleChange}
             />
             <label
