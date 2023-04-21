@@ -14,13 +14,13 @@ const SwitchButton = (props) => {
       />
       <label
         style={{ background: isAvailable && "#4c98ff" }}
-        className={`w-[33%] flex flex-row react-switch-label transition-all duration-500 ease-in-out`}
+        className={`w-auto sm:min-w-[5.5rem] sm:max-w-[5.75rem] md:min-w-[6rem] md:max-w-[6rem] flex flex-row grow react-switch-label transition-all duration-500 ease-in-out text-sm md:text-sm`}
         htmlFor={`react-switch-new`}
       >
         <span
           className={`${
-            isAvailable ? "p-4" : "pl-12"
-          }  grow text-white transition-all duration-300 ease-in-out`}
+            isAvailable ? "p-6" : "pl-[3.25rem]"
+          } text-white transition-all duration-300 ease-in-out`}
         >
           {isAvailable ? "Yes" : "No"}
         </span>

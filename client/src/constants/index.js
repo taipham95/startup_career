@@ -8,15 +8,14 @@ export const jobTags = [
   { label: "Game Production", value: "Game Production" },
   { label: "Engineer", value: "Engineer" },
   { label: "Growth", value: "Growth" },
-  {label: "Product", value: "product" },
-  {label: "Tester", value: "Product" },
+  {label: "Product", value: "Product" },
+  {label: "Tester", value: "Tester" },
   {label: "Art", value: "Art" },
   {label: "Legal", value: "Legal" },
   {label: "HR & Admin", value: "HR & Admin" },
 ];
-export const jobType = [
+export const workingTypes = [
   { label: "Remote", value: "Remote" },
-  { label: "Fulltime", value: "Full time" },
-  { label: "Part time", value: "Part time" },
+  { label: "On-site", value: "On-site" },
   { label: "Hybrid", value: "Hybrid" },
 ];

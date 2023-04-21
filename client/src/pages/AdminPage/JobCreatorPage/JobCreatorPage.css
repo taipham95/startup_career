@@ -1,4 +1,4 @@
-.job-form {
+/* .job-form {
   background-image: linear-gradient(
     to right top,
     #00bbff,
@@ -7,8 +7,9 @@
     #00e6ec,
     #53f2df
   );
-}
+} */
 .job-form input {
   background-color: #f2f6fa;
   border: none;
 }
+
