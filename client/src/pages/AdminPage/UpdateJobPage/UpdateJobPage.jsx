@@ -93,7 +93,13 @@ const UpdateJobPage = () => {
     setJobTittle(jobDetail && jobDetail.title);
     setAvailable(jobDetail && jobDetail.available);
     setLocation(jobDetail && jobDetail.location);
-    setJobContent(jobDetail && jobDetail.content);
+    setJobContent(
+      jobDetail &&
+        jobDetail.descriptions[0]?.detail?.concat(
+          "<br/><br/>",
+          jobDetail.descriptions[1]?.detail
+        )
+    );
     const tag1 =
       jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
     const tag2 =
