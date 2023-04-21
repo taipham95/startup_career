@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import userAdminService from '../../../services/userAdminService';
 
 const LoginRegisterPage = ({ setAccessToken }) => {
+  //const { dispatch } = useContext(authContext);
+
+  const [loginError, setLoginError] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
 
   const handleLoginClick = () => {
@@ -11,6 +16,22 @@ const LoginRegisterPage = ({ setAccessToken }) => {
 
   const handleRegisterClick = () => {
     setShowLogin(false);
+  };
+
+  const onLoginSubmit = async (values) => {
+    console.log("Submit form in Login Page", { values });
+
+    try {
+      const loginResponse = await userAdminService.loginAdmin(values)
+      console.log(loginResponse.data);
+
+      
+    } catch (error) {
+      setLoginError(error?.response.data.message);
+      setTimeout(() => {
+        setLoginError('');
+      }, 3000)
+    }
   };
 
   return (
@@ -33,11 +54,11 @@ const LoginRegisterPage = ({ setAccessToken }) => {
             REGISTER
           </button>
         </div>
-
+        {loginError && <div className="error-message">{loginError}</div>}
         {showLogin ? (
-          <LoginForm setAccessToken={setAccessToken} />
+          <LoginForm onSubmit={onLoginSubmit} />
         ) : (
-          <RegisterForm setAccessToken={setAccessToken} />
+          <RegisterForm/>
         )}
 
         <div className="flex place-content-center place-items-center absolute bottom-5">

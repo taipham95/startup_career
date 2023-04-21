@@ -1,35 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoginForm = ({ setAccessToken }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+const initialValues = {
+  username: "",
+  password: "",
+};
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+const LoginForm = (props) => {
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const [inForUser, setInForUser] = useState(initialValues);
 
-  const handleSubmit = async (event) => {
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setInForUser({
+        ...inForUser,
+        [name]: value,
+    });
+    };
+
+  const handleSubmit =  (event) => {
     event.preventDefault();
-
-    try {
-      const response = await axios.post('/api/login', { username, password });
-
-      setAccessToken(response.data.accessToken);
-    } catch (error) {
-      setError(error.response.data.message);
-    }
+    props.onSubmit(inForUser);
   };
 
   return (
     <form className="flex flex-col px-5 py-10 gap-5" onSubmit={handleSubmit}>
-      {error && <div className="error-message">{error}</div>}
-
       <div className="flex flex-row w-50 h-10 bg-[#f0f0f0] rounded-full place-content-start place-items-center px-2 gap-1">
         {/* <label htmlFor="username">Username:</label> */}
         <svg
@@ -47,8 +42,7 @@ const LoginForm = ({ setAccessToken }) => {
           type="username"
           id="username"
           name="username"
-          value={username}
-          onChange={handleUsernameChange}
+          onChange={onChangeHandler}
           placeholder='Your Username'
           className=" bg-transparent"
           required
@@ -72,8 +66,7 @@ const LoginForm = ({ setAccessToken }) => {
           type="password"
           id="password"
           name="password"
-          value={password}
-          onChange={handlePasswordChange}
+          onChange={onChangeHandler}
           placeholder='Your Password'
           className="bg-transparent"
           required

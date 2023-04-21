@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import userAdminService from '../../../services/userAdminService';
 
-const RegisterForm = ({ setAccessToken }) => {
+const initialValues = {
+  username: "",
+  email: "",
+  password: "",
+};
 
-  const [username, setUsername] = useState('');
+const RegisterForm = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inForUser, setInForUser] = useState(initialValues);
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value)
-  }
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setInForUser({
+        ...inForUser,
+        [name]: value,
+    });
+    };
 
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
@@ -29,31 +29,43 @@ const RegisterForm = ({ setAccessToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (inForUser?.password !== confirmPassword) {
       setError('Passwords do not match');
+      setConfirmPassword('')
       return;
     }
 
     try {
-      const response = await axios.post('/api/register', { email, password });
+      const response = await userAdminService.registerAdmin(inForUser)
+      setSuccess("Register Success")
+      setInForUser(initialValues)
+      setConfirmPassword('')
 
-      setAccessToken(response.data.accessToken);
+      setTimeout(() => {
+        setSuccess('');
+      }, 3000); // set timeout sau 3 giây
+
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error?.response.data.message);
+      setInForUser(initialValues)
+      setTimeout(() => {
+        setError('');
+      }, 3000); 
     }
   };
 
   return (
     <form className="flex flex-col px-5 gap-5 w-11/12 place-items-center" onSubmit={handleSubmit}>
       {error && <div className="error-message">{error}</div>}
+      {success && <div className="error-message">{success}</div>}
       <div className="flex justify-start place-items-center px-5 w-11/12 h-10 bg-[#f0f0f0] rounded-full">
         {/* <label htmlFor="username">Username:</label> */}
         <input
           type="username"
           id="username"
-          name="usenname"
-          value={username}
-          onChange={handleUsernameChange}
+          name="username"
+          value={inForUser?.username}
+          onChange={onChangeHandler}
           placeholder="New Username"
           className="w-full bg-transparent border-none"
           required
@@ -66,8 +78,8 @@ const RegisterForm = ({ setAccessToken }) => {
           type="email"
           id="email"
           name="email"
-          value={email}
-          onChange={handleEmailChange}
+          value={inForUser?.email}
+          onChange={onChangeHandler}
           placeholder="Enter Your E-mail"
           className="w-full bg-transparent border-none"
           required
@@ -79,8 +91,8 @@ const RegisterForm = ({ setAccessToken }) => {
           type="password"
           id="password"
           name="password"
-          value={password}
-          onChange={handlePasswordChange}
+          value={inForUser?.password}
+          onChange={onChangeHandler}
           placeholder="Enter Your Password"
           className="w-full bg-transparent border-none"
           required
