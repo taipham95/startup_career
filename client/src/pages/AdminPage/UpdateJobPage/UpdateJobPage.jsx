@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CareersContext } from "../../../Context/CareersContext";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
-import { jobTags, jobType } from "../../../constants";
+import { jobTags, workingTypes } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
 import Swal from "sweetalert2";
@@ -19,10 +19,12 @@ const UpdateJobPage = () => {
   // states
   const [jobTitle, setJobTittle] = useState("");
   const [available, setAvailable] = useState(true);
+  const [workingTime, setWorkingTime] = useState("Fulltime");
   const [location, setLocation] = useState("");
   const [jobContent, setJobContent] = useState("");
-  const [jobTagSelected, setJobTagSelected] = useState([]);
-  const [workingSelected, setWorkingSelected] = useState([]);
+  const [jobTag, setJobTag] = useState([]);
+  const [workingType, setWorkingType] = useState([]);
+  const [uploadErr, setUploadError] = useState(false);
 
   const showAlert = (mess) => {
     Swal.fire({
@@ -59,11 +61,12 @@ const UpdateJobPage = () => {
   const handleSubmitJob = (e) => {
     e.preventDefault();
     const jobDetail = {
+      title: jobTitle,
+      location,
+      type: workingTime,
+      tags: [jobTag[0].value, workingType[0].value],
       available,
       content: jobContent,
-      location,
-      tags: [jobTagSelected[0].value, workingSelected[0].value],
-      title: jobTitle,
     };
     console.log("jobDetail updated: ", jobDetail);
     /*  try {
@@ -92,51 +95,80 @@ const UpdateJobPage = () => {
     setLocation(jobDetail && jobDetail.location);
     setJobContent(
       jobDetail &&
-        jobDetail.descriptions[0].detail.concat(
+        jobDetail.descriptions[0]?.detail?.concat(
           "<br/><br/>",
-          jobDetail.descriptions[1].detail
+          jobDetail.descriptions[1]?.detail
         )
     );
     const tag1 =
       jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
     const tag2 =
-      jobDetail && jobType.filter((item) => item.value == jobDetail.tags[0]);
-    tag1.length > 0 && setJobTagSelected(tag1);
-    tag2.length > 0 && setWorkingSelected(tag2);
+      jobDetail &&
+      workingTypes.filter((item) => item.value == jobDetail.tags[0]);
+    tag1.length > 0 && setJobTag(tag1);
+    tag2.length > 0 && setWorkingType(tag2);
   }, [jobDetail]);
 
   return (
     <div id="#editor-container" className="h-screen w-full mx-auto">
-      <div className="job-form w-full h-full mx-auto py-4 md:py-8">
+      <div className="job-form w-full h-full mx-auto">
         <form
-          className=" w-[90%] md:w-[80%] flex flex-col gap-6 h-full bg-white rounded-xl opacity-85 px-10 py-4 mx-auto"
+          className="w-full flex flex-col gap-6 h-full bg-white px-4 md:px-6 py-4 mx-auto"
           onSubmit={handleSubmitJob}
         >
-          <div className="w-full flex flex-row flex-wrap justify-between items-center gap-6">
-            <div className="flex flex-col grow gap-2">
+          <div className="w-full flex flex-row flex-wrap">
+            <div className="w-full flex flex-col grow-0 sm:grow gap-2">
               <h4 className="text-sm font-medium">Job Title</h4>
-              <div className="grow font-light text-xs md:text-sm">
+              <div className="flex grow font-light text-xs md:text-sm">
                 <input
                   type="tittle"
-                  text={jobDetail && jobDetail.title}
+                  text={jobTitle}
                   id="tittle"
                   name="tittle"
                   required="true"
                   autoComplete="off"
-                  className={`peer w-full min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-3 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent dark:focus:border-rose-500 focus:border-rose-500"}`}
+                  className={`peer w-[90%] md:w-[80%] lg:w-[50%] min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-3 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent dark:focus:border-rose-500 focus:border-rose-500"}`}
                   value={jobTitle || ""}
                   placeholder="Senior Developer"
                   onChange={onJobTittleChange}
                 />
               </div>
             </div>
-            <div className="w-1/3 flex flex-col gap-2">
+          </div>
+
+          <div className="w-full flex flex-row flex-wrap gap-6 md:gap-12 items-start">
+            <div className="flex flex-col gap-2">
               <h4 className="text-sm font-medium">Job Available</h4>
-              <div className="font-light text-xs md:text-sm">
+              <div className="flex flex-row font-light text-xs md:text-sm">
                 <SwitchButton
                   isAvailable={available}
                   handleSwitch={() => setAvailable(!available)}
                 />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-sm font-medium">Working Time</h4>
+              <div className="flex flex-row font-light text-xs md:text-sm gap-5">
+                <div>
+                  <input
+                    className="outline-none focus:outline-none bg-gray-300 hover:bg-gray-300 cursor-pointer ring-transparent checked:ring-transparent transition-all duration-200 checked:bg-[#00bbff] checked:hover:checked:bg-[#00bbff]"
+                    type="radio"
+                    value="Fulltime"
+                    checked={workingTime === "Fulltime"}
+                    onChange={onRadioChange}
+                  />
+                  <span className="pl-2">Full-Time</span>
+                </div>
+                <div>
+                  <input
+                    className="outline-none focus:outline-none bg-gray-300hover:bg-gray-300 cursor-pointer ring-transparent checked:ring-transparent transition-all duration-200 checked:bg-[#00bbff] checked:hover:checked:bg-[#00bbff]"
+                    type="radio"
+                    value="Parttime"
+                    checked={workingTime === "Parttime"}
+                    onChange={onRadioChange}
+                  />
+                  <span className="pl-2">Part-Time</span>
+                </div>
               </div>
             </div>
           </div>
@@ -155,17 +187,17 @@ const UpdateJobPage = () => {
               <h4 className="text-sm font-medium">Job title tag</h4>
               <MultiSelect
                 options={jobTags}
-                value={jobTagSelected}
-                onChange={setJobTagSelected}
+                value={jobTag}
+                onChange={setJobTag}
                 labelledBy="Select"
               />
             </div>
             <div className="w-full md:w-[48%] flex flex-col gap-2 text-xs md:text-sm">
               <h4 className="text-sm font-medium">Working type tag</h4>
               <MultiSelect
-                options={jobType}
-                value={workingSelected}
-                onChange={setWorkingSelected}
+                options={workingTypes}
+                value={workingType}
+                onChange={setWorkingType}
                 labelledBy="Select"
               />
             </div>

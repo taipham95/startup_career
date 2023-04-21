@@ -83,6 +83,8 @@ const Sidebar = () => {
 
             <p className=" pl-1">Employees</p>
           </div>
+          <Link to={"/jobs"}>
+          
           <div className=" flex py-2 cursor-grab">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,6 +103,7 @@ const Sidebar = () => {
 
             <p className=" pl-1">Jobs</p>
           </div>
+          </Link>
 
           <Link to={"/candidates"}>
             <div className=" flex pt-2 pb-4  cursor-grab">

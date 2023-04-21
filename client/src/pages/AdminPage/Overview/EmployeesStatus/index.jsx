@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import EmployService from "../../../../services/employSevice";
 
 function Items({ currentItems }) {
   return (
@@ -56,19 +57,24 @@ function Items({ currentItems }) {
     </>
   );
 }
+
+
+
 function EmployeesStatus({ itemsPerPage }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [employees, setEmployees] = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
+  
   useEffect(() => {
     const handleFetchJobs = async () => {
-      const response = await axios.get("http://localhost:8001/careers/apply");
+      const response = await EmployService.getAll();
       setEmployees(response.data.data);
       console.log(response.data.data);
     };
     handleFetchJobs();
   }, []);
+
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
@@ -138,6 +144,7 @@ function EmployeesStatus({ itemsPerPage }) {
                 <Items currentItems={currentEmployeess} />
               </tbody>
             </table>
+            
             <nav
               className="flex items-center justify-between py-2 pt-1 pl-2"
               aria-label="Table navigation"

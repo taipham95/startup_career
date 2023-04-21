@@ -46,11 +46,11 @@ function JobDetail() {
                 return (
                   <div>
                     <p>
-                      <strong>{description.title}</strong>
+                      <strong>{description?.title}</strong>
                     </p>
-                    <p className="p-1">{description.detail}</p>
+                    <p className="p-1">{description?.detail}</p>
                     <ul className="list-disc pl-4">
-                      {description.bullets.map((bullet) => {
+                      {description.bullets?.map((bullet) => {
                         return <li>{bullet}</li>;
                       })}
                     </ul>

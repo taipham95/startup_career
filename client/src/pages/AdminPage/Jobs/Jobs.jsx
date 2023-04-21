@@ -1,9 +1,12 @@
 import React, { useState, useContext } from "react";
+// import { CareersContext } from "../../../Context/CareersContext";
 import { CareersContext } from "../../../Context/CareersContext";
-import CardItem from "../Components/CardItem/CardItem";
+// import CardItem from "../Components/CardItem/CardItem";
+import CardItem from "../../../components/CareerBody/Components/CardItem/CardItem";
 import { Link } from "react-router-dom";
-import Loading from "../../Loading/Loading";
-const Content = () => {
+// import Loading from "../../Loading/Loading";
+import Loading from "../../../components/Loading/Loading";
+const Jobs = () => {
   const [key, setKey] = useState("");
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
@@ -141,17 +144,18 @@ const Content = () => {
               (
                 show
                 .slice(0, visibleCount)
+                
               .map((item) => {
                
                 return (
-                  <Link to={`/careers/${item._id}`}>
+                  <Link to={`/update-job/${item._id}`}>
                     <CardItem
                       id={item._id}
                       title={item.title}
                       location={item.location}
                       tags={item.tags}
                     />
-                  </Link>
+                    </Link>
                 );
                 
               })
@@ -160,10 +164,10 @@ const Content = () => {
             }
           </div>
           {visibleCount < jobsData.length && (
-            <div className="flex items-center justify-center svelte-1jp7mce">
+            <div class="flex items-center justify-center svelte-1jp7mce">
               <button
                 onClick={showMore}
-                className="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
+                class="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
               >
                 Show more
               </button>
@@ -176,4 +180,4 @@ const Content = () => {
     </div>
   );
 };
-export default Content;
+export default Jobs;
