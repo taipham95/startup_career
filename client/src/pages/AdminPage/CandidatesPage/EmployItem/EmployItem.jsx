@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useRoutes } from "react-router-dom";
 const EmployItem=(props)=>{
+  const navigate=useNavigate();
     const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
     // console.log(personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], ""))
     const {employee} = props
     const { personal,experience, teamLead , _id , status, salary } = employee
+    const onclick=()=>{
+      navigate(`/candidates/${_id}/edit`);
+      
+    }
         return(
-          <Link to={`/candidates/${_id}/edit`}>
+         
 
-          <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-           
+          <tr onClick={onclick} className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            {/* <Link to={`/candidates/${_id}/edit`}> */}
 
                           <th
                             scope="row"
@@ -19,11 +24,11 @@ const EmployItem=(props)=>{
                             style={{
                               background: bgColor
                             }}
-                            >{personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                            >{(personal.lastName+" "+personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                             {/* cho-nay-chua-hieu-tai-sao-sai */}
 
                             <div className="text-xs font-semibold pl-3">
-                              {personal.firstName + " " + personal.lastName}
+                              {personal.lastName + " " + personal.firstName}
                             </div>
 
 
@@ -72,9 +77,8 @@ const EmployItem=(props)=>{
                               "None Status"
                             )}
                           </td>
-                     
+                          {/* </Link> */}
             </tr>
-            </Link>
 
         )
 }

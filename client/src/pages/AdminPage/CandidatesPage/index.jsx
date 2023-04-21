@@ -184,18 +184,18 @@
 //             <div>
 //             <strong>Candidate List</strong>
 //             <div className=''>  
-                   
+
 //                         <div className='flex text-amber-400 w-full justify-between'>
 //                             <div>NAME</div>
 //                             <div>POSITION</div>
 //                             <div>SALARY</div>
 //                             <div>STATUS</div>
 //                         </div>
-                   
-                    
+
+
 //                         {CandidatesData.map(candidate => (
 //                             <tr key ={candidate.id}>
-                                
+
 //                                 <td>{candidate.name}</td>
 //                                 <td>{candidate.position}</td>
 //                                 <td>{candidate.salary}</td>
@@ -211,8 +211,8 @@
 
 //                             </tr>
 //                         ))}
-                    
-                
+
+
 //             </div>
 //             </div> 
 //             */}
@@ -517,23 +517,27 @@
 
 import React from "react";
 import { useState, useEffect, useContext } from "react";
+import ReactPaginate from "react-paginate";
 import { CareersContext } from "../../../Context/CareersContext";
 import EmployItem from "./EmployItem/EmployItem";
 import { Link } from "react-router-dom";
 const CandidatesPage = () => {
- 
 
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
   const [check, setCheck] = useState(true);
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
-  const {employee}=useContext(CareersContext)
+  const { employee } = useContext(CareersContext)
   console.log(employee);
   // const [sortedArray, setSortedArray] = useState([...employee]); 
-  
-  const [sortedArray, setSortedArray] = useState(employee.slice());
- 
-  
+
+  // const [sortedArray, setSortedArray] = useState(employee.slice());
+
+
+
+
 
   // const handleSort = () => {
   //   const newArray = [...employee];
@@ -555,8 +559,45 @@ const CandidatesPage = () => {
     setSort2(e.target.value);
   };
 
+  // useEffect(() => {
+  //   const newArray = [...employee];
+  //   // console.log(newArray)
+  //   newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
+  //   // console.log("day la newArray", newArray);
+
+  //   if (sort2 == "Z - A") {
+  //     setSortedArray(newArray);
+  //     console.log(sortedArray);
+  //   } else if (sort2 == "A - Z") {
+  //     setSortedArray(newArray.reverse());
+  //     console.log(sortedArray);
+  //   } else if (sort2 == "Sort Name") {
+  //     setSortedArray([...employee]);
+  //   }
+  // }, [sort2]);
+
+  console.log("day la employee : ", employee)
+
+  console.log("day la last : ");
+
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentEmployeess = employee.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employee.length / itemsPerPage);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+  const [sortedArray, setSortedArray] = useState(currentEmployeess.slice());
+
   useEffect(() => {
-    const newArray = [...employee];
+    const newArray = [...currentEmployeess];
     // console.log(newArray)
     newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
     // console.log("day la newArray", newArray);
@@ -568,14 +609,15 @@ const CandidatesPage = () => {
       setSortedArray(newArray.reverse());
       console.log(sortedArray);
     } else if (sort2 == "Sort Name") {
-      setSortedArray([...employee]);
+      setSortedArray([...currentEmployeess]);
     }
   }, [sort2]);
+
+  useEffect(() => {
+    setSortedArray([...currentEmployeess.slice()])
+  }, [currentEmployeess.length])
+
   console.log("day la sortarray : ", sortedArray)
-  console.log("day la employee : ", employee)
-
-  console.log("day la last : ");
-
   return (
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       {/* 
@@ -719,7 +761,7 @@ const CandidatesPage = () => {
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Recurring
                   </th>
-                  
+
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Unpaid
                   </th>
@@ -729,133 +771,73 @@ const CandidatesPage = () => {
                 </tr>
               </thead>
               <tbody>
-                
+
                 {
-                  
+
                   // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
-                  // sortedArray
-                  employee
+                  sortedArray
+                    // employee
+                    // currentEmployeess
                     .filter((item) => {
                       return item.personal.firstName
                         .toLowerCase()
-                        .includes(val.toLowerCase())||item.personal.lastName
-                        .toLowerCase()
-                        .includes(val.toLowerCase());
+                        .includes(val.toLowerCase()) || item.personal.lastName
+                          .toLowerCase()
+                          .includes(val.toLowerCase());
                     })
-                    
-                    .map((item) => {
-                      
-                    return (
-                      // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                    <EmployItem key={item._id} employee={item}/>
-                    )
+                    .map((item) => {
+
+                      return (
+                        // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <EmployItem key={item._id} employee={item} />
+                      )
                     })
                 }
               </tbody>
             </table>
-            <nav
-              className="flex items-center justify-between py-2 pt-1 pl-2"
-              aria-label="Table navigation"
-            >
-              <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
-                Showing{" "}
-                <span class="font-semibold text-gray-900 dark:text-white">
-                  1-10
-                </span>{" "}
-                of{" "}
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  1000
-                </span>
-              </span>
-              <ul className="inline-flex items-center -space-x-px">
-                <li>
-                  <a
-                    href="#"
-                    className="block px-2 py-2 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    <span className="sr-only">Previous</span>
-                    <svg
-                      className="w-4 h-4"
-                      aria-hidden="true"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    1
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    3
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    ...
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    100
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-1 py-1 ml-0  text-gray-500 bg-white  hover:bg-slate-100 hover:rounded-full  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    <span className="sr-only">Previous</span>
-                    <svg
-                      className="w-4 h-4"
-                      aria-hidden="true"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+
+
+
+
+
           </div>
         </div>
       </section>
+      <nav
+        className="flex items-center justify-between py-2 pt-1 pl-2"
+        aria-label="Table navigation"
+      >
+        <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
+          Showing{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {endOffset >= employee.length
+              ? `${itemOffset + 1}-${employee.length}`
+              : `${itemOffset + 1}-${endOffset}`}
+          </span>{" "}
+          of{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {employee.length}
+          </span>
+        </span>
+
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={1}
+          pageCount={pageCount}
+          previousLabel="<"
+          marginPagesDisplayed={2}
+          renderOnZeroPageCount={null}
+          className="inline-flex items-center -space-x-px"
+          pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          nextLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          previousLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
+        />
+      </nav>
     </div>
   );
 };

@@ -141,6 +141,7 @@ function EmployeesStatus({ itemsPerPage }) {
                 <Items currentItems={currentEmployeess} />
               </tbody>
             </table>
+            
             <nav
               className="flex items-center justify-between py-2 pt-1 pl-2"
               aria-label="Table navigation"

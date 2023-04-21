@@ -34,7 +34,6 @@ const CandidatesDetail = () => {
             console.log(error);
         }
     }
-
     const onChangeHandler = (event) => {
         const { name, value } = event.target;
         setEmployForm({
@@ -46,8 +45,25 @@ const CandidatesDetail = () => {
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         try {
+
+            if (employForm.salary == "") {
+                employForm.salary = employData.salary;
+                console.log("eSa ", employForm.salary);
+            }
+            if (employForm.status == "") {
+                employForm.status = employData.status;
+                console.log("eS ", employForm.status);
+
+            }
+            if (employForm.teamLead == "") {
+                employForm.teamLead = employData.teamLead;
+                console.log("eL: ", employForm.teamLead);
+
+            }
             const updateResponse = await EmployService.UpdateById(id, employForm);
             setEmploysData(updateResponse.data.newData)
+
+            // console.log("final :", cnt)
             navigate("/candidates")
         } catch (error) {
             console.log(error);
@@ -59,7 +75,7 @@ const CandidatesDetail = () => {
             {/* <DetailHeader fname={employData?.personal.firstName} lname={employData?.personal.lastName} handleDelete={handleDelete(id)} id={id} /> */}
             <div className="flex justify-between items-center text-sm border-b pb-3">
                 <div className="flex items-center">
-                    <FontAwesomeIcon  onClick={()=>{navigate("/candidates")}} icon={faArrowLeft} className="p-2" />
+                    <FontAwesomeIcon onClick={() => { navigate("/candidates") }} icon={faArrowLeft} className="p-2" />
                     <div style={{ backgroundColor: `#${randomColor}` }} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{(employData?.personal.lastName + " " + employData?.personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                     <h3 className="p-2 font-medium">{employData?.personal.lastName + " " + employData?.personal.firstName}</h3>
                 </div>
@@ -93,9 +109,14 @@ const CandidatesDetail = () => {
                         <div className="text-gray-400 pb-1">SCHOOL</div>
                         <div>{employData?.education.school}</div>
                     </div>
-                    <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
-                        <div className="text-gray-400 pb-1">EXPERIENCES</div>
-                        <div>{employData?.experience.title}</div>
+                    <div className="relative  pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
+                        <div className="text-gray-400 pb-1 pl-3">EXPERIENCES</div>
+                        <div className="pl-3">{employData?.experience.title}</div>
+                        <div className="absolute bottom-[-120%]">
+                            <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
+                            <button onClick={() => { navigate("/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
+
+                        </div>
                     </div>
                 </div>
 
@@ -114,7 +135,7 @@ const CandidatesDetail = () => {
                             // value={employData?.teamLead}
                             // onChange={onChangeHandler}
                             defaultValue={employData?.teamLead}
-                            
+
                             type="text"
                             onChange={onChangeHandler}
                             name='teamLead'
@@ -252,11 +273,11 @@ const CandidatesDetail = () => {
                 </div>
 
             </div>
-            <div className="pl-[35%] p-2">
+            {/* <div className="pl-[35%] p-2">
                 <button onClick={onSubmitHandler} className="rounded-[10px] bg-black text-white text-base font-bold w-[20%] pt-2 pb-2">SAVE</button>
-                <button onClick={()=>{navigate("/candidates")}} className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
+                <button onClick={() => { navigate("/candidates") }} className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
 
-            </div>
+            </div> */}
         </div>
     )
 }
