@@ -5,18 +5,18 @@ const router = express.Router();
 
 
 // API Get All Employee
-router.get("/", applyController.fetchAllApply)
+router.get("/",authMdw.authMdw, applyController.fetchAllApply)
 
 // API Get a Employee
-router.get("/:id", applyController.fetchApply);
+router.get("/:id",authMdw.authMdw, applyController.fetchApply);
 
 // API Create Employee
 router.post("/", applyController.createApply);
 
 // API Update Employee
-router.put("/:id", applyController.updateApply);
+router.put("/:id",authMdw.authMdw, applyController.updateApply);
 
 // API Delete Employee
-router.delete("/:id", applyController.deleteApply);
+router.delete("/:id",authMdw.authMdw, applyController.deleteApply);
 
 export default router;

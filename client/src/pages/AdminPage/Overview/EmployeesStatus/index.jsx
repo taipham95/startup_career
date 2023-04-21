@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import EmployService from "../../../../services/employSevice";
 
 function Items({ currentItems }) {
   return (
@@ -64,14 +65,16 @@ function EmployeesStatus({ itemsPerPage }) {
   // following the API or data you're working with.
   const [employees, setEmployees] = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
+  
   useEffect(() => {
     const handleFetchJobs = async () => {
-      const response = await axios.get("http://localhost:8001/careers/apply");
+      const response = await EmployService.getAll();
       setEmployees(response.data.data);
       console.log(response.data.data);
     };
     handleFetchJobs();
   }, []);
+
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
