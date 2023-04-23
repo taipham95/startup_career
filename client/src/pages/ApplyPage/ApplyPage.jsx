@@ -16,7 +16,7 @@ const ApplyPage = () => {
     <div>
       {joblist2 ? (
         <div className="apply-page box-border mx-auto w-full min-h-full flex flex-row flex-wrap align-middle">
-          <HeroBanner
+          <HeroBanner key={joblist2.id}
             title={joblist2.title}
             location={joblist2.location}
             tags={joblist2.tags}
