@@ -148,7 +148,8 @@ const Jobs = () => {
               .map((item) => {
                
                 return (
-                  <Link to={`/update-job/${item._id}`}>
+                  // <Link to={`/update-job/${item._id}`}>
+                  <Link to={`/admin/update-job/${item._id}`}>
                     <CardItem
                       id={item._id}
                       title={item.title}

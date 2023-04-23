@@ -26,7 +26,7 @@ const Sidebar = () => {
         <div className="pl-2 text-sm text-slate-500">
           <p className="text-[12px] pt-2">General</p>
 
-          <Link to={"/"}>
+          <Link to={"/admin"}>
             <div className=" flex py-2 cursor-grab">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const Sidebar = () => {
               <p className=" pl-1">Overview</p>
             </div>
           </Link>
-          <Link to="/create-job">
+          <Link to="/admin/create-job">
             <div className=" flex py-2 cursor-grab">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ const Sidebar = () => {
 
             <p className=" pl-1">Employees</p>
           </div>
-          <Link to={"/jobs"}>
+          <Link to={"/admin/jobs"}>
           
           <div className=" flex py-2 cursor-grab">
             <svg
@@ -105,7 +105,7 @@ const Sidebar = () => {
           </div>
           </Link>
 
-          <Link to={"/candidates"}>
+          <Link to={"/admin/candidates"}>
             <div className=" flex pt-2 pb-4  cursor-grab">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -29,7 +29,7 @@ const CandidatesDetail = () => {
             const deleteResponse = await EmployService.DeleteById(id);
             console.log("deleteResponse", deleteResponse.data.newData);
             setEmploysData(deleteResponse.data.newData)
-            navigate("/candidates")
+            navigate("/admin/candidates")
         } catch (error) {
             console.log(error);
         }
@@ -64,7 +64,7 @@ const CandidatesDetail = () => {
             setEmploysData(updateResponse.data.newData)
 
             // console.log("final :", cnt)
-            navigate("/candidates")
+            navigate("/admin/candidates")
         } catch (error) {
             console.log(error);
         }
@@ -75,7 +75,7 @@ const CandidatesDetail = () => {
             {/* <DetailHeader fname={employData?.personal.firstName} lname={employData?.personal.lastName} handleDelete={handleDelete(id)} id={id} /> */}
             <div className="flex justify-between items-center text-sm border-b pb-3">
                 <div className="flex items-center">
-                    <FontAwesomeIcon onClick={() => { navigate("/candidates") }} icon={faArrowLeft} className="p-2" />
+                    <FontAwesomeIcon onClick={() => { navigate("/admin/candidates") }} icon={faArrowLeft} className="p-2" />
                     <div style={{ backgroundColor: `#${randomColor}` }} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{(employData?.personal.lastName + " " + employData?.personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                     <h3 className="p-2 font-medium">{employData?.personal.lastName + " " + employData?.personal.firstName}</h3>
                 </div>
@@ -114,7 +114,7 @@ const CandidatesDetail = () => {
                         <div className="pl-3">{employData?.experience.title}</div>
                         <div className="absolute bottom-[-120%]">
                             <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
-                            <button onClick={() => { navigate("/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
+                            <button onClick={() => { navigate("/admin/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
 
                         </div>
                     </div>

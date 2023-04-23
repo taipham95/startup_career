@@ -619,9 +619,6 @@ const CandidatesPage = () => {
 
   console.log("day la sortarray : ", sortedArray)
   return (
-<<<<<<< HEAD
-    <div class="bg-white px-4 pt-3 pb-4 flex-1">
-=======
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       {/* 
             <div>
@@ -659,7 +656,6 @@ const CandidatesPage = () => {
             </div>
             </div> 
             */}
->>>>>>> 1591ee841e8fd91efc12dff05dde99a120eb23a5
 
       <section className="px-4 py-2">
         <div className="">

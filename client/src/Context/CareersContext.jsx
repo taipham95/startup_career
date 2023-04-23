@@ -11,7 +11,9 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     console.log("LOGGER");
     const handleFetchJobs = async () => {
-      const response = await dataServices.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
+      // const response = await dataServices.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
+      const response = await axios.get(`http://localhost:8001/careers/jobs`);
+
       setJobsData(response.data.data);
       console.log(response.data.data);
     };
