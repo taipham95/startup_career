@@ -35,9 +35,9 @@ const Jobs = () => {
   const showMore = () => {
     setVisibleCount(visibleCount + 4); // Tăng số lượng phần tử hiển thị lên 5
   };
-
+console.log("data",jobsData)
   let show=jobsData
-  .filter((item) => {
+  ?.filter((item) => {
     return item.title.toLowerCase().includes(key.toLowerCase());
   })
   .filter(
