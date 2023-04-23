@@ -42,7 +42,7 @@ function Items({ currentItems }) {
               <div className="text-xs ">{item.teamLead} </div>
             </td>
             <td className="pl-6 pr-2 py-4">
-              {item.status == "ON" ? (
+              {item.status == "ONBOARDING" ? (
                 <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
                   Onboarding
                 </mark>

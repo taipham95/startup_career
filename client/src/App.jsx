@@ -24,7 +24,7 @@ function App() {
         {window.location.href.includes("/admin") ? "" : <CareerHeader />}
 
         <Routes>
-          {/* <Route exact path="/" element={<CareerPage />} /> */}
+          <Route exact path="/" element={<CareerPage />} />
           <Route exact path="/careers" element={<CareerPage />} />
           <Route exact path="/careers/:id" element={<JobDetail />} />
           <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
