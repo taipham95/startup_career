@@ -1,0 +1,45 @@
+import { useState, useEffect, createContext, useReducer } from "react";
+export const AuthContext = createContext();
+
+const initialState = {
+  accessToken: localStorage.getItem("accessToken") || null,
+  isAuthenticated: !!localStorage.getItem("accessToken") && true,
+};
+
+const authReducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case 'LOGIN': {
+      localStorage.setItem("accessToken", payload.accessToken);
+      return {
+        ...state,
+        ...payload,
+      };
+    }
+    case 'USER_UPDATED':
+      return {
+        ...state,
+        isAuthenticated: true,
+        accessToken: localStorage.getItem("accessToken"),
+      };
+
+    default:
+      return state;
+  }
+};
+
+const AuthState = ({children}) => {
+  const [state, dispatch] = useReducer(authReducer, initialState);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+export default AuthState;

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import userAdminService from '../../../services/userAdminService';
+import { AuthContext } from '../useReducer/userContext';
 
-const LoginRegisterPage = ({ setAccessToken }) => {
-  //const { dispatch } = useContext(authContext);
-
+const LoginRegisterPage = () => {
+  const { dispatch } = useContext(AuthContext);
   const [loginError, setLoginError] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setShowLogin(true);
@@ -23,8 +24,16 @@ const LoginRegisterPage = ({ setAccessToken }) => {
 
     try {
       const loginResponse = await userAdminService.loginAdmin(values)
-      console.log(loginResponse.data);
+      
 
+      console.log(loginResponse);
+
+      dispatch({
+        type: 'LOGIN',
+        payload: loginResponse?.data,
+      });
+
+      navigate("/");
       
     } catch (error) {
       setLoginError(error?.response.data.message);
