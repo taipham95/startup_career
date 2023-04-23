@@ -19,11 +19,9 @@ const AdminPage = () => {
             <Route exact path="/" element={<Overview />} />
             <Route exact path="/candidates" element={<CandidatesPage />} />
             <Route exact path="/candidates/:id/edit" element={<CandidatesDetail />} />
-            
             <Route exact path="/jobs" element={<Jobs />} />
             <Route exact path="/create-job" element={<JobCreatorPage />} />
             <Route exact path="/update-job/:id" element={<UpdateJobPage />} />
-            
           </Routes>
         </div>
       </main>
