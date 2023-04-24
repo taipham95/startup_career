@@ -4,6 +4,7 @@ import { CareersContext } from "../../../Context/CareersContext";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, workingTypes } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
+import { dataService } from "../../../services/dataService";
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
 import Swal from "sweetalert2";
 
@@ -11,6 +12,7 @@ import "../JobCreatorPage/JobCreatorPage.css";
 
 const UpdateJobPage = () => {
   const param = useParams();
+  const jobId = param.id;
   // context
   const { jobsData } = useContext(CareersContext);
   const jobDetail =
@@ -58,12 +60,11 @@ const UpdateJobPage = () => {
     setLocation(value);
   };
 
-   const onRadioChange = (e) => {
+  const onRadioChange = (e) => {
     setWorkingTime(e.target.value);
   };
 
-
-  const handleSubmitJob = (e) => {
+  const handleSubmitJob = async (e) => {
     e.preventDefault();
     const jobDetail = {
       title: jobTitle,
@@ -74,23 +75,22 @@ const UpdateJobPage = () => {
       content: jobContent,
     };
     console.log("jobDetail updated: ", jobDetail);
-    /*  try {
-      dataServices.postApply(userInfo);
+    try {
+      await dataService.updateJob(jobId, jobDetail);
       setUploadError(false);
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setUploadError(true);
     }
-    if(!uploadErr) {
-      showAlert("Submit successfully!");
-    } */
-    showAlert("Job updated successfully!");
+    if (!uploadErr) {
+      showAlert("Job updated successfully!");
+    }
 
     setJobTittle("");
-    setJobContent("");
-    setJobTagSelected([]);
-    setWorkingSelected([]);
+    setJobContent("<p>&nbsp;</p>");
+    setWorkingTime("Fulltime");
+    setJobTag([]);
+    setWorkingType([]);
     setLocation("");
   };
 
@@ -98,18 +98,12 @@ const UpdateJobPage = () => {
     setJobTittle(jobDetail && jobDetail.title);
     setAvailable(jobDetail && jobDetail.available);
     setLocation(jobDetail && jobDetail.location);
-    setJobContent(
-      jobDetail &&
-        jobDetail.descriptions[0]?.detail?.concat(
-          "<br/><br/>",
-          jobDetail.descriptions[1]?.detail
-        )
-    );
+    setJobContent(jobDetail && jobDetail.content);
     const tag1 =
-      jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[1]);
+      jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[0]);
     const tag2 =
       jobDetail &&
-      workingTypes.filter((item) => item.value == jobDetail.tags[0]);
+      workingTypes.filter((item) => item.value == jobDetail.tags[1]);
     tag1.length > 0 && setJobTag(tag1);
     tag2.length > 0 && setWorkingType(tag2);
   }, [jobDetail]);
@@ -228,7 +222,7 @@ const UpdateJobPage = () => {
             type="submit"
             className="min-w-fit w-fit mx-auto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
           >
-            Save job
+            Update job
           </button>
         </form>
       </div>

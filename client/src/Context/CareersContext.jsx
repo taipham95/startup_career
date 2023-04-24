@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import useFetchAllEmploy from "../hooks/useFetchAllEmploy";
-import { dataServices } from "../services/dataService";
+import { dataService } from "../services/dataService";
 import { BASE_URL, JOBS_ENDPOINT } from "../constants";
 export const CareersContext = createContext({});
 export const AppProvider = ({ children }) => {
@@ -9,11 +9,11 @@ export const AppProvider = ({ children }) => {
   const { employee, setEmploysData } = useFetchAllEmploy();
 
   useEffect(() => {
-    console.log("LOGGER");
+    // console.log("LOGGER");
     const handleFetchJobs = async () => {
-      const response = await dataServices.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
-      setJobsData(response.data.data);
-      console.log(response.data.data);
+      const response = await dataService.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
+      setJobsData(response.data);
+      // console.log(response.data);
     };
     handleFetchJobs();
   }, []);
