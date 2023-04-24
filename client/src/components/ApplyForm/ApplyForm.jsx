@@ -3,7 +3,7 @@ import DropdownInput from "../DropdownInput/DropdownInput";
 import FileInput from "../FileInput/FileInput";
 import Input from "../Input/Input";
 import ProfileInput from "../Input/ProfileInput";
-import { dataServices } from "../../services/dataService";
+import EmployService from "../../services/employSevice";
 import Swal from "sweetalert2";
 
 
@@ -79,7 +79,7 @@ const ApplyForm = () => {
     const userInfo = { personal, profile, coverLetter} ;
     // console.log("userInfo", userInfo);
     try {
-      dataServices.postApply(userInfo);
+      EmployService.postApply(userInfo);
       setUploadError(false);
     }
     catch (err) {

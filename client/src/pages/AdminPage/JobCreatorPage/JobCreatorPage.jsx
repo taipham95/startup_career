@@ -3,7 +3,7 @@ import "./JobCreatorPage.css";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, workingTypes } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
-import { dataServices } from "../../../services/dataService";
+import { dataService } from "../../../services/dataService";
 import Swal from "sweetalert2";
 
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
@@ -63,25 +63,23 @@ const JobCreatorPage = () => {
       tags: [jobTag[0].value, workingType[0].value],
       available,
       content: jobContent,
-    };
-    console.log("jobDetail created: ", jobDetail);
+    };    
 
     try {
-      await dataServices.postJob(jobDetail);
+      await dataService.postJob(jobDetail);
     } catch (err) {
       console.log(err);
       setUploadError(true);
     }
     if (!uploadErr) {
-      showAlert("Submit successfully!");
+      showAlert("New job created successfully!");
     }
 
-    // showAlert("New job created successfully!");
     setJobTittle("");
-    setJobContent("");
+    setJobContent("<p>&nbsp;</p>");
     setWorkingTime("Fulltime");
-    setJobTagSelected([]);
-    setWorkingSelected([]);
+    setJobTag([]);
+    setWorkingType([]);
     setLocation("");
   };
 
@@ -199,7 +197,7 @@ const JobCreatorPage = () => {
             type="submit"
             className="min-w-fit w-fit mx-auto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
           >
-            Save job
+            Create job
           </button>
         </form>
       </div>
