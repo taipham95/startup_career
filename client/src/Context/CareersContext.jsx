@@ -12,8 +12,11 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const handleFetchJobs = async () => {
-      const response = await dataService.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
+      const response = await dataServices.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
       setJobsData(response.data);
+      // console.log("day la respon ne : ",response.data.data);
+      console.log("day la respon ne : ",response.data);
+
     };
       handleFetchJobs();
   }, [state]);
