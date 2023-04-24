@@ -63,8 +63,7 @@ const JobCreatorPage = () => {
       tags: [jobTag[0].value, workingType[0].value],
       available,
       content: jobContent,
-    };
-    console.log("jobDetail created: ", jobDetail);
+    };    
 
     try {
       await dataServices.postJob(jobDetail);
@@ -73,10 +72,9 @@ const JobCreatorPage = () => {
       setUploadError(true);
     }
     if (!uploadErr) {
-      showAlert("Submit successfully!");
+      showAlert("New job created successfully!");
     }
 
-    // showAlert("New job created successfully!");
     setJobTittle("");
     setJobContent("");
     setWorkingTime("Fulltime");

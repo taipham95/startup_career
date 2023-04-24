@@ -58,6 +58,11 @@ const UpdateJobPage = () => {
     setLocation(value);
   };
 
+   const onRadioChange = (e) => {
+    setWorkingTime(e.target.value);
+  };
+
+
   const handleSubmitJob = (e) => {
     e.preventDefault();
     const jobDetail = {
