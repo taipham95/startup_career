@@ -7,7 +7,8 @@ const EmployItem=(props)=>{
     const {employee} = props
     const { personal,experience, teamLead , _id , status, salary } = employee
     const onclick=()=>{
-      navigate(`/candidates/${_id}/edit`);
+      // navigate(`/candidates/${_id}/edit`);
+      navigate(`/admin/candidates/${_id}/edit`)
       
     }
         return(
