@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { dataServices } from "../../services/dataService";
+import { dataService } from "../../services/dataService";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +20,7 @@ const Select = (props) => {
   /* fetch all countries */
   const fetchData = async () => {
     setLoading(true);
-    const res = await dataServices.getData(
+    const res = await dataService.getData(
       "https://restcountries.com/v3.1/all"
     );
     setCountries(res);
