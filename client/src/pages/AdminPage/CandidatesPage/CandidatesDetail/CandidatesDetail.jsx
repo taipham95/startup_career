@@ -8,6 +8,7 @@ import EmployService from "../../../../services/employSevice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CareersContext } from "../../../../Context/CareersContext";
+import './style.css';
 const initialValues = {
     teamLead: "",
     salary: "",
@@ -113,12 +114,15 @@ const CandidatesDetail = () => {
                         <div className="text-gray-400 pb-1 pl-3">EXPERIENCES</div>
                         <div className="pl-3">{employData?.experience?.title}</div>
                         <div className="absolute bottom-[-120%]">
-                            <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
-                            <button onClick={() => { navigate("/admin/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
-
+                            <div className="button-wrapper">
+                                <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
+                                <button onClick={() => { navigate("/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
 
 
 
@@ -224,7 +228,8 @@ const CandidatesDetail = () => {
 
                     <div className="  text-xs font-medium text-gray-400 pb-4 pt-4 ">Onboarding Scripts</div>
 
-                    <div className="pt-3 pb-3 flex justify-between border-b">
+                    <div className="flex-container pt-3 pb-3  border-b">
+
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" />
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
@@ -233,7 +238,7 @@ const CandidatesDetail = () => {
                         <div className="text-sm font-medium">100%</div>
                     </div>
 
-                    <div className="pt-3 pb-3 flex justify-between border-b">
+                    <div className="flex-container pt-3 pb-3  border-b">
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" />
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
@@ -242,8 +247,9 @@ const CandidatesDetail = () => {
                         <div className="text-sm font-medium">20%</div>
                     </div>
 
-                    <div className="pt-3 pb-3 flex justify-between border-b">
-                        <label class="relative inline-flex items-center cursor-pointer">
+                    <div className="flex-container pt-3 pb-3  border-b">
+
+                        <label class="relative inline-flex  cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" />
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Duties Journal</span>
@@ -251,16 +257,18 @@ const CandidatesDetail = () => {
                         <div className="text-sm font-medium">0%</div>
                     </div>
 
-                    <div className="pt-3 pb-3 flex justify-between border-b">
-                        <label class="relative inline-flex items-center cursor-pointer">
+                    <div className="flex-container pt-3 pb-3  border-b">
+
+                        <label class="relative inline-flex  cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" />
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Requests Handling</span>
                         </label>
                         <div className="text-sm font-medium">0%</div>
                     </div>
-                    <div className="pt-3 pb-3 flex justify-between border-b">
-                        <label class="relative inline-flex items-center cursor-pointer">
+                    <div className="flex-container pt-3 pb-3  border-b">
+
+                        <label class="relative inline-flex  cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" />
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Activity Tracking</span>
