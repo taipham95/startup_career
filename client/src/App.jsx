@@ -23,7 +23,6 @@ import Jobs from "./pages/AdminPage/Jobs/Jobs";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 
 import LoginRegisterPage from "./pages/AdminPage/AdminLoginPage/LoginRegisterPage";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
 
