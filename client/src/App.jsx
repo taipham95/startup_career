@@ -10,45 +10,45 @@ import AdminPage from "./pages/AdminPage";
 
 //admin
 import AuthState from "./Context/AuthContext";
-import SearchAndInforAdmin from "./pages/AdminPage/SearchAndInforAdmin";
-import Sidebar from "./pages/AdminPage/Sidebar";
-import Overview from "./pages/AdminPage/Overview/Overview";
 import CandidatesPage from "./pages/AdminPage/CandidatesPage";
-import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 import Jobs from "./pages/AdminPage/Jobs/Jobs";
 import JobCreatorPage from "./pages/AdminPage/JobCreatorPage/JobCreatorPage";
 import UpdateJobPage from "./pages/AdminPage/UpdateJobPage/UpdateJobPage";
 import Overview from "./pages/AdminPage/Overview/Overview";
-import Jobs from "./pages/AdminPage/Jobs/Jobs";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
+import LoginRegisterPage from './pages/AdminPage/AdminLoginPage/LoginRegisterPage'
 
-import LoginRegisterPage from "./pages/AdminPage/AdminLoginPage/LoginRegisterPage";
 
 function App() {
 
   return (
       <AuthState>
         <AppProvider>
-        {window.location.href.includes("/admin") ? "" : <CareerHeader />}
+          <Router>
 
-        <Routes>
-          <Route exact path="/" element={<CareerPage />} />
-          <Route exact path="/careers" element={<CareerPage />} />
-          <Route exact path="/careers/:id" element={<JobDetail />} />
-          <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
-          <Route path="*" element={<PageNotFound />} />
+            {window.location.href.includes("/admin") ? "" : <CareerHeader />}
+            <Routes>
 
-          <Route exact path="/admin" element={<AdminPage />}>
-            <Route exact path="/admin" element={<Overview />} />
-            <Route exact path="/admin/candidates" element={<CandidatesPage />} />
-            <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
-            <Route exact path="/admin/jobs" element={<Jobs />} />
-            <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
-            <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
-          </Route>
+              <Route exact path="/" element={<CareerPage />} />
+              <Route exact path="/careers" element={<CareerPage />} />
+              <Route exact path="/careers/:id" element={<JobDetail />} />
+              <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
+              <Route path="*" element={<PageNotFound />} />
 
-        </Routes>
-        {window.location.href.includes("/admin") ? "" : <CareerFooter />}
+              <Route exact path="/admin" element={<AdminPage />}>
+                <Route exact path="/admin" element={<Overview />} />
+                <Route exact path="/admin/candidates" element={<CandidatesPage />} />
+                <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
+                <Route exact path="/admin/jobs" element={<Jobs />} />
+                <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
+                <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
+              </Route>
+
+            </Routes>
+            {window.location.href.includes("/admin") ? "" : <CareerFooter />}
+
+          </Router>
+
         </AppProvider>
       </AuthState>
   );

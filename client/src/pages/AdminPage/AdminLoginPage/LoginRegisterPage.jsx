@@ -32,7 +32,7 @@ const LoginRegisterPage = () => {
         payload: loginResponse?.data,
       });
 
-      navigate("/");
+      navigate("/admin");
       
     } catch (error) {
       setLoginError(error?.response.data.message);

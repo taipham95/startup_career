@@ -19,7 +19,7 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 403) {
       delete axiosInstance.defaults.headers.common['Authorization']
       localStorage.removeItem('accessToken');
-      window.location.href = '/login';
+      window.location.href = '/admin/login';
     }
     return Promise.reject(error);
   }
