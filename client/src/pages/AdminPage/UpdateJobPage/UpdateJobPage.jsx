@@ -80,7 +80,9 @@ const UpdateJobPage = () => {
       const newData = await dataService.updateJob(jobId, jobDetail);
       setJobsData(newData.data.newData)
       setUploadError(false);
-      navigate('/admin/jobs')
+      setTimeout(() => {
+        navigate('/admin/jobs')
+      }, 1000)
     } catch (err) {
       console.log(err);
       setUploadError(true);

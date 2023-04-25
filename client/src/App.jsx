@@ -44,6 +44,24 @@ function App() {
                 <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
               </Route>
 
+
+
+
+
+{/* 
+              <Route exact path="/login" element={<LoginRegisterPage />}>
+                <Route exact path="/admin" element={<AdminPage />} />
+                <Route exact path="/admin" element={<Overview />} />
+                <Route exact path="/admin/candidates" element={<CandidatesPage />} />
+                <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
+                <Route exact path="/admin/jobs" element={<Jobs />} />
+                <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
+                <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
+              </Route> */}
+
+
+
+
             </Routes>
             {window.location.href.includes("/admin") ? "" : <CareerFooter />}
 
