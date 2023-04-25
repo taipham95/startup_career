@@ -7,20 +7,28 @@ import JobDetail from "./components/JobDetail";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
 import AdminPage from "./pages/AdminPage";
+
+//admin
+import AuthState from "./Context/AuthContext";
+import SearchAndInforAdmin from "./pages/AdminPage/SearchAndInforAdmin";
+import Sidebar from "./pages/AdminPage/Sidebar";
+import Overview from "./pages/AdminPage/Overview/Overview";
 import CandidatesPage from "./pages/AdminPage/CandidatesPage";
+import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
+import Jobs from "./pages/AdminPage/Jobs/Jobs";
 import JobCreatorPage from "./pages/AdminPage/JobCreatorPage/JobCreatorPage";
 import UpdateJobPage from "./pages/AdminPage/UpdateJobPage/UpdateJobPage";
 import Overview from "./pages/AdminPage/Overview/Overview";
 import Jobs from "./pages/AdminPage/Jobs/Jobs";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 
+import LoginRegisterPage from "./pages/AdminPage/AdminLoginPage/LoginRegisterPage";
 
 function App() {
 
   return (
-    <AppProvider>
-      <Router>
-
+      <AuthState>
+        <AppProvider>
         {window.location.href.includes("/admin") ? "" : <CareerHeader />}
 
         <Routes>
@@ -39,14 +47,10 @@ function App() {
             <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
           </Route>
 
-
         </Routes>
-
         {window.location.href.includes("/admin") ? "" : <CareerFooter />}
-
-
-      </Router>
-    </AppProvider>
+        </AppProvider>
+      </AuthState>
   );
 }
 

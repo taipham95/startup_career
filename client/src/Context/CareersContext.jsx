@@ -1,9 +1,11 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext , useContext } from "react";
 import axios from "axios";
 import useFetchAllEmploy from "../hooks/useFetchAllEmploy";
 import { dataService } from "../services/dataService";
 import { BASE_URL, JOBS_ENDPOINT } from "../constants";
 export const CareersContext = createContext({});
+import { AuthContext } from "./AuthContext";
+
 export const AppProvider = ({ children }) => {
   const [jobsData, setJobsData] = useState([]);
 
@@ -16,7 +18,7 @@ export const AppProvider = ({ children }) => {
       setJobsData(response.data);
       // console.log(response.data);
     };
-    handleFetchJobs();
+      handleFetchJobs();
   }, []);
   
   return (
