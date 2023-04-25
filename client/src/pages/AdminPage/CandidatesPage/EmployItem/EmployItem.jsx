@@ -25,11 +25,11 @@ const EmployItem=(props)=>{
                             style={{
                               background: bgColor
                             }}
-                            >{(personal.lastName+" "+personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                            >{(personal?.lastName+" "+personal?.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                             {/* cho-nay-chua-hieu-tai-sao-sai */}
 
                             <div className="text-xs font-semibold pl-3">
-                              {personal.lastName + " " + personal.firstName}
+                              {personal?.lastName + " " + personal?.firstName}
                             </div>
 
 

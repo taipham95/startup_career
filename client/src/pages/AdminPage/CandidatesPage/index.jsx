@@ -64,8 +64,8 @@ const CandidatesPage = () => {
 
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employee.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employee.length / itemsPerPage);
+  const currentEmployeess = employee?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employee?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -76,7 +76,7 @@ const CandidatesPage = () => {
     setItemOffset(newOffset);
   };
 
-  const [sortedArray, setSortedArray] = useState(currentEmployeess.slice());
+  const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
 
   useEffect(() => {
     const newArray = [...currentEmployeess];
@@ -97,7 +97,7 @@ const CandidatesPage = () => {
 
   useEffect(() => {
     setSortedArray([...currentEmployeess.slice()])
-  }, [currentEmployeess.length])
+  }, [currentEmployeess?.length])
 
   console.log("day la sortarray : ", sortedArray)
   return (
@@ -260,15 +260,15 @@ const CandidatesPage = () => {
                   sortedArray
                     // employee
                     // currentEmployeess
-                    .filter((item) => {
-                      return item.personal.firstName
+                    ?.filter((item) => {
+                      return item?.personal?.firstName
                         .toLowerCase()
-                        .includes(val.toLowerCase()) || item.personal.lastName
+                        .includes(val.toLowerCase()) || item?.personal?.lastName
                           .toLowerCase()
                           .includes(val.toLowerCase());
                     })
 
-                    .map((item) => {
+                    ?.map((item) => {
 
                       return (
                         // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">

@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext , useContext } from "react";
-import axios from "axios";
 import useFetchAllEmploy from "../hooks/useFetchAllEmploy";
 import { dataService } from "../services/dataService";
 import { BASE_URL, JOBS_ENDPOINT } from "../constants";
@@ -8,18 +7,16 @@ import { AuthContext } from "./AuthContext";
 
 export const AppProvider = ({ children }) => {
   const [jobsData, setJobsData] = useState([]);
-
   const { employee, setEmploysData } = useFetchAllEmploy();
+  const { state } = useContext(AuthContext)
 
   useEffect(() => {
-    // console.log("LOGGER");
     const handleFetchJobs = async () => {
       const response = await dataService.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
       setJobsData(response.data);
-      // console.log(response.data);
     };
       handleFetchJobs();
-  }, []);
+  }, [state]);
   
   return (
     <CareersContext.Provider value={{ jobsData, employee, setEmploysData , setJobsData }}>

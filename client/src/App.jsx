@@ -24,8 +24,8 @@ function App() {
   return (
       <AuthState>
         <AppProvider>
-          <Router>
 
+          <Router>
             {window.location.href.includes("/admin") ? "" : <CareerHeader />}
             <Routes>
 
@@ -47,7 +47,6 @@ function App() {
 
             </Routes>
             {window.location.href.includes("/admin") ? "" : <CareerFooter />}
-
           </Router>
 
         </AppProvider>

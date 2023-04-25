@@ -1,6 +1,5 @@
 import { createContext, useReducer , useContext } from "react";
 export const AuthContext = createContext();
-import { CareersContext } from "./CareersContext";
 
 const initialState = {
   accessToken: localStorage.getItem("accessToken") || null,
@@ -10,7 +9,6 @@ const initialState = {
 const authReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    //////////
     case 'LOGIN': {
       localStorage.setItem("accessToken", payload.accessToken);
       return {
