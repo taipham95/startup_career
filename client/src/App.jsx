@@ -51,8 +51,6 @@ function App() {
         {window.location.href.includes("/admin") ? "" : <CareerFooter />}
         </AppProvider>
       </AuthState>
-
-    </>
   );
 }
 
