@@ -78,7 +78,7 @@ const UpdateJobPage = () => {
     console.log("jobDetail updated: ", jobDetail);
     try {
       const newData = await dataService.updateJob(jobId, jobDetail);
-      setJobsData(newData.data.newData)
+      setJobsData(newData.data.newData);
       setUploadError(false);
       setTimeout(() => {
         navigate('/admin/jobs')

@@ -160,7 +160,7 @@ const JobCreatorPage = () => {
             />
           </div>
 
-          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap sm:space-y-2 sm:justify-between gap-0 lg:gap-10">
+          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-10">
             <div className="w-full md:w-[48%] flex flex-col gap-2 text-xs md:text-sm">
               <h4 className="text-sm font-medium">Job title tag</h4>
               <MultiSelect
