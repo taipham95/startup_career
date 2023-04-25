@@ -34,7 +34,7 @@ const EmployItem=(props)=>{
 
 
                           </th>
-                          <td class="px-6 py-4 text-xs">{experience?.title}</td>
+                          <td class="px-6 py-4 text-xs">{experience?.title?experience.title:"Fresher Software"}</td>
                           <td class="px-6 py-4">
                             <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
                           </td>
