@@ -21,12 +21,11 @@ const LoginRegisterPage = () => {
   };
 
   const onLoginSubmit = async (values) => {
-    console.log("Submit form in Login Page", { values });
 
     try {
       const loginResponse = await userAdminService.loginAdmin(values)
+      console.log("Login Success API", loginResponse);
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${loginResponse.data.accessToken}`
-
       dispatch({
         type: 'LOGIN',
         payload: loginResponse?.data,
