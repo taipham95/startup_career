@@ -62,8 +62,6 @@ const CandidatesPage = () => {
 
   console.log("day la employee : ", employee)
 
-  console.log("day la last : ");
-
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentEmployeess = employee.slice(itemOffset, endOffset);

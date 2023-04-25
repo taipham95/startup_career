@@ -17,7 +17,7 @@ import UpdateJobPage from "./pages/AdminPage/UpdateJobPage/UpdateJobPage";
 import Overview from "./pages/AdminPage/Overview/Overview";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 import LoginRegisterPage from './pages/AdminPage/AdminLoginPage/LoginRegisterPage'
-
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
 
@@ -35,7 +35,8 @@ function App() {
               <Route exact path="/careers/:id/apply" element={<ApplyPage />} />
               <Route path="*" element={<PageNotFound />} />
 
-              <Route exact path="/admin" element={<AdminPage />}>
+              <Route exact path="/admin/login" element={<LoginRegisterPage />} />
+              <Route exact path="/admin" element={<PrivateRoute component={AdminPage} />}>
                 <Route exact path="/admin" element={<Overview />} />
                 <Route exact path="/admin/candidates" element={<CandidatesPage />} />
                 <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
@@ -43,24 +44,6 @@ function App() {
                 <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
                 <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
               </Route>
-
-
-
-
-
-{/* 
-              <Route exact path="/login" element={<LoginRegisterPage />}>
-                <Route exact path="/admin" element={<AdminPage />} />
-                <Route exact path="/admin" element={<Overview />} />
-                <Route exact path="/admin/candidates" element={<CandidatesPage />} />
-                <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
-                <Route exact path="/admin/jobs" element={<Jobs />} />
-                <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
-                <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
-              </Route> */}
-
-
-
 
             </Routes>
             {window.location.href.includes("/admin") ? "" : <CareerFooter />}
