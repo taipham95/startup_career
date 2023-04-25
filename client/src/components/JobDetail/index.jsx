@@ -10,7 +10,7 @@ function JobDetail() {
   const { jobsData } = useContext(CareersContext);
   console.log(jobsData);
   const joblist2 = jobsData.find((item) => item._id == param.id);
-  console.log(joblist2);
+  console.log(joblist2?.content);
   // const htmlString = `<p><strong>About Sky Mavis</strong></p><p>Sky Mavis, the pioneer behind the blockchain game Axie Infinity, is revolutionizing the virtual gaming world with innovative technology and infrastructure. We are committed to fostering a dynamic and inclusive work culture where individuals can bring their authentic selves to the table. As a team of entrepreneurial disruptors and gamers, we are driven by a shared passion for making a meaningful impact and embracing the challenges and critiques that come with being at the forefront of technological advancement.</p><p><br></p><p><strong>About the Role</strong></p><p>Our DevOps Engineers are responsible for maintaining the robustness and reliability of our system to operate and scale to potentially millions of users. This is not a traditional role - more of a fusion between classic DevOps and Site Reliability Engineering. We are operating at the bleeding edge of blockchain technology, so many of your prerogatives may be experiments that have never been conducted before. You'll need to be bright, nimble, and willing to innovate to succeed in this role. Your day to day might include</p><p><br></p><ul><li>Apply cloud (AWS, Azure, GCP) computing skills to deploy releases and upgrades.</li><li>Apply best practices to improve the company's computing architecture (server monitoring, micro-services management).</li><li>Implement automation tools and frameworks (CI/CD pipelines).</li><li>Improve company engineering tools, procedures, and data security</li></ul>`;
   return (
     <div id="jobDetail-page">
@@ -41,8 +41,8 @@ function JobDetail() {
               <p>
                 <br />
               </p>
-              {/* {parse(htmlString)} */}
-              {joblist2?.descriptions.map((description) => {
+              {parse(joblist2?.content || '' )}
+              {/* {joblist2?.descriptions?.map((description) => {
                 return (
                   <div>
                     <p>
@@ -56,8 +56,8 @@ function JobDetail() {
                     </ul>
                   </div>
                 );
-              })}
-              <p className="p-1">{joblist2?.descriptions[1].description}</p>
+              })} */}
+              {/* <p className="p-1">{joblist2?.descriptions[1].description}</p> */}
 
               <h1 className="text-2xl font-medium mt-3">Requirements</h1>
               <ul className="list-disc pl-4">

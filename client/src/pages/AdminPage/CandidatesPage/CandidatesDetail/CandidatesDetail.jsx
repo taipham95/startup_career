@@ -77,7 +77,7 @@ const CandidatesDetail = () => {
                 <div className="flex items-center">
                     <FontAwesomeIcon onClick={() => { navigate("/admin/candidates") }} icon={faArrowLeft} className="p-2" />
                     <div style={{ backgroundColor: `#${randomColor}` }} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{(employData?.personal.lastName + " " + employData?.personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
-                    <h3 className="p-2 font-medium">{employData?.personal.lastName + " " + employData?.personal.firstName}</h3>
+                    <h3 className="p-2 font-medium">{employData?.personal?.lastName + " " + employData?.personal?.firstName}</h3>
                 </div>
                 <div>
                     <button onClick={() => handleDelete(id)} className="text-[#b91c1c] font-medium bg-[#fff1f2] p-3 rounded-[10px]">
@@ -91,27 +91,27 @@ const CandidatesDetail = () => {
                     <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">EMPLOYEE DETAILS</div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">FIRST NAME</div>
-                        <div>{employData?.personal.firstName}</div>
+                        <div>{employData?.personal?.firstName}</div>
                     </div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">LAST NAME</div>
-                        <div>{employData?.personal.lastName}</div>
+                        <div>{employData?.personal?.lastName}</div>
                     </div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">EMAIL</div>
-                        <div>{employData?.personal.email}</div>
+                        <div>{employData?.personal?.email}</div>
                     </div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">PHONE</div>
-                        <div>{employData?.personal.phone}</div>
+                        <div>{employData?.personal?.phone}</div>
                     </div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">SCHOOL</div>
-                        <div>{employData?.education.school}</div>
+                        <div>{employData?.education?.school}</div>
                     </div>
                     <div className="relative  pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1 pl-3">EXPERIENCES</div>
-                        <div className="pl-3">{employData?.experience.title}</div>
+                        <div className="pl-3">{employData?.experience?.title}</div>
                         <div className="absolute bottom-[-120%]">
                             <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
                             <button onClick={() => { navigate("/admin/candidates") }} className="p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>

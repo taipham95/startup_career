@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams , useNavigate } from "react-router-dom";
 import { CareersContext } from "../../../Context/CareersContext";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, workingTypes } from "../../../constants";
@@ -11,10 +11,11 @@ import Swal from "sweetalert2";
 import "../JobCreatorPage/JobCreatorPage.css";
 
 const UpdateJobPage = () => {
+  const navigate = useNavigate()
   const param = useParams();
   const jobId = param.id;
   // context
-  const { jobsData } = useContext(CareersContext);
+  const { jobsData , setJobsData } = useContext(CareersContext);
   const jobDetail =
     jobsData.length > 0 && jobsData.find((job) => job._id == param.id);
 
@@ -76,8 +77,10 @@ const UpdateJobPage = () => {
     };
     console.log("jobDetail updated: ", jobDetail);
     try {
-      await dataService.updateJob(jobId, jobDetail);
+      const newData = await dataService.updateJob(jobId, jobDetail);
+      setJobsData(newData.data.newData)
       setUploadError(false);
+      navigate('/admin/jobs')
     } catch (err) {
       console.log(err);
       setUploadError(true);
@@ -95,17 +98,17 @@ const UpdateJobPage = () => {
   };
 
   useEffect(() => {
-    setJobTittle(jobDetail && jobDetail.title);
-    setAvailable(jobDetail && jobDetail.available);
-    setLocation(jobDetail && jobDetail.location);
-    setJobContent(jobDetail && jobDetail.content);
+    setJobTittle(jobDetail && jobDetail?.title);
+    setAvailable(jobDetail && jobDetail?.available);
+    setLocation(jobDetail && jobDetail?.location);
+    setJobContent(jobDetail && jobDetail?.content);
     const tag1 =
-      jobDetail && jobTags.filter((item) => item.value == jobDetail.tags[0]);
+      jobDetail && jobTags?.filter((item) => item.value == jobDetail?.tags[0]);
     const tag2 =
       jobDetail &&
-      workingTypes.filter((item) => item.value == jobDetail.tags[1]);
-    tag1.length > 0 && setJobTag(tag1);
-    tag2.length > 0 && setWorkingType(tag2);
+      workingTypes?.filter((item) => item.value == jobDetail?.tags[1]);
+    tag1?.length > 0 && setJobTag(tag1);
+    tag2?.length > 0 && setWorkingType(tag2);
   }, [jobDetail]);
 
   return (

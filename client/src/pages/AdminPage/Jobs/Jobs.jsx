@@ -38,7 +38,7 @@ const Jobs = () => {
 console.log("data",jobsData)
   let show=jobsData
   ?.filter((item) => {
-    return item.title.toLowerCase().includes(key.toLowerCase());
+    return item?.title?.toLowerCase()?.includes(key.toLowerCase());
   })
   .filter(
     (item) =>

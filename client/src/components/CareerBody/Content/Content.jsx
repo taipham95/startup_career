@@ -7,7 +7,7 @@ const Content = () => {
   const [key, setKey] = useState("");
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
-  const { jobsData } = useContext(CareersContext);
+  const { jobsData  } = useContext(CareersContext);
 
   console.log(jobsData);
   const handleChangeKey = (e) => {

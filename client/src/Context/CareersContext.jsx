@@ -6,6 +6,7 @@ import { BASE_URL, JOBS_ENDPOINT } from "../constants";
 export const CareersContext = createContext({});
 export const AppProvider = ({ children }) => {
   const [jobsData, setJobsData] = useState([]);
+
   const { employee, setEmploysData } = useFetchAllEmploy();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export const AppProvider = ({ children }) => {
   }, []);
   
   return (
-    <CareersContext.Provider value={{ jobsData, employee, setEmploysData }}>
+    <CareersContext.Provider value={{ jobsData, employee, setEmploysData , setJobsData }}>
       {children}
     </CareersContext.Provider>
   );
