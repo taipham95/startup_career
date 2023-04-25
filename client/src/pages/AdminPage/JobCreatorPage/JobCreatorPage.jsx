@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import "./JobCreatorPage.css";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, workingTypes } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
 import { dataService } from "../../../services/dataService";
 import Swal from "sweetalert2";
-
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
+import { CareersContext } from "../../../Context/CareersContext";
 
 const JobCreatorPage = () => {
   const [jobTitle, setJobTittle] = useState("");
@@ -17,6 +17,8 @@ const JobCreatorPage = () => {
   const [jobTag, setJobTag] = useState([]);
   const [workingType, setWorkingType] = useState([]);
   const [uploadErr, setUploadError] = useState(false);
+
+  const { setJobsData } = useContext(CareersContext);
 
   const showAlert = (mess) => {
     Swal.fire({
@@ -66,7 +68,9 @@ const JobCreatorPage = () => {
     };    
 
     try {
-      await dataService.postJob(jobDetail);
+      const postJob = await dataService.postJob(jobDetail);
+      setJobsData(postJob.data.newData)
+
     } catch (err) {
       console.log(err);
       setUploadError(true);
