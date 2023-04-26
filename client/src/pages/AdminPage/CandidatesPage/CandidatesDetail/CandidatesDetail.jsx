@@ -88,7 +88,7 @@ const CandidatesDetail = () => {
                 </div>
             </div>
             <div className=" text-xs grid grid-cols-3 ">
-                <div className="m-[auto] w-[70%]">
+                <div className=" w-[80%]">
                     <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">EMPLOYEE DETAILS</div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">FIRST NAME</div>
@@ -108,11 +108,11 @@ const CandidatesDetail = () => {
                     </div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1">SCHOOL</div>
-                        <div>{employData?.education?.school}</div>
+                        <div>{employData?.education?.school?employData?.education?.school:"MINDX"}</div>
                     </div>
                     <div className="relative  pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1 pl-3">EXPERIENCES</div>
-                        <div className="pl-3">{employData?.experience?.title}</div>
+                        <div className="pl-3">{employData?.experience?.title?employData?.experience?.title:"1 year"}</div>
                         <div className="absolute bottom-[-120%]">
                             <div className="button-wrapper">
                                 <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>

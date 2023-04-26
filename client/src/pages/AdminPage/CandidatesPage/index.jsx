@@ -278,14 +278,7 @@ const CandidatesPage = () => {
               </tbody>
             </table>
 
-
-
-
-
-          </div>
-        </div>
-      </section>
-      <nav
+            <nav
         className="flex items-center justify-between py-2 pt-1 pl-2"
         aria-label="Table navigation"
       >
@@ -318,6 +311,13 @@ const CandidatesPage = () => {
           activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
         />
       </nav>
+
+
+
+          </div>
+        </div>
+      </section>
+      
     </div>
   );
 };
