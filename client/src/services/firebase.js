@@ -9,7 +9,13 @@ const firebaseConfig = {
   messagingSenderId: "203725896354",
   appId: "1:203725896354:web:52c97eac848632a61df5fb",
 };
+<<<<<<< HEAD
 
   const app = initializeApp(firebaseConfig);
   const storage = getStorage(app);
   export {storage}
+=======
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+export { storage };
+>>>>>>> fba2e92 (optimized job form)

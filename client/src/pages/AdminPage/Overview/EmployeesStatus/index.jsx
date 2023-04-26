@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState,useContext } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
@@ -7,6 +8,17 @@ import { CareersContext } from "../../../../Context/CareersContext";
 
 function Items({ currentItems }) {
  
+=======
+import React, { useContext, useEffect, useRef, useState } from "react";
+import DoughnutChart from "../DoughnutChart";
+import axios from "axios";
+import ReactPaginate from "react-paginate";
+// import useFetchAllEmploy from "../../../../hooks/useFetchAllEmploy";
+import { CareersContext } from "../../../../Context/CareersContext";
+import EmployService from "../../../../services/employSevice";
+
+function Items({ currentItems }) {  
+>>>>>>> fba2e92 (optimized job form)
   return (
     <>
       {currentItems &&
@@ -66,10 +78,16 @@ function Items({ currentItems }) {
 
 
 function EmployeesStatus({ itemsPerPage }) {
+  const {employee} = useContext(CareersContext);  
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
+<<<<<<< HEAD
   // const [employees, setEmployees] = useState([]);
   // const { employees } = useContext(CareersContext)
+=======
+  const [employees, setEmploysData] = useState(employee);  
+  const [itemOffset, setItemOffset] = useState(0);
+>>>>>>> fba2e92 (optimized job form)
 
   const [itemOffset, setItemOffset] = useState(0);
   const { employee } = useContext(CareersContext)
@@ -79,8 +97,13 @@ function EmployeesStatus({ itemsPerPage }) {
   // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+<<<<<<< HEAD
   const currentEmployees = employee?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(employee?.length / itemsPerPage);
+=======
+  const currentEmployeess = employees.length && employees.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employees.length / itemsPerPage);
+>>>>>>> fba2e92 (optimized job form)
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {

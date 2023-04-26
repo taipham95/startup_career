@@ -5,6 +5,7 @@ const EmployItem=(props)=>{
     const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
     // console.log(personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], ""))
     const {employee} = props
+    console.log(employee);
     const { personal,experience, teamLead , _id , status, salary } = employee
     const onclick=()=>{
       // navigate(`/candidates/${_id}/edit`);
@@ -39,7 +40,11 @@ const EmployItem=(props)=>{
 
 
                           </th>
+<<<<<<< HEAD
                           <td class="px-6 py-4 text-xs">{personal?.headline?personal.headline:"Fresher Software"}</td>
+=======
+                          <td class="px-6 py-4 text-xs">{experience?experience.title: "Non title"}</td>
+>>>>>>> fba2e92 (optimized job form)
                           <td class="px-6 py-4">
                             <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
                           </td>

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext , useContext } from "react";
+import { useState, useEffect, useRef, createContext , useContext } from "react";
 import useFetchAllEmploy from "../hooks/useFetchAllEmploy";
 // phuc them vai
 import useFetchAllUser from "../hooks/useFetchAllUser";
@@ -10,6 +10,7 @@ import { AuthContext } from "./AuthContext";
 export const AppProvider = ({ children }) => {
   const [jobsData, setJobsData] = useState([]);
   const { employee, setEmploysData } = useFetchAllEmploy();
+  const prevState = useRef(true);
 
 // phuc them vao
   const {user,setUserData}=useFetchAllUser();
@@ -27,9 +28,27 @@ export const AppProvider = ({ children }) => {
     };
       handleFetchJobs();
   }, [state]);
+  const handleFetchJobs = async () => {
+    const response = await dataService.getData(`${BASE_URL}${JOBS_ENDPOINT}`);
+    setJobsData(response.data);
+  };
+
+  const onUpdateJobs = (newJob) => {
+    console.log("newJob/updated job: ", newJob);
+    handleFetchJobs();
+  };
+
+
+  // solve useEffect being called twice
+  useEffect(() => {    
+    if(prevState.current) {
+      prevState.current = false;
+      handleFetchJobs();
+    }
+  }, []);
   
   return (
-    <CareersContext.Provider value={{ jobsData, employee, setEmploysData , setJobsData, user, setUserData }}>
+    <CareersContext.Provider value={{ jobsData, employee, setEmploysData, onUpdateJobs , setJobsData, user, setUserData }}>
       {children}
     </CareersContext.Provider>
   );
