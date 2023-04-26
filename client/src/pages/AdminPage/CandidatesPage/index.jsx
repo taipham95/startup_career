@@ -260,12 +260,10 @@ const CandidatesPage = () => {
                   sortedArray
                     // employee
                     // currentEmployeess
-                    ?.filter((item) => {
-                      return item?.personal?.firstName
+                    .filter((item) => {
+                      return (item.personal.lastName+" "+item.personal.firstName)
                         .toLowerCase()
-                        .includes(val.toLowerCase()) || item?.personal?.lastName
-                          .toLowerCase()
-                          .includes(val.toLowerCase());
+                        .includes(val.toLowerCase()) 
                     })
 
                     ?.map((item) => {
