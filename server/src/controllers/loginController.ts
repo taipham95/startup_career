@@ -39,7 +39,6 @@ const loginUser = async (req:any, res:any) => {
   // Response client
   return res.json({
     isAuthenticated: true,
-    payload,
     accessToken: token,
   });
 };

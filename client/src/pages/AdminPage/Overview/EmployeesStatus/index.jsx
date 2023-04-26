@@ -79,12 +79,12 @@ function EmployeesStatus({ itemsPerPage }) {
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employees.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employees.length / itemsPerPage);
+  const currentEmployeess = employees?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employees?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % items?.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -151,13 +151,13 @@ function EmployeesStatus({ itemsPerPage }) {
               <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
                 Showing{" "}
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  {endOffset >= employees.length
-                    ? `${itemOffset + 1}-${employees.length}`
+                  {endOffset >= employees?.length
+                    ? `${itemOffset + 1}-${employees?.length}`
                     : `${itemOffset + 1}-${endOffset}`}
                 </span>{" "}
                 of{" "}
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  {employees.length}
+                  {employees?.length}
                 </span>
               </span>
 

@@ -43,7 +43,7 @@ const LoginForm = (props) => {
           name="username"
           onChange={onChangeHandler}
           placeholder='Your Username'
-          className=" bg-transparent"
+          className=" bg-transparent ml-3"
           required
         />
       </div>
@@ -67,7 +67,7 @@ const LoginForm = (props) => {
           name="password"
           onChange={onChangeHandler}
           placeholder='Your Password'
-          className="bg-transparent"
+          className="bg-transparent border-0 p-0 ml-3"
           required
         />
       </div>

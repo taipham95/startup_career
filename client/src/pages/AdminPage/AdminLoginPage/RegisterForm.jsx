@@ -67,7 +67,7 @@ const RegisterForm = () => {
           value={inForUser?.username}
           onChange={onChangeHandler}
           placeholder="New Username"
-          className="w-full bg-transparent border-none"
+          className="w-full bg-transparent border-none ml-3"
           required
           
         />

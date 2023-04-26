@@ -69,7 +69,7 @@ const CandidatesPage = () => {
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % items?.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -79,9 +79,9 @@ const CandidatesPage = () => {
   const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
 
   useEffect(() => {
-    const newArray = [...currentEmployeess];
+    const newArray = [...currentEmployeess? currentEmployeess : ''];
     // console.log(newArray)
-    newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
+    newArray.sort((a, b) => b.personal.lastName.localeCompare(a?.personal?.lastName));
     // console.log("day la newArray", newArray);
 
     if (sort2 == "Z - A") {
@@ -96,7 +96,7 @@ const CandidatesPage = () => {
   }, [sort2]);
 
   useEffect(() => {
-    setSortedArray([...currentEmployeess.slice()])
+    setSortedArray([...currentEmployeess?.slice()])
   }, [currentEmployeess?.length])
 
   console.log("day la sortarray : ", sortedArray)
@@ -294,13 +294,13 @@ const CandidatesPage = () => {
         <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
           Showing{" "}
           <span className="font-semibold text-gray-900 dark:text-white">
-            {endOffset >= employee.length
-              ? `${itemOffset + 1}-${employee.length}`
+            {endOffset >= employee?.length
+              ? `${itemOffset + 1}-${employee?.length}`
               : `${itemOffset + 1}-${endOffset}`}
           </span>{" "}
           of{" "}
           <span className="font-semibold text-gray-900 dark:text-white">
-            {employee.length}
+            {employee?.length}
           </span>
         </span>
 

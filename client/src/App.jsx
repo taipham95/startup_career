@@ -6,9 +6,9 @@ import ApplyPage from "./pages/ApplyPage/ApplyPage";
 import JobDetail from "./components/JobDetail";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CareerPage from "./components/CareerPage/CareerPage";
-import AdminPage from "./pages/AdminPage";
 
 //admin
+import AdminPage from "./pages/AdminPage";
 import AuthState from "./Context/AuthContext";
 import CandidatesPage from "./pages/AdminPage/CandidatesPage";
 import Jobs from "./pages/AdminPage/Jobs/Jobs";
@@ -17,7 +17,12 @@ import UpdateJobPage from "./pages/AdminPage/UpdateJobPage/UpdateJobPage";
 import Overview from "./pages/AdminPage/Overview/Overview";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 import LoginRegisterPage from './pages/AdminPage/AdminLoginPage/LoginRegisterPage'
+import WarningPage from "./pages/AdminPage/WarningPage/WarningPage";
+
+// Check Role
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import RoleContentJob from "./PrivateRoute/RoleContentJob";
+import RoleCandidate from "./PrivateRoute/RoleCandidate";
 
 function App() {
 
@@ -38,11 +43,12 @@ function App() {
               <Route exact path="/admin/login" element={<LoginRegisterPage />} />
               <Route exact path="/admin" element={<PrivateRoute component={AdminPage} />}>
                 <Route exact path="/admin" element={<Overview />} />
-                <Route exact path="/admin/candidates" element={<CandidatesPage />} />
+                <Route exact path="/admin/candidates" element={<RoleCandidate component={CandidatesPage} />} />
                 <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
-                <Route exact path="/admin/jobs" element={<Jobs />} />
-                <Route exact path="/admin/create-job" element={<JobCreatorPage />} />
-                <Route exact path="/admin/update-job/:id" element={<UpdateJobPage />} />
+                <Route exact path="/admin/jobs" element={< RoleContentJob component={Jobs} />} />
+                <Route exact path="/admin/create-job" element={< RoleContentJob component={JobCreatorPage}/>} />
+                <Route exact path="/admin/update-job/:id" element={< UpdateJobPage />} />
+                <Route exact path="/admin/warning" element={< WarningPage />} />
               </Route>
 
             </Routes>
