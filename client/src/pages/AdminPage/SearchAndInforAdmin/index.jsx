@@ -2,7 +2,7 @@ import { createContext, useReducer , useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 
 const SearchAndInforAdmin = () => {
-  const { state : { payload} } = useContext(AuthContext)
+  const { state : { username , role } } = useContext(AuthContext)
   return (
     <section className="h-[70px] flex items-center min-w-[600px] border-b-slate-300 border-b-[1px]">
       <form className="w-3/4 pl-3 ">
@@ -71,8 +71,8 @@ const SearchAndInforAdmin = () => {
           alt=""
         ></img>
         <div className="text-sm dark:text-white">
-          <div className="font-semibold pb-1">{payload?.username}</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">{payload?.role}</div>
+          <div className="font-semibold pb-1">{username?.toUpperCase()}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{role?role : ''}</div>
         </div>
         </div>
         <button>

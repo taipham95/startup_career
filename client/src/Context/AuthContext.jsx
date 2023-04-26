@@ -1,10 +1,13 @@
-import { createContext, useReducer , useContext } from "react";
+import { createContext, useReducer , useContext , useEffect } from "react";
 export const AuthContext = createContext();
+
+import jwt_decode from "jwt-decode";
 
 const initialState = {
   accessToken: localStorage.getItem("accessToken") || null,
   isAuthenticated: !!localStorage.getItem("accessToken") && true,
-  payload: null,
+  role: null,
+  username: null,
 };
 
 const authReducer = (state, action) => {
@@ -17,7 +20,13 @@ const authReducer = (state, action) => {
         ...payload,
       };
     }
-
+    case 'VERIFY_TOKEN': {
+      return {
+        ...state,
+        role: payload.role,
+        username: payload.username,
+      };
+    }
     default:
       return state;
   }
@@ -25,6 +34,26 @@ const authReducer = (state, action) => {
 
 const AuthState = ({children}) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const token = localStorage.getItem('accessToken');
+
+  const verifyToken = () => {
+    try {
+      const decoded = jwt_decode(token);
+      dispatch({
+        type: 'VERIFY_TOKEN',
+        payload: decoded,
+      })
+    }
+    catch(error) {
+      console.log("er", error);
+    }
+  }
+
+  useEffect(()=> {
+    if(token) {
+      verifyToken()
+    }
+  },[token])
 
   return (
     <AuthContext.Provider
@@ -37,3 +66,4 @@ const AuthState = ({children}) => {
     </AuthContext.Provider>
   )};
 export default AuthState;
+

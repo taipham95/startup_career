@@ -5,8 +5,9 @@ import EmployService from "../services/employSevice";
 
 const useFetchAllEmploy = (props) => {
   const [employee, setEmployee] = useState([]);
+
   const { state } = useContext(AuthContext)
-  console.log("state", state);
+
   useEffect(() => {
     fetchEmploy();
   }, [state]);
