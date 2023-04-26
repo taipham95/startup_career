@@ -2,14 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC9BcvsVy57VQJ1nx2gI7uUzOrTGcaVS5g",
-    authDomain: "my-startup-dfec3.firebaseapp.com",
-    projectId: "my-startup-dfec3",
-    storageBucket: "gs://my-startup-dfec3.appspot.com",
-    messagingSenderId: "674005511056",
-    appId: "1:674005511056:web:a753d21a65e6da3fc02115",
-    measurementId: "G-ZEC05YR264"
-  };
-  const app = initializeApp(firebaseConfig);
-  const storage = getStorage(app);
-  export {storage}
+  apiKey: "AIzaSyC4DMW_maakKcN4KKWcG1wvog0VDTyg-xA",
+  authDomain: "pets-social-network.firebaseapp.com",
+  projectId: "pets-social-network",
+  storageBucket: "pets-social-network.appspot.com",
+  messagingSenderId: "203725896354",
+  appId: "1:203725896354:web:52c97eac848632a61df5fb",
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+export { storage };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import { CareersContext } from "../../../Context/CareersContext";
 import { CareersContext } from "../../../Context/CareersContext";
 // import CardItem from "../Components/CardItem/CardItem";
@@ -12,7 +12,7 @@ const Jobs = () => {
   const [select2, setSelect2] = useState("");
   const { jobsData } = useContext(CareersContext);
 
-  console.log(jobsData);
+  // console.log(jobsData);
   const handleChangeKey = (e) => {
     setKey(e.target.value);
   };

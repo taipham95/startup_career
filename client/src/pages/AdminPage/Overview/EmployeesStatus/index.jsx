@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+// import useFetchAllEmploy from "../../../../hooks/useFetchAllEmploy";
+import { CareersContext } from "../../../../Context/CareersContext";
 import EmployService from "../../../../services/employSevice";
 
-function Items({ currentItems }) {
+function Items({ currentItems }) {  
   return (
     <>
       {currentItems &&
@@ -61,26 +63,18 @@ function Items({ currentItems }) {
 
 
 function EmployeesStatus({ itemsPerPage }) {
+  const {employee} = useContext(CareersContext);  
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmploysData] = useState(employee);  
   const [itemOffset, setItemOffset] = useState(0);
-  
-  useEffect(() => {
-    const handleFetchJobs = async () => {
-      const response = await EmployService.getAll();
-      setEmployees(response.data.data);
-      console.log(response.data.data);
-    };
-    handleFetchJobs();
-  }, []);
 
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employees.slice(itemOffset, endOffset);
+  const currentEmployeess = employees.length && employees.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(employees.length / itemsPerPage);
 
   // Invoke when user click to request another page.

@@ -11,7 +11,7 @@ const ApplyPage = () => {
   const param = useParams();
   const { jobsData } = useContext(CareersContext);
   const joblist2 = jobsData.find((item) => item._id == param.id);
-  console.log(joblist2);
+  // console.log(joblist2);
   return (
     <div>
       {joblist2 ? (

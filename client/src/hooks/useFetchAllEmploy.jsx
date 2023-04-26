@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { json, useParams } from "react-router-dom";
 // import EmployService from "../services/employService";
 import EmployService from "../services/employSevice";
@@ -7,9 +7,12 @@ const useFetchAllEmploy = (props) => {
   const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+  const prevState = useRef(true);
   useEffect(() => {
-    fetchEmploy();
+    if (prevState.current) {
+      prevState.current = false;
+      fetchEmploy();
+    }
   }, []);
 
   const setEmploysData = (newContacts) => setEmployee(newContacts);
@@ -29,7 +32,7 @@ const useFetchAllEmploy = (props) => {
     }
   };
 
-  return { employee,  setEmploysData};
+  return { employee, setEmploysData };
 };
 
 export default useFetchAllEmploy;
