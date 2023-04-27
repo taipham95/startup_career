@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import EmployService from "../../../../services/employSevice";
+import { CareersContext } from "../../../../Context/CareersContext";
 
 function Items({ currentItems }) {
   return (
@@ -63,29 +64,30 @@ function Items({ currentItems }) {
 function EmployeesStatus({ itemsPerPage }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
-  const [employees, setEmployees] = useState([]);
+  // const [employees, setEmployees] = useState([]);
+  const { employees } = useContext(CareersContext)
   const [itemOffset, setItemOffset] = useState(0);
   
-  useEffect(() => {
-    const handleFetchJobs = async () => {
-      const response = await EmployService.getAll();
-      setEmployees(response.data.data);
-    };
-    handleFetchJobs();
-  }, []);
-
+  // useEffect(() => {
+  //   const handleFetchJobs = async () => {
+  //     const response = await EmployService.getAll();
+  //     setEmployees(response.data.data);
+  //   };
+  //   handleFetchJobs();
+  // }, []);
+console.log(employees)
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employees?.slice(itemOffset, endOffset);
+  const currentEmployees = employees?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(employees?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items?.length;
+    const newOffset = (event.selected * itemsPerPage) % employees?.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
