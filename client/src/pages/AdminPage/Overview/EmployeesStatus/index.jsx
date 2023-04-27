@@ -77,6 +77,7 @@ function EmployeesStatus({ itemsPerPage }) {
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
+  // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentEmployeess = employees?.slice(itemOffset, endOffset);
@@ -140,7 +141,7 @@ function EmployeesStatus({ itemsPerPage }) {
                 </tr>
               </thead>
               <tbody>
-                <Items currentItems={currentEmployeess} />
+                <Items currentItems={currentEmployees} />
               </tbody>
             </table>
             
