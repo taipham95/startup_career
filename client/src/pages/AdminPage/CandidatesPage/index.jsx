@@ -78,7 +78,7 @@ const CandidatesPage = () => {
   useEffect(() => {
     const newArray = [...currentEmployeess? currentEmployeess : ''];
     // console.log(newArray)
-    newArray.sort((a, b) => b.personal.lastName.localeCompare(a?.personal?.lastName));
+    newArray.sort((a, b) => b?.personal.lastName.localeCompare(a?.personal?.lastName));
     // console.log("day la newArray", newArray);
 
     if (sort2 == "Z - A") {
@@ -97,6 +97,11 @@ const CandidatesPage = () => {
   }, [currentEmployeess?.length])
 
   console.log("day la sortarray : ", sortedArray)
+
+
+
+
+  
   return (
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       <section className="px-4 py-2">
