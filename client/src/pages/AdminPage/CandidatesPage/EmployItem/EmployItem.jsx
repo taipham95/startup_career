@@ -7,9 +7,12 @@ const EmployItem=(props)=>{
     const {employee} = props
     const { personal,experience, teamLead , _id , status, salary } = employee
     const onclick=()=>{
-      navigate(`/candidates/${_id}/edit`);
+      // navigate(`/candidates/${_id}/edit`);
+      navigate(`/admin/candidates/${_id}/edit`)
       
     }
+    let name=(personal?.lastName + " " + personal?.firstName);
+
         return(
          
 
@@ -24,16 +27,19 @@ const EmployItem=(props)=>{
                             style={{
                               background: bgColor
                             }}
-                            >{(personal.lastName+" "+personal.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                            >
+                        {name?.split(" ").reduce((acc, cur) => { console.log("cur",cur); if(cur=='') return acc; else return acc += cur[0];}, "")}
+
+                              </div>
                             {/* cho-nay-chua-hieu-tai-sao-sai */}
 
                             <div className="text-xs font-semibold pl-3">
-                              {personal.lastName + " " + personal.firstName}
+                              {personal?.lastName + " " + personal?.firstName}
                             </div>
 
 
                           </th>
-                          <td class="px-6 py-4 text-xs">{experience.title}</td>
+                          <td class="px-6 py-4 text-xs">{personal?.headline?personal.headline:"Fresher Software"}</td>
                           <td class="px-6 py-4">
                             <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
                           </td>
@@ -65,7 +71,7 @@ const EmployItem=(props)=>{
                           </td>
                           <td class="pl-6 pr-2 py-4">
                             {status ? (
-                              status=="ON"?
+                              status=="ONBOARDING"?
                               <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
                                 {status}
                               </mark>

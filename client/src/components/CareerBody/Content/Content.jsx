@@ -7,7 +7,7 @@ const Content = () => {
   const [key, setKey] = useState("");
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
-  const { jobsData } = useContext(CareersContext);
+  const { jobsData  } = useContext(CareersContext);
 
   console.log(jobsData);
   const handleChangeKey = (e) => {
@@ -34,7 +34,7 @@ const Content = () => {
   };
 
   let show=jobsData
-  .filter((item) => {
+  ?.filter((item) => {
     return item.title.toLowerCase().includes(key.toLowerCase());
   })
   .filter(
@@ -43,11 +43,11 @@ const Content = () => {
         item.location
           .toLowerCase()
           .includes(select1.toLowerCase()) ||
-        item.tags[0]
+        item.tags[1]
           .toLowerCase()
           .includes(select1.toLowerCase())) &&
       (select2 === "" ||
-        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
   )
   
   return (

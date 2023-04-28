@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import "./JobCreatorPage.css";
 import QuillEditor from "../../../components/QuillEditor/QuillEditor";
 import { jobTags, workingTypes } from "../../../constants";
 import { MultiSelect } from "react-multi-select-component";
-import { dataServices } from "../../../services/dataService";
+import { dataService } from "../../../services/dataService";
 import Swal from "sweetalert2";
-
 import SwitchButton from "../../../components/SwitchButton/SwitchButton";
+import { CareersContext } from "../../../Context/CareersContext";
 
 const JobCreatorPage = () => {
   const [jobTitle, setJobTittle] = useState("");
@@ -17,6 +17,8 @@ const JobCreatorPage = () => {
   const [jobTag, setJobTag] = useState([]);
   const [workingType, setWorkingType] = useState([]);
   const [uploadErr, setUploadError] = useState(false);
+
+  const { setJobsData } = useContext(CareersContext);
 
   const showAlert = (mess) => {
     Swal.fire({
@@ -63,25 +65,25 @@ const JobCreatorPage = () => {
       tags: [jobTag[0].value, workingType[0].value],
       available,
       content: jobContent,
-    };
-    console.log("jobDetail created: ", jobDetail);
+    };    
 
     try {
-      await dataServices.postJob(jobDetail);
+      const postJob = await dataService.postJob(jobDetail);
+      setJobsData(postJob.data.newData)
+
     } catch (err) {
       console.log(err);
       setUploadError(true);
     }
     if (!uploadErr) {
-      showAlert("Submit successfully!");
+      showAlert("New job created successfully!");
     }
 
-    // showAlert("New job created successfully!");
     setJobTittle("");
-    setJobContent("");
+    setJobContent("<p>&nbsp;</p>");
     setWorkingTime("Fulltime");
-    setJobTagSelected([]);
-    setWorkingSelected([]);
+    setJobTag([]);
+    setWorkingType([]);
     setLocation("");
   };
 
@@ -158,7 +160,7 @@ const JobCreatorPage = () => {
             />
           </div>
 
-          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap sm:space-y-2 sm:justify-between gap-0 lg:gap-10">
+          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-10">
             <div className="w-full md:w-[48%] flex flex-col gap-2 text-xs md:text-sm">
               <h4 className="text-sm font-medium">Job title tag</h4>
               <MultiSelect
@@ -199,7 +201,7 @@ const JobCreatorPage = () => {
             type="submit"
             className="min-w-fit w-fit mx-auto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
           >
-            Save job
+            Create job
           </button>
         </form>
       </div>

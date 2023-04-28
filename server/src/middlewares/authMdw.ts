@@ -5,7 +5,7 @@ import jwt from "../helper/jwt";
 const authMdw = (req:any, res:any, next:any) => {
   // Step 1: get token from header
   const bearer = req.headers.authorization;
-  const token = bearer.split(' ')[1];
+  const token = bearer?.split(' ')[1];
 
   if (!token) {
     return res.status(400).json({
@@ -20,8 +20,15 @@ const authMdw = (req:any, res:any, next:any) => {
       req.user = decoded
       next();
     }
-  } catch (error) {
-    res.status(401).json({
+  } catch (error:any) {
+    
+    if (error.name === 'TokenExpiredError') {
+      return res.status(403).json({
+        message: "Token Expired",
+      });
+    }
+
+    return res.status(403).json({
       message: "Invalid token, no authorization!",
     });
   }

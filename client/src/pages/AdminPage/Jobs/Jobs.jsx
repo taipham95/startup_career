@@ -35,10 +35,10 @@ const Jobs = () => {
   const showMore = () => {
     setVisibleCount(visibleCount + 4); // Tăng số lượng phần tử hiển thị lên 5
   };
-
+console.log("data",jobsData)
   let show=jobsData
-  .filter((item) => {
-    return item.title.toLowerCase().includes(key.toLowerCase());
+  ?.filter((item) => {
+    return item?.title?.toLowerCase()?.includes(key.toLowerCase());
   })
   .filter(
     (item) =>
@@ -46,11 +46,11 @@ const Jobs = () => {
         item.location
           .toLowerCase()
           .includes(select1.toLowerCase()) ||
-        item.tags[0]
+        item.tags[1]
           .toLowerCase()
           .includes(select1.toLowerCase())) &&
       (select2 === "" ||
-        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
   )
   
   return (
@@ -148,7 +148,8 @@ const Jobs = () => {
               .map((item) => {
                
                 return (
-                  <Link to={`/update-job/${item._id}`}>
+                  // <Link to={`/update-job/${item._id}`}>
+                  <Link to={`/admin/update-job/${item._id}`}>
                     <CardItem
                       id={item._id}
                       title={item.title}

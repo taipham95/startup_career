@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Import icon cụ thể
-
+import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; 
 const DetailHeader = (props)=>{
     const {fname, lname,handleDelete, id}=props
 
@@ -10,9 +9,7 @@ const DetailHeader = (props)=>{
     return(
         <div className="flex justify-between items-center text-sm border-b pb-3">
             <div className="flex items-center">
-            {/* <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> */}
             <FontAwesomeIcon icon={faArrowLeft} className="p-2" />
-                {/* <img className="rounded-[100%] w-[40px] h-[40px]" src="/person-icon.png"></img> */}
                 <div style={{backgroundColor:`#${randomColor}`}} class="w-10 h-10 relative flex justify-center items-center rounded-full bg-green-500 text-xl text-white uppercase">{(lname+" "+fname).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
                 <h3 className="p-2 font-medium">{lname+" "+fname}</h3>
             </div>
