@@ -119,22 +119,25 @@ const updateIn4User = async (req: any, res: any) => {
       });
     }
     // Mã hoá password
-    const { username, password, email, role } = req.body
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const { username, email, role } = req.body
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = {
       username,
-      password: hashedPassword,
+      // password: hashedPassword,
       email,
       role,
       
     };
 
     await UserAdmin.findByIdAndUpdate(id, user);
+    const newDataUpdate:any = await UserAdmin.find().select('-password');
+
 
     res.json({
       message: 'Success Update Information User',
+      newData:newDataUpdate,
     });
   } catch (error: any) {
     res.status(400).json({
@@ -155,8 +158,10 @@ const deleteUser = async (req: any, res: any) => {
 
     await UserAdmin.findByIdAndDelete(id);
 
+    const newDataUser = await UserAdmin.find();
     res.json({
       message: 'Success Delete UserAdmin',
+      newData: newDataUser
     });
   } catch (error: any) {
     res.status(400).json({

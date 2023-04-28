@@ -18,11 +18,13 @@ import Overview from "./pages/AdminPage/Overview/Overview";
 import CandidatesDetail from "./pages/AdminPage/CandidatesPage/CandidatesDetail/CandidatesDetail";
 import LoginRegisterPage from './pages/AdminPage/AdminLoginPage/LoginRegisterPage'
 import WarningPage from "./pages/AdminPage/WarningPage/WarningPage";
-
+import Employee from "./pages/AdminPage/Employee/Employee";
+import EmployeeDetail from "./pages/AdminPage/Employee/EmployeeDetail/EmployeeDetail";
 // Check Role
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import RoleContentJob from "./PrivateRoute/RoleContentJob";
 import RoleCandidate from "./PrivateRoute/RoleCandidate";
+import RoleAdmin from "./PrivateRoute/RoleAdmin";
 
 function App() {
 
@@ -45,6 +47,8 @@ function App() {
                 <Route exact path="/admin" element={<Overview />} />
                 <Route exact path="/admin/candidates" element={<RoleCandidate component={CandidatesPage} />} />
                 <Route exact path="/admin/candidates/:id/edit" element={<CandidatesDetail />} />
+                <Route exact path="/admin/employee" element={< RoleAdmin component={Employee} />} />
+                <Route exact path="/admin/employee/:id/edit" element={<EmployeeDetail />} />
                 <Route exact path="/admin/jobs" element={< RoleContentJob component={Jobs} />} />
                 <Route exact path="/admin/create-job" element={< RoleContentJob component={JobCreatorPage}/>} />
                 <Route exact path="/admin/update-job/:id" element={< UpdateJobPage />} />

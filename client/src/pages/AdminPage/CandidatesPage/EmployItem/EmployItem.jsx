@@ -11,6 +11,8 @@ const EmployItem=(props)=>{
       navigate(`/admin/candidates/${_id}/edit`)
       
     }
+    let name=(personal?.lastName + " " + personal?.firstName);
+
         return(
          
 
@@ -25,7 +27,10 @@ const EmployItem=(props)=>{
                             style={{
                               background: bgColor
                             }}
-                            >{(personal?.lastName+" "+personal?.firstName).split(" ").reduce((acc, cur) => acc += cur[0], "")}</div>
+                            >
+                        {name?.split(" ").reduce((acc, cur) => { console.log("cur",cur); if(cur=='') return acc; else return acc += cur[0];}, "")}
+
+                              </div>
                             {/* cho-nay-chua-hieu-tai-sao-sai */}
 
                             <div className="text-xs font-semibold pl-3">
@@ -34,7 +39,7 @@ const EmployItem=(props)=>{
 
 
                           </th>
-                          <td class="px-6 py-4 text-xs">{experience?.title}</td>
+                          <td class="px-6 py-4 text-xs">{personal?.headline?personal.headline:"Fresher Software"}</td>
                           <td class="px-6 py-4">
                             <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
                           </td>

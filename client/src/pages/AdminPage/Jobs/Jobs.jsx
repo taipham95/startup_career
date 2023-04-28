@@ -46,11 +46,11 @@ console.log("data",jobsData)
         item.location
           .toLowerCase()
           .includes(select1.toLowerCase()) ||
-        item.tags[0]
+        item.tags[1]
           .toLowerCase()
           .includes(select1.toLowerCase())) &&
       (select2 === "" ||
-        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
   )
   
   return (

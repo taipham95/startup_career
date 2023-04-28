@@ -34,7 +34,7 @@ const Content = () => {
   };
 
   let show=jobsData
-  .filter((item) => {
+  ?.filter((item) => {
     return item.title.toLowerCase().includes(key.toLowerCase());
   })
   .filter(
@@ -43,11 +43,11 @@ const Content = () => {
         item.location
           .toLowerCase()
           .includes(select1.toLowerCase()) ||
-        item.tags[0]
+        item.tags[1]
           .toLowerCase()
           .includes(select1.toLowerCase())) &&
       (select2 === "" ||
-        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
   )
   
   return (
