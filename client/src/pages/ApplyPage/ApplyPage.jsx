@@ -10,7 +10,7 @@ import "./ApplyPage.css";
 const ApplyPage = () => {
   const param = useParams();
   const { jobsData } = useContext(CareersContext);
-  const joblist2 = jobsData.find((item) => item._id == param.id);
+  const joblist2 = jobsData?.find((item) => item._id == param.id);
   console.log(joblist2);
   return (
     <div>
@@ -31,7 +31,7 @@ const ApplyPage = () => {
                 Back to Job Description
               </Link>
             </div>
-            <ApplyForm />
+            <ApplyForm param={param} jobTitle={joblist2?.title}/>
           </div>
         </div>
       ) : (

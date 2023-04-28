@@ -7,6 +7,9 @@
         display: flex;
         justify-content: space-between;
     }
+    .reab{
+        bottom:-60px;
+    }
     /* .button-wrapper button {
         /* padding: 10px 20px; */
         /* font-size: 16px; */
@@ -18,18 +21,25 @@
             align-items: center;
         }
         
+        
         .button-wrapper button {
             margin-bottom: 10px;
         }
             .flex-container {
               display: block; /* chuyển sang block */
             }
-         
+            .reab{
+                bottom: -120px;
+            }
+.button-can{
+    margin: 0;
+}         
     }
     @media screen and (max-width: 1024px) {
             .flex-container {
               display: block; /* chuyển sang block */
             }
+         
          
     }
 

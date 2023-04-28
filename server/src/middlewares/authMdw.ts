@@ -5,7 +5,7 @@ import jwt from "../helper/jwt";
 const authMdw = (req:any, res:any, next:any) => {
   // Step 1: get token from header
   const bearer = req.headers.authorization;
-  const token = bearer.split(' ')[1];
+  const token = bearer?.split(' ')[1];
 
   if (!token) {
     return res.status(400).json({
