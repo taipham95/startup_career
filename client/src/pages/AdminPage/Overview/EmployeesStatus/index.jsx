@@ -2,14 +2,16 @@ import React, { useEffect, useState,useContext } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import EmployService from "../../../../services/employSevice";
+
 import { CareersContext } from "../../../../Context/CareersContext";
 
 function Items({ currentItems }) {
+ 
   return (
     <>
       {currentItems &&
         currentItems.map((item) => (
+         
           <tr
             key={item._id}
             className="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -29,13 +31,15 @@ function Items({ currentItems }) {
                   "#" + (Math.random().toString(16) + "000000").substring(2, 8)
                 }] text-xl text-white uppercase`}
               >
-                {(item.personal.firstName + " " + item.personal.lastName)
+                {(item.personal?.firstName + " " + item.personal?.lastName)
                   .split(" ")
-                  .reduce((acc, cur) => (acc += cur[0]), "")}
+                  .reduce((acc, cur) => cur==""? acc :(acc += cur[0]) , "")
+                  
+                  }
               </div>
 
               <div className="text-xs font-semibold pl-3">
-                {item.personal.firstName + " " + item.personal.lastName}
+                {item.personal?.firstName + " " + item.personal?.lastName}
               </div>
             </th>
             <td className="px-6 py-4 text-xs">{item.coverLetter}</td>
@@ -45,14 +49,14 @@ function Items({ currentItems }) {
             <td className="pl-6 pr-2 py-4">
               {item.status == "ONBOARDING" ? (
                 <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                  {item.status}
+                  {item?.status}
                 </mark>
               ) : (
                 <mark className="text-xs px-3 py-2 font-semibold bg-orange-100 text-orange-600 rounded-md">
-                  {item.status}
+                  {item?.status}
                 </mark>
               )}
-            </td>
+            </td> 
           </tr>
         ))}
     </>
@@ -65,35 +69,28 @@ function EmployeesStatus({ itemsPerPage }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   // const [employees, setEmployees] = useState([]);
-  const { employees } = useContext(CareersContext)
+  // const { employees } = useContext(CareersContext)
+
   const [itemOffset, setItemOffset] = useState(0);
-  
-  // useEffect(() => {
-  //   const handleFetchJobs = async () => {
-  //     const response = await EmployService.getAll();
-  //     setEmployees(response.data.data);
-  //   };
-  //   handleFetchJobs();
-  // }, []);
-console.log(employees)
+  const { employee } = useContext(CareersContext)
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployees = employees?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employees?.length / itemsPerPage);
+  const currentEmployees = employee?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employee?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % employees?.length;
+    const newOffset = (event.selected * itemsPerPage) % employee?.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
   };
-
+console.log(employee)
   return (
     <>
       <section className="px-4 py-2 flex justify-between">
@@ -154,13 +151,13 @@ console.log(employees)
               <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
                 Showing{" "}
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  {endOffset >= employees?.length
-                    ? `${itemOffset + 1}-${employees?.length}`
+                  {endOffset >= employee?.length
+                    ? `${itemOffset + 1}-${employee?.length}`
                     : `${itemOffset + 1}-${endOffset}`}
                 </span>{" "}
                 of{" "}
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  {employees?.length}
+                  {employee?.length}
                 </span>
               </span>
 

@@ -5,7 +5,7 @@ const Sidebar = () => {
     <main className="flex flex-col justify-between h-[100vh] w-[200px] font-medium border-r-[1.5px]">
       <div>
         <div className="flex justify-between items-center border-b-[1.5px] h-[70px]">
-          <img width="100" src="https://skymavis.com/images/branding.svg"></img>
+          <img width="130" src="https://drive.google.com/u/0/uc?id=1JaIDwaSWsJ8oVqt0iufGk1PQAyIgMp16&export=download"></img>
           <div className="bg-slate-200 h-5 w-5 rounded-md p-[2px] mr-2">
             <svg
               className="stroke-[#00000031] stroke-[3px] w-4 h-4"

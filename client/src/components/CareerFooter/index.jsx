@@ -6,17 +6,17 @@ const CareerFooter = () => {
         <div className="grid grid-cols-4 gap-x-10 max-w-7xl mx-auto my-auto pt-20 pb-10">
             <div className="ml-6">
                 <a href="/" >
-                    <img  width="230" src="https://skymavis.com/images/branding-white.svg" className="h-10 mr-4" alt="branding-white" />
+                    <img  width="230" src="https://drive.google.com/u/0/uc?id=1JaIDwaSWsJ8oVqt0iufGk1PQAyIgMp16&export=download" className="h-10 mr-4" alt="branding-white" />
                 </a>
                 <div className="text-sm ml-9 mt-4 text-white dark:text-white-400">
-                    © 2021 SKY MAVIS
+                    © 2023 SKY WORK
                 </div>
             </div>
             <div className="text-white ml-20">
                 <h2 className="mb-4 font-semibold uppercase ">Products</h2>
                 <ul className="text-sm ">
                     <li className="mb-4">
-                        <a href="https://axieinfinity.com/" className="hover:underline hover:text-blue-500">Axie Infinity</a>
+                        <a href="https://axieinfinity.com/" className="hover:underline hover:text-blue-500">Sky Infinity</a>
                     </li>
                     <li className="mb-4">
                         <a href="https://marketplace.axieinfinity.com/" className="hover:underline hover:text-blue-500">Marketplace</a>
@@ -39,7 +39,7 @@ const CareerFooter = () => {
                 </ul>
             </div>
             <div className="text-white ml-20">
-                <h2 className="mb-4 font-semibold uppercase"> About Sky Mavis </h2>
+                <h2 className="mb-4 font-semibold uppercase"> About Sky Work </h2>
                 <ul className="text-sm ">
                     <li className="mb-4">
                         <a href="/team" className="hover:underline  hover:text-blue-500">Team</a>
