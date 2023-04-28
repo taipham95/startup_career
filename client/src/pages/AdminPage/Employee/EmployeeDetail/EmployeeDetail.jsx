@@ -18,11 +18,8 @@ const EmployeeDetail = () => {
     const { id } = param;
     const { user, setUserData } = useContext(CareersContext);
     const [userForm, setUserForm] = useState(initialValues);
-    const {select1,setSelect1}=useState();
     const userData = user.find((item) => item._id == id);
-    console.log(userData);
-
-
+    const [select1,setSelect1]=useState(userData.role);
     var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     const handleDelete = async (id) => {
         try {
@@ -34,13 +31,6 @@ const EmployeeDetail = () => {
             console.log(error);
         }
     }
-    // const onChangeHandler = (event) => {
-    //     setUserForm({
-    //         ...userForm,
-    //         role: event.target.value,
-    //     });
-    //     console.log("userForm : ", userForm)
-    // };
     const handleChangeSelect1 = (e) => {
         setUserForm({
             ...userForm,
@@ -60,8 +50,6 @@ const EmployeeDetail = () => {
             const updateResponse = await userService.UpdateById(id, userForm);
             setUserData(updateResponse.data.newData)
             console.log("user sau khi cap nhat role :",updateResponse)
-
-            // console.log("final :", cnt)
             navigate("/admin/employee")
         } catch (error) {
             console.log(error);
@@ -78,12 +66,9 @@ const EmployeeDetail = () => {
           return get_day_of_time(today,dayFinish)
         }
         console.log("so ngay la : ",handleDate(userData?.created_at.slice(0,10)))
-  
-    // console.log("avatar",(employData?.personal.lastName + " " + employData?.personal.firstName)?.split(" ").reduce((acc, cur) => acc += cur[0], ""))
     let name=userData?.username;
     return (
         <div className="p-2 pl-7 pr-7 items-center" >
-            {/* <DetailHeader fname={employData?.personal.firstName} lname={employData?.personal.lastName} handleDelete={handleDelete(id)} id={id} /> */}
             <div className="flex justify-between items-center text-sm border-b pb-3">
                 <div className="flex items-center">
                     <FontAwesomeIcon onClick={() => { navigate("/admin/candidates") }} icon={faArrowLeft} className="p-2" />
@@ -121,15 +106,9 @@ const EmployeeDetail = () => {
                     </div>
 
                 </div>
-
-
-
-
                 {/* <div className="text-center">hai</div> */}
                 <div className=" w-[80%]">
                     <div className=" text-lg font-medium text-gray-400 pb-4 pt-2 ">ROLE</div>
-                    {/* <Field onChangeHandler={onChangeHandler} text={"Team Lead"} money={employData?.teamLead}></Field> */}
-
                     <select
                 value={select1}
                 onChange={handleChangeSelect1}
@@ -145,8 +124,6 @@ const EmployeeDetail = () => {
               </select>
 
                 </div>
-
-
                 {/* <div className="text-center">ba</div> */}
                 <div className=" w-[80%]">
                     <div className=" text-lg font-medium text-gray-400 pb-4 pt-2 ">ONBOARDING</div>
@@ -221,7 +198,6 @@ const EmployeeDetail = () => {
             {/* <div className="pl-[35%] p-2">
                 <button onClick={onSubmitHandler} className="rounded-[10px] bg-black text-white text-base font-bold w-[20%] pt-2 pb-2">SAVE</button>
                 <button onClick={() => { navigate("/candidates") }} className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
-
             </div> */}
         </div>
     )
