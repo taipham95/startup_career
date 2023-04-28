@@ -51,7 +51,34 @@ function JobDetail() {
           </header>
           <div className="flex flex-col text-left  max-w-[856px] p-5 xl:p-0">
             <div className="text-[#1D273D] detail-job pt-10 xl:pt-[79px] ">
-              {parse(joblist2?.content || "")}
+              {/* <h1 className="text-2xl font-medium">Descriptions</h1>
+              <p>
+                <br />
+              </p> */}
+              {parse(joblist2?.content || '' )}
+              {/* {joblist2?.descriptions?.map((description) => {
+                return (
+                  <div>
+                    <p>
+                      <strong>{description?.title}</strong>
+                    </p>
+                    <p className="p-1">{description?.detail}</p>
+                    <ul className="list-disc pl-4">
+                      {description.bullets?.map((bullet) => {
+                        return <li>{bullet}</li>;
+                      })}
+                    </ul>
+                  </div>
+                );
+              })} */}
+              {/* <p className="p-1">{joblist2?.descriptions[1].description}</p> */}
+
+              {/* <h1 className="text-2xl font-medium mt-3">Requirements</h1>
+              <ul className="list-disc pl-4">
+                {joblist2?.requirements.map((item) => {
+                  return <li>{item}</li>;
+                })}
+              </ul> */}
             </div>
             {/* Benefits */}
             <div>
