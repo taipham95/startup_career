@@ -76,26 +76,31 @@ const ApplyForm = (props) => {
     setCoverLetter("");
   };
   const handleSubmit = (e) => {
-    e.preventDefault();            
-    setInfo({ ...personal, headline:jobTitle });
+    e.preventDefault();
     
-    const userInfo = { personal, profile, coverLetter} ;
-    // console.log("userInfo", userInfo);
+    const updatedPersonal = { ...personal, headline: jobTitle };
+    setInfo(updatedPersonal);
+    
+    const userInfo = { personal: updatedPersonal, profile, coverLetter };
+    console.log("userInfo", userInfo);
+    
     try {
       EmployService.postApply(userInfo);
       setUploadError(false);
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setUploadError(true);
     }
-    if(!uploadErr) {
+    
+    if (!uploadErr) {
       showAlert("Submit successfully!");
     }
+    
     setInfo({});
     setProfile({});
     setCoverLetter("");
   };
+  
 
   return (
     <>
