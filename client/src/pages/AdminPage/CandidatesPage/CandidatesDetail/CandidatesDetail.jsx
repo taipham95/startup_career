@@ -15,12 +15,16 @@ const initialValues = {
     status: "",
 };
 const CandidatesDetail = () => {
+    const f=new Intl.NumberFormat("en-us");
     const navigate = useNavigate();
     const param = useParams();
     const { id } = param;
     const { employee, setEmploysData } = useContext(CareersContext);
     const [employForm, setEmployForm] = useState(initialValues);
     const employData = employee.find((item) => item._id == id);
+    const [select1,setSelect1]=useState(employData?.teamLead);
+    const [select2,setSelect2]=useState(employData?.salary?.slice(employData?.salary.length-3,employData?.salary.length));
+    const [sal,setSal]=useState(f.format(employData?.salary))
     console.log(employData);
 
 
@@ -35,6 +39,18 @@ const CandidatesDetail = () => {
             console.log(error);
         }
     }
+
+    const handleChangeSelect1=(e)=>{
+        setSelect1(e.target.value)
+        setEmployForm({
+            ...employForm,
+            teamLead: e.target.value,
+        });
+    }
+    const handleChangeSelect2=(e)=>{
+        setSelect2(e.target.value)
+    }
+
     const onChangeHandler = (event) => {
         const { name, value } = event.target;
         setEmployForm({
@@ -59,8 +75,13 @@ const CandidatesDetail = () => {
             if (employForm.teamLead == "") {
                 employForm.teamLead = employData.teamLead;
                 console.log("eL: ", employForm.teamLead);
-
             }
+            let newSa;
+            if(employForm?.salary?.slice(employForm?.salary.length-3,employForm.salary.length)=="VND"||employForm?.salary?.slice(employForm.salary.length-3,employForm.salary.length)=="EUR"||employForm?.salary?.slice(employForm.salary.length-3,employForm.salary.length)=="USD"||employForm?.salary.slice(employForm.salary.length-3,employForm.salary.length)=="GBP"){
+                
+employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
+            }
+            employForm.salary=employForm.salary+" "+select2
             const updateResponse = await EmployService.UpdateById(id, employForm);
             setEmploysData(updateResponse.data.newData)
 
@@ -70,6 +91,7 @@ const CandidatesDetail = () => {
             console.log(error);
         }
     };
+    
     console.log("avatar",(employData?.personal.lastName + " " + employData?.personal.firstName)?.split(" ").reduce((acc, cur) => acc += cur[0], ""))
     let name=(employData?.personal?.lastName + " " + employData?.personal?.firstName);
     return (
@@ -130,44 +152,50 @@ const CandidatesDetail = () => {
 
                 {/* <div className="text-center">hai</div> */}
                 <div className=" w-[80%]">
-                    <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">TEAM LEAD</div>
-                    {/* <Field onChangeHandler={onChangeHandler} text={"Team Lead"} money={employData?.teamLead}></Field> */}
-
-                    <div className="relative grow font-light text-xs md:text-sm pb-5">
-                        <input
-                            className={`peer font-medium text-sky border-sky-300 w-full min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-4 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${"dark:focus:border-sky-300 focus:border-sky-300"
-                                }`}
-                            placeholder={"Team Lead"}
-                            // value={employData?.teamLead}
-                            // onChange={onChangeHandler}
-                            defaultValue={employData?.teamLead}
-
-                            type="text"
-                            onChange={onChangeHandler}
-                            name='teamLead'
-                        />
-                        <label
-                            className={`pointer-events-none bg-transparent absolute h-auto top-0 left-2 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.65rem] px-3 leading-[1.6] text-neutral-400 transition-all duration-200 ease-out peer-focus:-translate-y-[1.25rem] 
-        opacity-0 peer-focus:opacity-100 peer-focus:scale-[0.9] peer-focus:left-4 peer-focus:bg-white motion-reduce:transition-none dark:text-neutral-300 ${"dark:peer-focus:text-sky-500 peer-focus:text-sky-500"
-                                }`}
-                        >
-                            Team Lead
-                        </label>
-                    </div>
+                    <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">DEPARTMENT</div>
+                   
+                         <select
+                value={select1}
+                onChange={handleChangeSelect1}
+                id="countries"
+                className="bg-white-50 font-medium border-sky-300 w-full mr-[10%] mb-5  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-4 px-3"
+              >
+                <option selected value="">
+                  Department
+                </option>
+                <option value="Art">Art</option>
+                <option value="Engineer">Engineer</option>
+                <option value="Finance">Finance</option>
+                <option value="Game Production">Game Production</option>
+                <option value="Growth">Growth</option>
+                <option value="HR & Admin">HR & Admin</option>
+                <option value="Legal">Legal</option>
+                <option value="Product">Product</option>
+              </select>
 
 
-                    <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">SALARY</div>
+                    <div className="flex text-base font-medium text-gray-400 pb-4 pt-2 ">SALARY</div>
                     {/* <Field onChangeHandler={onChangeHandler} text={"Salary"} money={employData?.salary}></Field> */}
-
-
+<div className="flex">
+                    <select
+                     value={select2}
+                     onChange={handleChangeSelect2}
+                    className="bg-white-50 mr-1 border-sky-300 border-none text-red-600 mb-5  font-bold text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-4 px-3">
+                        <option>Fiat</option>
+                        <option>VND</option>
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <option>GBP</option>
+                    </select>
                     <div className="relative grow font-light text-xs md:text-sm pb-5">
+                   
                         <input
                             className={`peer font-medium text-sky border-sky-300 w-full min-h-[auto] text-xs md:text-sm rounded-lg border bg-white py-4 px-3 leading-[1.6] placeholder-gray-500 focus:placeholder-transparent placeholder:text-xs md:placeholder:text-sm outline-none transition-all duration-200 ease-linear motion-reduce:transition-none focus:outline-none focus:shadow-none focus:ring-transparent ${"dark:focus:border-sky-300 focus:border-sky-300"
                                 }`}
                             placeholder={"Salary"}
                             // value={employData?.salary}
                             // onChange={onChangeHandler}
-                            defaultValue={employData?.salary}
+                            defaultValue={employData?.salary?.slice(0,employData?.salary.length-4)}
                             type="text"
                             onChange={onChangeHandler}
                             name='salary'
@@ -180,7 +208,7 @@ const CandidatesDetail = () => {
                             Salary
                         </label>
                     </div>
-
+                    </div>
 
                     <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">STATUS</div>
 

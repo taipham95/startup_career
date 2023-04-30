@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useRoutes } from "react-router-dom";
 const EmployItem=(props)=>{
+  const f=new Intl.NumberFormat("en-us");
   const navigate=useNavigate();
     const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
     // console.log(personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], ""))
@@ -11,6 +12,7 @@ const EmployItem=(props)=>{
       navigate(`/admin/candidates/${_id}/edit`)
       
     }
+  
     let name=(personal?.lastName + " " + personal?.firstName);
 
         return(
@@ -44,20 +46,8 @@ const EmployItem=(props)=>{
                             <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
                           </td>
                           <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.totalcomp}</div> */}
-                            <div class="text-xs ">3000000</div>
-                          </td>
-                          <td class="px-6 py-4">
                             {/* <div class="text-xs ">{item.salary}</div> */}
-                            <div class="text-xs ">{salary?salary:"None"}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.actual}</div> */}
-                            <div class="text-xs ">10</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.recurring}</div> */}
-                            <div class="text-xs ">10</div>
+                            <div class="text-xs ">{salary?f.format(salary.slice(0,salary.length-4))+salary.slice(salary.length-4, salary.length):"None"}</div>
                           </td>
                           {/* <td class="px-6 py-4">
                             <div class="text-xs ">{item.offset}</div>
@@ -65,10 +55,6 @@ const EmployItem=(props)=>{
                           <td class="px-6 py-4">
                             <div class="text-xs ">{item.offcycle}</div>
                           </td> */}
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.unpaid}</div> */}
-                            <div class="text-xs ">10</div>
-                          </td>
                           <td class="pl-6 pr-2 py-4">
                             {status ? (
                               status=="ONBOARDING"?
