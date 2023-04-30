@@ -42,20 +42,23 @@ function Items({ currentItems }) {
                 {item.personal?.firstName + " " + item.personal?.lastName}
               </div>
             </th>
-            <td className="px-6 py-4 text-xs">{item.coverLetter}</td>
+            <td className="px-6 py-4 text-xs">{item.personal?.headline?item.personal?.headline:"Fresher Software"}</td>
             <td className="px-6 py-4">
               <div className="text-xs ">{item.teamLead} </div>
             </td>
             <td className="pl-6 pr-2 py-4">
-              {item.status == "ONBOARDING" ? (
-                <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                  {item?.status}
-                </mark>
-              ) : (
-                <mark className="text-xs px-3 py-2 font-semibold bg-orange-100 text-orange-600 rounded-md">
-                  {item?.status}
-                </mark>
-              )}
+            {item.status ? (
+                              item.status=="ONBOARDING"?
+                              <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
+                                {item.status}
+                              </mark>
+                              :
+                              <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
+                                {item.status}
+                              </mark>
+                            ) : (
+                              "None Status"
+                            )}
             </td> 
           </tr>
         ))}

@@ -13,6 +13,7 @@ const CandidatesPage = () => {
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
+  const [select1, setSelect1] = useState("");
   const { employee } = useContext(CareersContext)
   console.log(employee);
   // const [sortedArray, setSortedArray] = useState([...employee]); 
@@ -42,6 +43,14 @@ const CandidatesPage = () => {
   const handleSort2 = (e) => {
     setSort2(e.target.value);
   };
+  const handleChangeSelect1 = (e) => {
+    setSelect1(e.target.value);
+    console.log(select1);
+  };
+  const [fiat,setFiat]=useState();
+  const changeFiat=(tmp)=>{
+    setFiat(tmp)
+  }
 
   // useEffect(() => {
   //   const newArray = [...employee];
@@ -134,8 +143,8 @@ const CandidatesPage = () => {
                 <div className="pt-[1px]">Filter & Sort</div>
               </button>
             ) : (
-              <div className="w-3/5 flex justify-around">
-                <div className="relative w-3/5">
+              <div className="w-4/5 flex justify-between">
+                <div className="relative w-4/5">
                   <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
@@ -158,7 +167,7 @@ const CandidatesPage = () => {
                     onChange={handleChangeVal}
                     type="search"
                     id="default-search"
-                    className=" block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className=" block w-4/5 p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search..."
                     required
                   />
@@ -168,11 +177,29 @@ const CandidatesPage = () => {
                       <option value="High - Low">High - Low</option>
                       <option value="Low - High">Low - High</option>
                     </select> */}
+                     <select
+                value={select1}
+                onChange={handleChangeSelect1}
+                id="countries"
+                className="bg-gray-50 border mr-[10%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
+              >
+                <option selected value="">
+                  Department
+                </option>
+                <option value="Art">Art</option>
+                <option value="Engineer">Engineer</option>
+                <option value="Finance">Finance</option>
+                <option value="Game Production">Game Production</option>
+                <option value="Growth">Growth</option>
+                <option value="HR & Admin">HR & Admin</option>
+                <option value="Legal">Legal</option>
+                <option value="Product">Product</option>
+              </select>
                 <select
                   value={sort2}
                   onChange={handleSort2}
                   id="countries"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                  className="bg-gray-50 border w-2/5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                 >
                   <option selected value="Sort Name">
                     Sort Name
@@ -194,23 +221,10 @@ const CandidatesPage = () => {
                     Job Title
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
-                    Team Lead
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Total Comp
+                    Department
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Salary
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Actual
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Recurring
-                  </th>
-
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Unpaid
                   </th>
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Status
@@ -225,11 +239,12 @@ const CandidatesPage = () => {
                   sortedArray
                     // employee
                     // currentEmployeess
-                    .filter((item) => {
-                      return (item.personal.lastName+" "+item.personal.firstName)
+                    .filter((item) => 
+                     ((item.personal.lastName+" "+item.personal.firstName)
                         .toLowerCase()
-                        .includes(val.toLowerCase()) 
-                    })
+                        .includes(val.toLowerCase()) ) && (select1 === "" ||
+                        item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
+                    )
 
                     ?.map((item) => {
 
