@@ -60,17 +60,17 @@ const CandidatesPage = () => {
   //   }
   // }, [sort2]);
 
-  console.log("day la employee : ", employee)
+  // console.log("day la employee : ", employee)
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentEmployeess = employee?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(employee?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % employee.length;
-    console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
+    // console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
     setItemOffset(newOffset);
   };
   const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
@@ -106,7 +106,7 @@ const CandidatesPage = () => {
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       <section className="px-4 py-2">
         <div className="">
-          <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
+          <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900">
             <div>
               <p className="font-semibold">Candidate List</p>
             </div>
@@ -134,8 +134,8 @@ const CandidatesPage = () => {
                 <div className="pt-[1px]">Filter & Sort</div>
               </button>
             ) : (
-              <div className="w-3/5 flex justify-around">
-                <div className="relative w-3/5">
+              <div className="w-3/6 flex justify-around">
+                <div className="relative w-3/6">
                   <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
@@ -183,41 +183,38 @@ const CandidatesPage = () => {
               </div>
             )}
           </div>
-          <div className="relative overflow-x-auto border-[1.5px] rounded-lg w-full">
-            <table className="w-full  text-sm text-center text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
+          <div className="relative overflow-x-auto rounded-lg w-full">
+            <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-white bg-sky-400 border-[1.5px] border-sky-400 border-b-0 dark:bg-sky-200 dark:text-gray-500">
                 <tr>
-                  <th scope="col" className="px-3 py-3 font-semibold">
+                  <th scope="col" className="w-3/8 px-3 py-3 font-semibold">
                     Name
                   </th>
-                  <th scope="col" className="px-3 py-3 font-semibold">
+                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
                     Job Title
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Team Lead
+                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
+                    Department
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Total Comp
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
                     Salary
                   </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
-                    Actual
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  {/* <th scope="col" class="px-3 py-3 font-semibold">
                     Recurring
                   </th>
 
                   <th scope="col" class="px-3 py-3 font-semibold">
                     Unpaid
-                  </th>
-                  <th scope="col" class="px-3 py-3 font-semibold">
+                  </th> */}
+                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
                     Status
+                  </th>
+                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
+                    &nbsp;
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="border-[1.5px] border-t-0 border-sky-200">
 
                 {
 

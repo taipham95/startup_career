@@ -10,13 +10,8 @@ import "./ApplyPage.css";
 const ApplyPage = () => {
   const param = useParams();
   const { jobsData } = useContext(CareersContext);
-<<<<<<< HEAD
-  const joblist2 = jobsData?.find((item) => item._id == param.id);
-  console.log(joblist2);
-=======
   const joblist2 = jobsData.find((item) => item._id == param.id);
   // console.log(joblist2);
->>>>>>> fba2e92 (optimized job form)
   return (
     <div>
       {joblist2 ? (

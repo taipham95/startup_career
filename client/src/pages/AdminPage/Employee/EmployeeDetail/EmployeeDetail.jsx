@@ -9,7 +9,6 @@ import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CareersContext } from "../../../../Context/CareersContext";
 import './EmployeeDetail.css';
 const initialValues = {
-
     role:"",
 };
 const EmployeeDetail = () => {
