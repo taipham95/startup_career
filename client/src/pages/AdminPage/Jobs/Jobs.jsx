@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-// import { CareersContext } from "../../../Context/CareersContext";
 import { CareersContext } from "../../../Context/CareersContext";
-// import CardItem from "../Components/CardItem/CardItem";
 import CardItem from "../../../components/CareerBody/Components/CardItem/CardItem";
 import { Link } from "react-router-dom";
-// import Loading from "../../Loading/Loading";
 import Loading from "../../../components/Loading/Loading";
+import { motion } from "framer-motion";
+
 const Jobs = () => {
   const [key, setKey] = useState("");
   const [select1, setSelect1] = useState("");
@@ -35,26 +34,27 @@ const Jobs = () => {
   const showMore = () => {
     setVisibleCount(visibleCount + 4); // Tăng số lượng phần tử hiển thị lên 5
   };
-console.log("data",jobsData)
-  let show=jobsData
-  ?.filter((item) => {
-    return item?.title?.toLowerCase()?.includes(key.toLowerCase());
-  })
-  .filter(
-    (item) =>
-      (select1 === "" ||
-        item.location
-          .toLowerCase()
-          .includes(select1.toLowerCase()) ||
-        item.tags[1]
-          .toLowerCase()
-          .includes(select1.toLowerCase())) &&
-      (select2 === "" ||
-        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
-  )
-  
+  console.log("data", jobsData);
+  let show = jobsData
+    ?.filter((item) => {
+      return item?.title?.toLowerCase()?.includes(key.toLowerCase());
+    })
+    .filter(
+      (item) =>
+        (select1 === "" ||
+          item.location.toLowerCase().includes(select1.toLowerCase()) ||
+          item.tags[1].toLowerCase().includes(select1.toLowerCase())) &&
+        (select2 === "" ||
+          item.tags[0].toLowerCase().includes(select2.toLowerCase()))
+    );
+
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.05, duration: 0.35 }}
+    >
       {jobsData.length > 0 ? (
         <div className="mt-20 mb-8 px-10 min-[900px]:px-14">
           <div className="">
@@ -144,7 +144,12 @@ console.log("data",jobsData)
               ) : (
                 show.slice(0, visibleCount).map((item, idx) => {
                   return (
-                    <Link to={`/careers/${item._id}`} key={idx} className="cursor-pointer flex p-6 drop-shadow-[0px_8px_30px_#DEE6F1] border-t first:border-b-[#C5CEE0] last:border-b hover:border-transparent hover:border-0 hover:rounded-2xl hover:shadow-[0px_8px_30px_#DEE6F1] transition-all duration-200">
+                    // <Link to={`/careers/${item._id}`} key={idx} className="cursor-pointer flex p-6 drop-shadow-[0px_8px_30px_#DEE6F1] border-t first:border-b-[#C5CEE0] last:border-b hover:border-transparent hover:border-0 hover:rounded-2xl hover:shadow-[0px_8px_30px_#DEE6F1] transition-all duration-200">
+                    <Link
+                      to={`/admin/update-job/${item._id}`}
+                      key={idx}
+                      className="cursor-pointer flex p-6 drop-shadow-[0px_8px_30px_#DEE6F1] border-t first:border-b-[#C5CEE0] last:border-b hover:border-transparent hover:border-0 hover:rounded-2xl hover:shadow-[0px_8px_30px_#DEE6F1] transition-all duration-200"
+                    >
                       <CardItem
                         id={item._id}
                         title={item.title}
@@ -171,7 +176,7 @@ console.log("data",jobsData)
       ) : (
         <Loading />
       )}
-    </div>
+    </motion.div>
   );
 };
 export default Jobs;

@@ -49,7 +49,7 @@ const Content = () => {
   return (
     <div>
       {jobsData.length > 0 ? (
-        <div className="mt-20 mb-8 px-6 lg:px-24">
+        <div className="mx-auto mt-20 mb-8 px-8 md:px-12 lg:w-3/4 xl:w-2/3">
           <div className="">
             <div className="flex text-xs sm:text-sm md:text-base flex-col sm:flex-row justify-center gap-4 lg:gap-8">
               <div className="relative w-2/3 mx-auto sm:mx-0 sm:w-full lg:max-w-[60%]">
@@ -126,7 +126,7 @@ const Content = () => {
           </div>
 
           <div className=" pt-8">
-            <div className=" text-3xl font-semibold pb-7 ">
+            <div className="text-2xl md:text-3xl font-semibold pb-5 md:pb-7 ">
               {/* {jobsData.length} total position */}
               {show.length} total positions
             </div>

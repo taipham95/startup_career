@@ -1,4 +1,4 @@
-import React, { useContext, useContext, useEffect, useRef, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";

@@ -6,6 +6,7 @@ import { MultiSelect } from "react-multi-select-component";
 import SwitchButton from "../../components/SwitchButton/SwitchButton";
 import { CareersContext } from "../../Context/CareersContext";
 import { dataService } from "../../services/dataService";
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 import "./JobForm.css";
@@ -14,7 +15,7 @@ const JobForm = (props) => {
   const navigate = useNavigate();
 
   const { onUpdateJobs } = useContext(CareersContext);
-  const { jobDetail, jobId } = props && props;  
+  const { jobDetail, jobId } = props && props;
   const tag1 = jobDetail
     ? jobTags.filter((item) => item.value == jobDetail.tags[0])
     : [];
@@ -110,16 +111,22 @@ const JobForm = (props) => {
       setUploadError(true);
     }
     if (!uploadErr) {
-      if(!jobId) {
+      if (!jobId) {
         resetForm();
         showAlert("New job created successfully!");
-      }      
-      else showAlert("Job updated successfully!");
+      } else showAlert("Job updated successfully!");
     }
   };
 
   return (
-    <div id="#editor-container" className="h-full w-full mx-auto">
+    <motion.div
+      id="#editor-container"
+      className="h-full w-full mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.05, duration: 0.35 }}
+    >
       <div className="job-form w-full h-full mx-auto">
         <form
           className="w-full flex flex-col gap-6 h-full bg-white px-4 md:px-6 py-4 mx-auto"
@@ -229,15 +236,24 @@ const JobForm = (props) => {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="min-w-fit w-fit mx-auto text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-3xl text-base px-5 py-3 text-center"
-          >
-            {jobId ? "Update job" : "Save job"}
-          </button>
+          <div className="w-full flex flex-row mx-auto gap-4 justify-center">
+            <button
+              type="button"
+              className="min-w-fit w-fit text-[#0fafda] border-[#0fafda] border-2 focus:ring-0 focus:outline-none focus:ring-transparent dark:focus:ring-transparent hover:border-rose-500 hover:text-rose-500 font-medium rounded-3xl text-base px-5 py-3 text-center transition-all duration-300"
+              onClick={() => navigate("/admin/jobs")}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="min-w-fit w-fit text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-0 focus:outline-none focus:ring-transparent dark:focus:ring-transparent font-medium rounded-3xl text-base px-5 py-3 text-center"
+            >
+              {jobId ? "Update job" : "Save job"}
+            </button>
+          </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

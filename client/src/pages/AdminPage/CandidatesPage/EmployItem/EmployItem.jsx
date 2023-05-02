@@ -6,18 +6,19 @@ import Tooltip from "../../../../components/Tooltip/Tooltip";
 const EmployItem = (props) => {
   const navigate = useNavigate();
   const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  // console.log(personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], ""))
+  
   const { employee } = props;
-  const { personal, profile, experience, teamLead, _id, status, salary } = employee;
+  const { personal, profile, experience, teamLead, _id, status, salary } =
+    employee;
+  const { resumeLink } = profile;
+  const { firstName } = personal;
   const onViewDetail = () => {
     navigate(`/admin/candidates/${_id}/edit`);
   };
 
-  const onViewResume = () => {
-    const {resumeLink} = profile;
-    const {firstName} = personal;
-    console.log({firstName,resumeLink});
-  }
+  /* const onViewResume = () => {
+    console.log({ firstName, resumeLink });
+  }; */
 
   let fullName = personal?.lastName + " " + personal?.firstName;
 
@@ -69,7 +70,7 @@ const EmployItem = (props) => {
           "None Status"
         )}
       </td>
-      <td className="flex w-1/8 px-3 py-3 justify-center gap-2">
+      <td className="flex w-1/8 px-3 py-3 justify-center items-center gap-2">
         <Tooltip message="View Detail">
           <FontAwesomeIcon
             icon={faEye}
@@ -79,12 +80,14 @@ const EmployItem = (props) => {
           />
         </Tooltip>
         <Tooltip message="View Resume">
-          <FontAwesomeIcon
-            icon={faFilePdf}
-            size="md"
-            className="cursor-pointer text-sky-400 hover:text-sky-600"
-            onClick={() => onViewResume()}
-          />
+          <a href={resumeLink} target="_blank" rel="noreferrer">
+            <FontAwesomeIcon
+              icon={faFilePdf}
+              size="md"
+              className="cursor-pointer text-sky-400 hover:text-sky-600"
+              // onClick={() => onViewResume()}
+            />
+          </a>
         </Tooltip>
       </td>
     </tr>

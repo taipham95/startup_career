@@ -73,12 +73,9 @@ const LoginForm = (props) => {
       </div>
 
       <button className="
-          flex
-          w-full h-10
+          flex py-3 px-16 mt-8
           place-content-center place-items-center place-self-center 
-          font-semibold text-blue-500
-          bg-white rounded-full
-          hover:text-lg hover:font-semibold hover:text-white hover:bg-gradient-to-r from-[#72afd3] to-[#37ecba]
+          font-semibold text-white bg-gradient-to-r from-[#72afd3] to-[#37ecba] rounded-full
           focus:opacity-75 focus:text-sm focus:font-bold"
         type="submit">LOG IN</button>
     </form>
