@@ -2,7 +2,7 @@ import React from "react";
 import "./SwitchButton.css";
 
 const SwitchButton = (props) => {
-  const { isAvailable, handleSwitch } = props;
+  const { isAvailable, handleSwitch, switchValue} = props;
   return (
     <>
       <input
@@ -22,7 +22,7 @@ const SwitchButton = (props) => {
             isAvailable ? "p-6" : "pl-[3.25rem]"
           } text-white transition-all duration-300 ease-in-out`}
         >
-          {isAvailable ? "Yes" : "No"}
+          {isAvailable ? switchValue[0] : switchValue[1]}
         </span>
         <span className={`react-switch-button`}></span>
       </label>

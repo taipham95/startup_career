@@ -1,77 +1,97 @@
-import React, { useState } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useRoutes } from "react-router-dom";
-const EmployItem=(props)=>{
-  const f=new Intl.NumberFormat("en-us");
-  const navigate=useNavigate();
-    const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    // console.log(personal.lastName.split(" ").reduce((acc, cur) => acc += cur[0], ""))
-    const {employee} = props
-    const { personal,experience, teamLead , _id , status, salary } = employee
-    const onclick=()=>{
-      // navigate(`/candidates/${_id}/edit`);
-      navigate(`/admin/candidates/${_id}/edit`)
-      
-    }
+import appService from "../../../../services/appService.js";
+import Tooltip from "../../../../components/Tooltip/Tooltip";
+const EmployItem = (props) => {
+  const navigate = useNavigate();
+  const bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   
-    let name=(personal?.lastName + " " + personal?.firstName);
+  const { employee } = props;
+  const { personal, profile, experience, teamLead, _id, status, salary } =
+    employee;
+  const { resumeLink } = profile;
+  const currency = salary.replace(/\d/g, "").trim();
+  const onViewDetail = () => {
+    navigate(`/admin/candidates/${_id}/edit`);
+  };
 
-        return(
-         
+  /* const onViewResume = () => {
+    console.log({ firstName, resumeLink });
+  }; */
 
-          <tr onClick={onclick} className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            {/* <Link to={`/candidates/${_id}/edit`}> */}
+  let fullName = personal?.lastName + " " + personal?.firstName;
 
-                          <th
-                            scope="row"
-                            className="flex items-center px-6 py-1 text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            <div className={`w-12 h-12 flex justify-center items-center rounded-full text-xl text-white uppercase`}
-                            style={{
-                              background: bgColor
-                            }}
-                            >
-                        {name?.split(" ").reduce((acc, cur) => { console.log("cur",cur); if(cur=='') return acc; else return acc += cur[0];}, "")}
+  return (
+    <tr className="border-b-[1px] border-sky-200 dark:bg-gray-200 dark:border-gray-700 hover:bg-sky-50 dark:hover:bg-gray-600">
+      <td
+        scope="row"
+        className="flex items-center px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white"
+      >
+        <div
+          className={`w-12 h-12 flex justify-center items-center rounded-full text-xl text-white uppercase`}
+          style={{
+            background: bgColor,
+          }}
+        >
+          {fullName?.split(" ").reduce((acc, cur) => {
+            // console.log("cur", cur);
+            if (cur == "") return acc;
+            else return (acc += cur[0]);
+          }, "")}
+        </div>
+        {/* cho-nay-chua-hieu-tai-sao-sai */}
 
-                              </div>
-                            {/* cho-nay-chua-hieu-tai-sao-sai */}
-
-                            <div className="text-xs font-semibold pl-3">
-                              {personal?.lastName + " " + personal?.firstName}
-                            </div>
-
-
-                          </th>
-                          <td class="px-6 py-4 text-xs">{personal?.headline?personal.headline:"Fresher Software"}</td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{teamLead?teamLead:"None TeamLead"}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            {/* <div class="text-xs ">{item.salary}</div> */}
-                            <div class="text-xs ">{salary?f.format(salary.slice(0,salary.length-4))+salary.slice(salary.length-4, salary.length):"None"}</div>
-                          </td>
-                          {/* <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offset}</div>
-                          </td>
-                          <td class="px-6 py-4">
-                            <div class="text-xs ">{item.offcycle}</div>
-                          </td> */}
-                          <td class="pl-6 pr-2 py-4">
-                            {status ? (
-                              status=="ONBOARDING"?
-                              <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                                {status}
-                              </mark>
-                              :
-                              <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
-                                {status}
-                              </mark>
-                            ) : (
-                              "None Status"
-                            )}
-                          </td>
-                          {/* </Link> */}
-            </tr>
-
-        )
-}
+        <div className="w-3/8 text-xs font-semibold pl-3">
+          {personal?.lastName + " " + personal?.firstName}
+        </div>
+      </td>
+      <td className="w-1/8 px-4 py-2 text-xs">
+        {experience ? experience.title : "Non title"}
+      </td>
+      <td className="w-1/8 px-4 py-2">
+        <div className="text-xs ">{teamLead ? teamLead : "None TeamLead"}</div>
+      </td>
+      <td className="w-1/8 px-6 py-4">
+        <div className="text-xs ">{appService.convertCurrency(Number(salary.replace(currency, "")), currency&&currency )}</div>
+      </td>
+      <td className="text-xs w-1/8 px-2 py-4">
+        {status ? (
+          status == "ONBOARDING" ? (
+            <mark className="px-3 py-2 font-semibold bg-sky-100 text-sky-600 rounded-md">
+              {status}
+            </mark>
+          ) : (
+            <mark className="px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
+              {status}
+            </mark>
+          )
+        ) : (
+          "None Status"
+        )}
+      </td>
+      <td className="flex w-1/8 px-3 py-3 justify-center items-center gap-2">
+        <Tooltip message="View Detail">
+          <FontAwesomeIcon
+            icon={faEye}
+            size="md"
+            className="cursor-pointer text-sky-400 hover:text-sky-600"
+            onClick={() => onViewDetail()}
+          />
+        </Tooltip>
+        <Tooltip message="View Resume">
+          <a href={resumeLink} target="_blank" rel="noreferrer">
+            <FontAwesomeIcon
+              icon={faFilePdf}
+              size="md"
+              className="cursor-pointer text-sky-400 hover:text-sky-600"
+              // onClick={() => onViewResume()}
+            />
+          </a>
+        </Tooltip>
+      </td>
+    </tr>
+  );
+};
 export default EmployItem;

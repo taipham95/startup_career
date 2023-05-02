@@ -1,12 +1,12 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-
+// import useFetchAllEmploy from "../../../../hooks/useFetchAllEmploy";
 import { CareersContext } from "../../../../Context/CareersContext";
+import EmployService from "../../../../services/employSevice";
 
-function Items({ currentItems }) {
- 
+function Items({ currentItems }) {    
   return (
     <>
       {currentItems &&
@@ -69,21 +69,19 @@ function Items({ currentItems }) {
 
 
 function EmployeesStatus({ itemsPerPage }) {
+  const {employee} = useContext(CareersContext);  
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
-  // const [employees, setEmployees] = useState([]);
-  // const { employees } = useContext(CareersContext)
-
+  const [employees, setEmploysData] = useState(employee);  
   const [itemOffset, setItemOffset] = useState(0);
-  const { employee } = useContext(CareersContext)
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployees = employee?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employee?.length / itemsPerPage);
+  const currentEmployeess = employees.length && employees.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(employees.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -143,7 +141,7 @@ console.log(employee)
                 </tr>
               </thead>
               <tbody>
-                <Items currentItems={currentEmployees} />
+                <Items currentItems={currentEmployeess} />
               </tbody>
             </table>
             

@@ -16,6 +16,7 @@ const Select = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const btnRef = useRef();
+  const prevState= useRef(true);
 
   /* fetch all countries */
   const fetchData = async () => {
@@ -76,7 +77,10 @@ const Select = (props) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (prevState.current) {
+      prevState.current = false;
+      fetchData();
+    }    
   }, []);
 
   useEffect(() => {

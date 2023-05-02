@@ -42,20 +42,20 @@ const LoginRegisterPage = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-white flex place-content-center place-items-center">  {/* PAGE-BACKGROUND */}
+    <div className="w-screen h-screen bg-gradient-to-r to-[#00c6fb] from-[#005bea] flex place-content-center place-items-center">  {/* PAGE-BACKGROUND */}
 
-      <div className="max-w-sm min-h-[400px] w-3/5 h-3/5 bg-gradient-to-r to-[#00c6fb] from-[#005bea] rounded-lg border shadow-blue-500/50 shadow-lg flex-col flex
-      place-content-center place-items-center py-5 relative"> {/* FORM-CONTAINER */}
+      <div className="max-w-sm min-h-[400px] w-3/5 h-3/5 text-gray-800 bg-white rounded-lg flex flex-col justify-between
+      place-items-center pb-6"> {/* FORM-CONTAINER */}
         
-        <div className="flex flex-row place-content-center w-11/12 h-auto absolute top-5"> {/* FORM-SWITCHER */}
+        <div className="flex flex-row w-full"> {/* FORM-SWITCHER */}
           <button /* LOGIN-BUTTON */
-            className={showLogin ? 'active w-36 h-10 bg-white text-blue-500 rounded-md font-semibold' : 'text-white w-36 h-10 font-semibold'}
+            className={showLogin ? 'active w-1/2 h-10 bg-white text-sky-500 border-b border-b-sky-500 font-semibold rounded-tl-lg' : 'w-1/2 bg-sky-400 text-white h-10 font-light rounded-tl-lg'}
             onClick={handleLoginClick}
           >
             LOGIN
           </button>
           <button /* REGISTER-BUTTON */
-            className={!showLogin ? 'active w-36 h-10 bg-white text-blue-500 rounded-md font-semibold' : 'text-white w-36 h-10 font-semibold'}
+            className={!showLogin ? 'active w-1/2 h-10 bg-white text-sky-500 border-b border-b-sky-500 font-semibold rounded-tr-lg' : 'w-1/2 bg-sky-400 text-white h-10 font-light rounded-tr-lg'}
             onClick={handleRegisterClick}
           >
             REGISTER
@@ -68,16 +68,16 @@ const LoginRegisterPage = () => {
           <RegisterForm/>
         )}
 
-        <div className="flex place-content-center place-items-center absolute bottom-5">
+        <div className="flex place-content-center place-items-center">
           {showLogin ? (
             <div>
               Don't have an account?{' '}
-              <button className="text-white hover:underline" onClick={handleRegisterClick}>Register</button>
+              <button className="text-sky-500 hover:underline" onClick={handleRegisterClick}>Register</button>
             </div>
           ) : (
             <div>
               Already have an account?{' '}
-              <button className="text-white hover:underline" onClick={handleLoginClick}>Log in</button>
+              <button className="text-sky-500 hover:underline" onClick={handleLoginClick}>Log in</button>
             </div>
           )}
         </div>
