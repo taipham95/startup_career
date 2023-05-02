@@ -1,38 +1,18 @@
-
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import { CareersContext } from "../../../Context/CareersContext";
-import EmployItem from "./EmployItem/EmployItem";
+import UserItem from "./UserItem/UserItem";
 import { Link } from "react-router-dom";
 const CandidatesPage = () => {
-
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
   const [check, setCheck] = useState(true);
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
-  const { employee } = useContext(CareersContext)
-  console.log(employee);
-  // const [sortedArray, setSortedArray] = useState([...employee]); 
-
-  // const [sortedArray, setSortedArray] = useState(employee.slice());
-
-
-
-
-
-  // const handleSort = () => {
-  //   const newArray = [...employee];
-  //   newArray.sort((a, b) => b.localeCompare(a));
-  //   setSortedArray(newArray);
-  // };
-
-  // const handleReverse = () => {
-  //   setSortedArray([...sortedArray].reverse());
-  // };
-
+  const { user } = useContext(CareersContext)
+  console.log(user);
   const handleChangeVal = (e) => {
     setVal(e.target.value);
   };
@@ -42,45 +22,20 @@ const CandidatesPage = () => {
   const handleSort2 = (e) => {
     setSort2(e.target.value);
   };
-
-  // useEffect(() => {
-  //   const newArray = [...employee];
-  //   // console.log(newArray)
-  //   newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
-  //   // console.log("day la newArray", newArray);
-
-  //   if (sort2 == "Z - A") {
-  //     setSortedArray(newArray);
-  //     console.log(sortedArray);
-  //   } else if (sort2 == "A - Z") {
-  //     setSortedArray(newArray.reverse());
-  //     console.log(sortedArray);
-  //   } else if (sort2 == "Sort Name") {
-  //     setSortedArray([...employee]);
-  //   }
-  // }, [sort2]);
-
-  // console.log("day la employee : ", employee)
-
+  console.log("day la user : ", user)
   const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employee?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employee?.length / itemsPerPage);
-
-  // Invoke when user click to request another page.
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentuserss = user?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(user?.length / itemsPerPage);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % employee.length;
-    // console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
+    const newOffset = (event.selected * itemsPerPage) % user.length;
+    console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
     setItemOffset(newOffset);
   };
-  const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
-
+  const [sortedArray, setSortedArray] = useState(currentuserss?.slice());
   useEffect(() => {
-    const newArray = [...currentEmployeess? currentEmployeess : ''];
-    // console.log(newArray)
-    newArray.sort((a, b) => b?.personal.lastName.localeCompare(a?.personal?.lastName));
-    // console.log("day la newArray", newArray);
-
+    const newArray = [...currentuserss? currentuserss : ''];
+    newArray.sort((a, b) => b?.username.localeCompare(a?.username));
     if (sort2 == "Z - A") {
       setSortedArray(newArray);
       console.log(sortedArray);
@@ -88,29 +43,21 @@ const CandidatesPage = () => {
       setSortedArray(newArray.reverse());
       console.log(sortedArray);
     } else if (sort2 == "Sort Name") {
-      setSortedArray([...currentEmployeess]);
+      setSortedArray([...currentuserss]);
     }
   }, [sort2]);
-
   useEffect(() => {
-    setSortedArray([...currentEmployeess?.slice()])
-  }, [currentEmployeess?.length])
-
+    setSortedArray([...currentuserss?.slice()])
+  }, [currentuserss?.length])
   console.log("day la sortarray : ", sortedArray)
-
-
-
-
-  
   return (
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       <section className="px-4 py-2">
         <div className="">
-          <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900">
+          <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
             <div>
-              <p className="font-semibold">Candidate List</p>
+              <p className="font-semibold">Employees</p>
             </div>
-
             {check ? (
               <button
                 onClick={() => setCheck(false)}
@@ -134,8 +81,8 @@ const CandidatesPage = () => {
                 <div className="pt-[1px]">Filter & Sort</div>
               </button>
             ) : (
-              <div className="w-3/6 flex justify-around">
-                <div className="relative w-3/6">
+              <div className="w-3/5 flex justify-around">
+                <div className="relative w-3/5">
                   <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
@@ -163,11 +110,6 @@ const CandidatesPage = () => {
                     required
                   />
                 </div>
-                {/* <select value={sort1} onChange={handleSort1} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ">
-                      <option selected value="">Sort Salary</option>
-                      <option value="High - Low">High - Low</option>
-                      <option value="Low - High">Low - High</option>
-                    </select> */}
                 <select
                   value={sort2}
                   onChange={handleSort2}
@@ -183,63 +125,33 @@ const CandidatesPage = () => {
               </div>
             )}
           </div>
-          <div className="relative overflow-x-auto rounded-lg w-full">
-            <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-white bg-sky-400 border-[1.5px] border-sky-400 border-b-0 dark:bg-sky-200 dark:text-gray-500">
+          <div className="relative m-auto overflow-x-auto border-[1.5px] rounded-lg w-[80%]">
+          <table className="w-full   text-sm text-center text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" className="w-3/8 px-3 py-3 font-semibold">
-                    Name
+                  <th scope="col" className="px-3 py-3 font-semibold">
+                    Username
                   </th>
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
-                    Job Title
+                  <th scope="col" className="px-3 py-3 font-semibold">
+                    Email
                   </th>
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
-                    Department
-                  </th>
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
-                    Salary
-                  </th>
-                  {/* <th scope="col" class="px-3 py-3 font-semibold">
-                    Recurring
-                  </th>
-
                   <th scope="col" class="px-3 py-3 font-semibold">
-                    Unpaid
-                  </th> */}
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
-                    Status
-                  </th>
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
-                    &nbsp;
+                    Role
                   </th>
                 </tr>
               </thead>
-              <tbody className="border-[1.5px] border-t-0 border-sky-200">
-
+              <tbody>
                 {
-
-                  // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
-                  sortedArray
-                    // employee
-                    // currentEmployeess
-                    .filter((item) => {
-                      return (item.personal.lastName+" "+item.personal.firstName)
-                        .toLowerCase()
-                        .includes(val.toLowerCase()) 
-                    })
-
+                    sortedArray
                     ?.map((item) => {
 
                       return (
-                        // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <EmployItem key={item._id} employee={item} />
+                        <UserItem key={item._id} employee={item} />
                       )
                     })
                 }
               </tbody>
             </table>
-
             <nav
         className="flex items-center justify-between py-2 pt-1 pl-2"
         aria-label="Table navigation"
@@ -247,16 +159,15 @@ const CandidatesPage = () => {
         <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
           Showing{" "}
           <span className="font-semibold text-gray-900 dark:text-white">
-            {endOffset >= employee?.length
-              ? `${itemOffset + 1}-${employee?.length}`
+            {endOffset >= user?.length
+              ? `${itemOffset + 1}-${user?.length}`
               : `${itemOffset + 1}-${endOffset}`}
           </span>{" "}
           of{" "}
           <span className="font-semibold text-gray-900 dark:text-white">
-            {employee?.length}
+            {user?.length}
           </span>
         </span>
-
         <ReactPaginate
           breakLabel="..."
           nextLabel=">"
@@ -273,16 +184,10 @@ const CandidatesPage = () => {
           activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
         />
       </nav>
-
-
-
           </div>
         </div>
       </section>
-      
     </div>
   );
 };
-
-
 export default CandidatesPage;

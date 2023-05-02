@@ -7,14 +7,14 @@ import EmployService from "../../services/employSevice";
 import Swal from "sweetalert2";
 
 
-const ApplyForm = () => {
+const ApplyForm = (props) => {
   const [personal, setInfo] = useState({});
   const [profile, setProfile] = useState({});
   const [showEducation, setShowEducation] = useState(false);
   const [showExp, setShowExp] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
   const [uploadErr, setUploadError] = useState("");
-
+  const {param, jobTitle}=props;
   const showAlert = (mess) => {
     Swal.fire({
       icon: "success",
@@ -41,6 +41,8 @@ const ApplyForm = () => {
 
   const onHandleInfo = (response) => {
     setInfo({ ...personal, ...response });
+    // setInfo({ ...personal, headline:jobTitle });
+    // console.log("thong tin day ne : ", personal)
   };
 
   const onHandleProfile = (response) => {    
@@ -73,26 +75,32 @@ const ApplyForm = () => {
     e.preventDefault();
     setCoverLetter("");
   };
-
   const handleSubmit = (e) => {
-    e.preventDefault();            
-    const userInfo = { personal, profile, coverLetter} ;
-    // console.log("userInfo", userInfo);
+    e.preventDefault();
+    
+    const updatedPersonal = { ...personal, headline: jobTitle };
+    setInfo(updatedPersonal);
+    
+    const userInfo = { personal: updatedPersonal, profile, coverLetter };
+    console.log("userInfo", userInfo);
+    
     try {
       EmployService.postApply(userInfo);
       setUploadError(false);
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setUploadError(true);
     }
-    if(!uploadErr) {
+    
+    if (!uploadErr) {
       showAlert("Submit successfully!");
     }
+    
     setInfo({});
     setProfile({});
     setCoverLetter("");
   };
+  
 
   return (
     <>
@@ -140,7 +148,7 @@ const ApplyForm = () => {
                   value={personal["email"]}
                   onHandleInfo={onHandleInfo}
                 />
-                <Input
+                {/* <Input
                   type="text"
                   text="Headline"
                   inputName="headline"
@@ -148,7 +156,7 @@ const ApplyForm = () => {
                   value={personal["headline"]}
                   onHandleInfo={onHandleInfo}
                   option={true}
-                />
+                /> */}
               </div>
 
               <DropdownInput

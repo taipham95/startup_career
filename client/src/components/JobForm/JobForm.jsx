@@ -96,11 +96,10 @@ const JobForm = (props) => {
 
     try {
       if (jobId) {
-        console.log(newJob);
         await dataService.updateJob(jobId, newJob);
         onUpdateJobs(newJob);
         setTimeout(() => {
-          navigate("/jobs");
+          navigate("/admin/jobs");
         }, 2000);
       } else {
         await dataService.postJob(newJob);
@@ -120,7 +119,7 @@ const JobForm = (props) => {
   };
 
   return (
-    <div id="#editor-container" className="h-screen w-full mx-auto">
+    <div id="#editor-container" className="h-full w-full mx-auto">
       <div className="job-form w-full h-full mx-auto">
         <form
           className="w-full flex flex-col gap-6 h-full bg-white px-4 md:px-6 py-4 mx-auto"
@@ -153,6 +152,7 @@ const JobForm = (props) => {
                 <SwitchButton
                   isAvailable={available}
                   handleSwitch={() => setAvailable(!available)}
+                  switchValue={["Yes", "No"]}
                 />
               </div>
             </div>

@@ -69,8 +69,11 @@ const createJob = async (req: any, res: any) => {
 
     await job.save();
 
+    const newDataJob = await Job.find();
+
     res.json({
       message: "Success Create New Job",
+      newData: newDataJob,
     });
   } catch (error: any) {
     res.status(400).json({

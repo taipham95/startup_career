@@ -35,10 +35,10 @@ const Jobs = () => {
   const showMore = () => {
     setVisibleCount(visibleCount + 4); // Tăng số lượng phần tử hiển thị lên 5
   };
-
+console.log("data",jobsData)
   let show=jobsData
-  .filter((item) => {
-    return item.title.toLowerCase().includes(key.toLowerCase());
+  ?.filter((item) => {
+    return item?.title?.toLowerCase()?.includes(key.toLowerCase());
   })
   .filter(
     (item) =>
@@ -46,21 +46,21 @@ const Jobs = () => {
         item.location
           .toLowerCase()
           .includes(select1.toLowerCase()) ||
-        item.tags[0]
+        item.tags[1]
           .toLowerCase()
           .includes(select1.toLowerCase())) &&
       (select2 === "" ||
-        item.tags[1].toLowerCase().includes(select2.toLowerCase()))
+        item.tags[0].toLowerCase().includes(select2.toLowerCase()))
   )
   
   return (
     <div>
-      {jobsData ? (
-        <div className="w-2/3 m-auto">
-          <div className=" flex justify-between mt-20 mb-8">
-            <div className="w-88 flex  justify-around ">
-              <div className="relative w-1/3">
-                <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      {jobsData.length > 0 ? (
+        <div className="mt-20 mb-8 px-10 min-[900px]:px-14">
+          <div className="">
+            <div className="flex text-xs sm:text-sm min-[900px]:text-base flex-col min-[900px]:flex-row justify-center gap-4">
+              <div className="relative w-2/3 mx-auto min-[900px]:mx-0 min-[900px]:w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg
                     aria-hidden="true"
                     className="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -82,7 +82,7 @@ const Jobs = () => {
                   onChange={handleChangeKey}
                   type="search"
                   id="default-search"
-                  className=" block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className=" block w-full py-[0.75rem] min-[900px]:py-4 px-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search..."
                   required
                 />
@@ -92,7 +92,7 @@ const Jobs = () => {
                 value={select1}
                 onChange={handleChangeSelect1}
                 id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
+                className="w-2/3 min-[900px]:w-full py-[0.75rem] min-[900px]:max-w-[160px] min-[900px]:max-w-full mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option selected value="">
                   Location
@@ -105,7 +105,7 @@ const Jobs = () => {
                 value={select2}
                 onChange={handleChangeSelect2}
                 id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/5"
+                className="w-2/3 min-[900px]:w-full py-[0.75rem] min-[900px]:max-w-[160px] min-[900px]:max-w-full mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option selected value="">
                   Department
@@ -121,53 +121,47 @@ const Jobs = () => {
                 <option value="Legal">Legal</option>
                 <option value="Product">Product</option>
               </select>
+              <div className="flex justify-center">
+                <button
+                  onClick={handleReset}
+                  className="text-blue-500 text-sm font-medium whitespace-nowrap"
+                >
+                  Reset Filter
+                </button>
+              </div>
             </div>
-            <button
-              onClick={handleReset}
-              className="text-blue-500 text-base font-medium"
-            >
-              Reset Filter
-            </button>
           </div>
 
-          <div className=" p-2 ">
-            <div className=" text-3xl font-bold border-b-2 pb-7 ">
+          <div className=" pt-8">
+            <div className=" text-3xl font-semibold pb-7 ">
               {/* {jobsData.length} total position */}
-
-              {show.length} total position
-
+              {show.length} total positions
             </div>
 
-            {
-              
-              show.length==0?(<h1>No result</h1>):
-              (
-                show
-                .slice(0, visibleCount)
-                
-              .map((item) => {
-               
-                return (
-                  <Link to={`/update-job/${item._id}`}>
-                    <CardItem
-                      id={item._id}
-                      title={item.title}
-                      location={item.location}
-                      tags={item.tags}
-                    />
+            <div>
+              {show.length == 0 ? (
+                <h1>No result</h1>
+              ) : (
+                show.slice(0, visibleCount).map((item, idx) => {
+                  return (
+                    <Link to={`/careers/${item._id}`} key={idx} className="cursor-pointer flex p-6 drop-shadow-[0px_8px_30px_#DEE6F1] border-t first:border-b-[#C5CEE0] last:border-b hover:border-transparent hover:border-0 hover:rounded-2xl hover:shadow-[0px_8px_30px_#DEE6F1] transition-all duration-200">
+                      <CardItem
+                        id={item._id}
+                        title={item.title}
+                        location={item.location}
+                        tags={item.tags}
+                      />
                     </Link>
-                );
-                
-              })
-              )
-              
-            }
+                  );
+                })
+              )}
+            </div>
           </div>
           {visibleCount < jobsData.length && (
-            <div class="flex items-center justify-center svelte-1jp7mce">
+            <div className="flex items-center justify-center svelte-1jp7mce">
               <button
                 onClick={showMore}
-                class="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
+                className="text-[#4C98FF] cursor-pointer text-center font-semibold mt-[28px] text-base svelte-1jp7mce"
               >
                 Show more
               </button>

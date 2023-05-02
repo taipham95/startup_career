@@ -1,4 +1,16 @@
+import { createContext, useReducer , useContext } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 const SearchAndInforAdmin = () => {
+  const { state : { username , role } } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    window.location.href = '/admin/login';
+  }
+
+  
   return (
     <section className="h-[70px] flex items-center min-w-[600px] border-b-slate-300 border-b-[1px]">
       <form className="w-3/4 pl-3 ">
@@ -67,24 +79,12 @@ const SearchAndInforAdmin = () => {
           alt=""
         ></img>
         <div className="text-sm dark:text-white">
-          <div className="font-semibold pb-1">Thanh Tai</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">Admin</div>
+          <div className="font-semibold pb-1">{username?.toUpperCase()}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{role?role : ''}</div>
         </div>
         </div>
-        <button>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          className="w-5 h-5 stroke-slate-400 mr-4"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-          />
-        </svg>
+        <button onClick={handleLogout}>
+        <FontAwesomeIcon className="text-3xl hover:text-red-600 pr-5" icon={faRightFromBracket} />
         </button>
       </div>
     </section>
