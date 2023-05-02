@@ -37,7 +37,10 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    handleFetchJobs();
+    if (prevState.current) {
+      prevState.current = false;
+      handleFetchJobs();
+    }
   }, [state]);
 
   return (
