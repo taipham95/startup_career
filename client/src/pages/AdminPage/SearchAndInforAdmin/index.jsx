@@ -1,18 +1,19 @@
-import { createContext, useReducer , useContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 const SearchAndInforAdmin = () => {
-  const { state : { username , role } } = useContext(AuthContext)
+  const {
+    state: { username, role },
+  } = useContext(AuthContext);
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    window.location.href = '/admin/login';
-  }
+    localStorage.removeItem("accessToken");
+    window.location.href = "/admin/login";
+  };
 
-  
   return (
-    <section className="h-[70px] flex items-center min-w-[600px] border-b-slate-300 border-b-[1px]">
+    <section className="h-[70px] flex flex-row items-center min-w-[600px] border-b-slate-300 border-b-[1px]">
       <form className="w-3/4 pl-3 ">
         <label
           htmlFor="default-search"
@@ -71,20 +72,25 @@ const SearchAndInforAdmin = () => {
         <div className="absolute inline-flex items-center justify-center w-2 h-2 text-xs font-bold text-white bg-red-500  rounded-full top-2 right-2 dark:border-gray-900"></div>
       </button>
       <div className="h-8 w-0 border-r-[1.5px]"></div>
-<div className="flex justify-between items-center" >
-      <div className="flex items-center space-x-4 pl-5 min-w-[250px]">
-        <img
-          className="w-9 h-9 rounded-full object-cover"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/330px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg"
-          alt=""
-        ></img>
-        <div className="text-sm dark:text-white">
-          <div className="font-semibold pb-1">{username?.toUpperCase()}</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">{role?role : ''}</div>
-        </div>
+      <div className="flex flex-row justify-between content-center items-center h-full">
+        <div className="flex items-center space-x-4 pl-5 min-w-[250px]">
+          <img
+            className="w-9 h-9 rounded-full object-cover"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/330px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg"
+            alt=""
+          ></img>
+          <div className="text-sm dark:text-white">
+            <div className="font-semibold pb-1">{username?.toUpperCase()}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">
+              {role ? role : ""}
+            </div>
+          </div>
         </div>
         <button onClick={handleLogout}>
-        <FontAwesomeIcon className="text-3xl hover:text-red-600 pr-5" icon={faRightFromBracket} />
+          <FontAwesomeIcon
+            className="text-3xl hover:text-red-600 pr-5"
+            icon={faRightFromBracket}
+          />
         </button>
       </div>
     </section>
