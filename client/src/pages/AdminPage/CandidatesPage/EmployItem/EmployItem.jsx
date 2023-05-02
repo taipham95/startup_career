@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useRoutes } from "react-router-dom";
+import appService from "../../../../services/appService.js";
 import Tooltip from "../../../../components/Tooltip/Tooltip";
 const EmployItem = (props) => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const EmployItem = (props) => {
   const { personal, profile, experience, teamLead, _id, status, salary } =
     employee;
   const { resumeLink } = profile;
-  const { firstName } = personal;
+  const currency = salary.replace(/\d/g, "").trim();
   const onViewDetail = () => {
     navigate(`/admin/candidates/${_id}/edit`);
   };
@@ -53,7 +54,7 @@ const EmployItem = (props) => {
         <div className="text-xs ">{teamLead ? teamLead : "None TeamLead"}</div>
       </td>
       <td className="w-1/8 px-6 py-4">
-        <div className="text-xs ">{salary}</div>
+        <div className="text-xs ">{appService.convertCurrency(Number(salary.replace(currency, "")), currency&&currency )}</div>
       </td>
       <td className="text-xs w-1/8 px-2 py-4">
         {status ? (
