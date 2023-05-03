@@ -13,14 +13,10 @@ const EmployItem = (props) => {
     employee;
   const { resumeLink } = profile;
   const currency = salary.replace(/\d/g, "").trim();
-<<<<<<< HEAD
-  const localeSalary = appService.convertCurrency(Number(salary.replace(currency, "")), currency);  
-=======
-  console.log(currency);
   const localeSalary = appService.convertCurrency(Number(salary.replace(currency, "")), currency);
-  console.log(localeSalary); 
 
->>>>>>> update currency function
+  
+
   const onViewDetail = () => {
     navigate(`/admin/candidates/${_id}/edit`);
   };

@@ -8,13 +8,8 @@ const appService = {
     // return a string => use the replace() method
     return formatCurrency
       .format(amount)
-<<<<<<< HEAD
-      .replace(/(?:\.)00/g, "");
-      // .replace(/₫/g, "");
-=======
       .replace(/(?:\.)00/g, "")
       .replace(/₫/g, "");
->>>>>>> update currency function
   }
 }
 
