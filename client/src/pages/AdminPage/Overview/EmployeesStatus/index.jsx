@@ -1,17 +1,16 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 
 import { CareersContext } from "../../../../Context/CareersContext";
+import StatusBadge from "../../../../components/StatusBadge/StatusBadge";
 
 function Items({ currentItems }) {
- 
   return (
     <>
       {currentItems &&
         currentItems.map((item) => (
-         
           <tr
             key={item._id}
             className="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -33,40 +32,30 @@ function Items({ currentItems }) {
               >
                 {(item.personal?.firstName + " " + item.personal?.lastName)
                   .split(" ")
-                  .reduce((acc, cur) => cur==""? acc :(acc += cur[0]) , "")
-                  
-                  }
+                  .reduce(
+                    (acc, cur) => (cur == "" ? acc : (acc += cur[0])),
+                    ""
+                  )}
               </div>
 
               <div className="text-xs font-semibold pl-3">
                 {item.personal?.firstName + " " + item.personal?.lastName}
               </div>
             </th>
-            <td className="px-6 py-4 text-xs">{item.personal?.headline?item.personal?.headline:"None title"}</td>
+            <td className="px-6 py-4 text-xs">
+              {item.personal?.headline ? item.personal?.headline : "None title"}
+            </td>
             <td className="px-6 py-4">
               <div className="text-xs ">{item.teamLead} </div>
             </td>
             <td className="pl-6 pr-2 py-4">
-            {item.status ? (
-                              item.status=="ONBOARDING"?
-                              <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                                {item.status}
-                              </mark>
-                              :
-                              <mark class="text-xs px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
-                                {item.status}
-                              </mark>
-                            ) : (
-                              "None Status"
-                            )}
-            </td> 
+              <StatusBadge status={item.status} />
+            </td>
           </tr>
         ))}
     </>
   );
 }
-
-
 
 function EmployeesStatus({ itemsPerPage }) {
   // Here we use item offsets; we could also use page offsets
@@ -75,7 +64,7 @@ function EmployeesStatus({ itemsPerPage }) {
   // const { employees } = useContext(CareersContext)
 
   const [itemOffset, setItemOffset] = useState(0);
-  const { employee } = useContext(CareersContext)
+  const { employee } = useContext(CareersContext);
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
@@ -93,7 +82,7 @@ function EmployeesStatus({ itemsPerPage }) {
     );
     setItemOffset(newOffset);
   };
-console.log(employee)
+  console.log(employee);
   return (
     <>
       <section className="px-4 py-2 flex justify-between">
@@ -146,7 +135,7 @@ console.log(employee)
                 <Items currentItems={currentEmployees} />
               </tbody>
             </table>
-            
+
             <nav
               className="flex items-center justify-between py-2 pt-1 pl-2"
               aria-label="Table navigation"

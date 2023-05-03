@@ -65,7 +65,7 @@ const CandidatesPage = () => {
         <div className="">
           <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
             <div>
-              <p className="font-semibold">Employees</p>
+              <p className="text-xl lg:text-2xl text-neutral-500 font-semibold">Employees</p>
             </div>
             {check ? (
               <button

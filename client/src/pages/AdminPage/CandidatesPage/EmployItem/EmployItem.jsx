@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFilePdf } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate, useRoutes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import StatusBadge from "../../../../components/StatusBadge/StatusBadge";
 import appService from "../../../../services/appService.js";
 import Tooltip from "../../../../components/Tooltip/Tooltip";
 const EmployItem = (props) => {
@@ -59,19 +60,7 @@ const EmployItem = (props) => {
         <div className="text-xs ">{localeSalary}</div>
       </td>
       <td className="text-xs w-1/8 px-2 py-4">
-        {status ? (
-          status == "ONBOARDING" ? (
-            <mark className="px-3 py-2 font-semibold bg-sky-100 text-sky-600 rounded-md">
-              {status}
-            </mark>
-          ) : (
-            <mark className="px-3 py-2 bg-orange-100 text-orange-600 font-semibold rounded-md">
-              {status}
-            </mark>
-          )
-        ) : (
-          "None Status"
-        )}
+        <StatusBadge status={status}/>
       </td>
       <td className="flex w-1/8 px-3 py-3 justify-center items-center gap-2">
         <Tooltip message="View Detail">
