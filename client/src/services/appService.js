@@ -1,7 +1,7 @@
 const appService = {
   convertCurrency: (amount, currency) => {
     // Format the price above to USD, INR, EUR using their locales.
-    let formatCurrency = new Intl.NumberFormat('de-DE', {
+    let formatCurrency = new Intl.NumberFormat('en-GB', {
       style: "currency",
       currency: `${currency}`,
     });
