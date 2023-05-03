@@ -27,17 +27,16 @@ function JobDetail() {
             className="md:bg-[url('https://skymavis.com/_app/immutable/assets/axie-concept-f5e52a79.png')] 
           max-md:bg-[url('https://skymavis.com/_app/immutable/assets/ImageBackgroundJobDetailMobile-2dbabf27.png')]
           page-header flex flex-col items-center text-center p-[34px_28px_60px] md:p-[55px_28px_75px] xl:p-[55px_28px_75px] bg-no-repeat bg-cover bg-center transition-all w-full"
+          page-header flex flex-col items-center text-center p-[34px_28px_60px] md:p-[55px_28px_75px] xl:p-[55px_28px_75px] bg-no-repeat bg-cover bg-center transition-all w-full"
           >
             <div className=" 	flex gap-2">
               {joblist2?.tags.map((tag, idx) => {
                 return (
                   <p
-                    key={idx}
-                    className={`${
-                      idx === 0
-                        ? "bg-sky-500 text-white"
-                        : "bg-[#dee6f1] text-sky-500"
-                    } text-sm font-[500] pt-1 pb-1 pl-3 pr-3 rounded-md whitespace-nowrap`}
+                  key={idx}
+                  className={`${
+                    idx === 0 ? "bg-sky-500 text-white" : "bg-[#dee6f1] text-sky-500"
+                  } text-sm font-[500] pt-1 pb-1 pl-3 pr-3 rounded-md whitespace-nowrap`}
                   >
                     {tag}
                   </p>
