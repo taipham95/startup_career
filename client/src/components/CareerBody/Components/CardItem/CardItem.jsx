@@ -15,8 +15,8 @@ const CardItem = (props) => {
               <button
                 key={idx}
                 className={`${
-                  idx === 0 ? "bg-blue-500" : "bg-gray-400"
-                } text-sm font-normal text-white pt-1 pb-1 pl-3 pr-3 rounded-md whitespace-nowrap`}
+                  idx === 0 ? "bg-sky-500 text-white" : "bg-[#dee6f1] text-sky-500"
+                } text-sm font-[500]  pt-1 pb-1 pl-3 pr-3 rounded-md whitespace-nowrap`}
               >
                 {tag}
               </button>

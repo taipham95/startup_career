@@ -26,21 +26,25 @@ function JobDetail() {
           <header
             className="md:bg-[url('https://skymavis.com/_app/immutable/assets/axie-concept-f5e52a79.png')] 
           max-md:bg-[url('https://skymavis.com/_app/immutable/assets/ImageBackgroundJobDetailMobile-2dbabf27.png')]
-          page-header flex flex-col items-center text-center p-[64px_20px] xl:p-[95px_28px_95px] 2xl:p-[95px_500px_95px] 3xl:p-[95px_600px_95px] bg-no-repeat bg-cover bg-center transition-all w-full"
+          page-header flex flex-col items-center text-center p-[34px_28px_60px] md:p-[55px_28px_75px] xl:p-[55px_28px_75px] bg-no-repeat bg-cover bg-center transition-all w-full"
           >
             <div className=" 	flex gap-2">
               {joblist2?.tags.map((tag, idx) => {
                 return (
                   <p
                     key={idx}
-                    className="inline-block whitespace-nowrap rounded-[0.35rem] bg-sky-500 px-[0.8rem] py-[0.5rem] text-center align-baseline text-[0.75em] font-bold leading-none text-white"
+                    className={`${
+                      idx === 0
+                        ? "bg-sky-500 text-white"
+                        : "bg-[#dee6f1] text-sky-500"
+                    } text-sm font-[500] pt-1 pb-1 pl-3 pr-3 rounded-md whitespace-nowrap`}
                   >
                     {tag}
                   </p>
                 );
               })}
             </div>
-            <div className="text-4xl xl:text-5xl font-bold mb-5 mt-5">
+            <div className="text-3xl xl:text-4xl xl:leading-normal font-bold mb-5 mt-5 max-w-[75%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] 2xl:max-w-[35%]">
               {joblist2?.title}
             </div>
             {joblist2?.location}

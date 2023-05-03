@@ -13,6 +13,7 @@ const EmployItem = (props) => {
     employee;
   const { resumeLink } = profile;
   const currency = salary.replace(/\d/g, "").trim();
+  const localeSalary = appService.convertCurrency(Number(salary.replace(currency, "")), currency);  
   const onViewDetail = () => {
     navigate(`/admin/candidates/${_id}/edit`);
   };
@@ -54,7 +55,7 @@ const EmployItem = (props) => {
         <div className="text-xs ">{teamLead ? teamLead : "None TeamLead"}</div>
       </td>
       <td className="w-1/8 px-6 py-4">
-        <div className="text-xs ">{appService.convertCurrency(Number(salary.replace(currency, "")), currency&&currency )}</div>
+        <div className="text-xs ">{localeSalary}</div>
       </td>
       <td className="text-xs w-1/8 px-2 py-4">
         {status ? (

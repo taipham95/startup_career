@@ -43,29 +43,7 @@ const CandidatesPage = () => {
     setSelect1(e.target.value);
     console.log(select1);
   };
-  const [fiat,setFiat]=useState();
-  const changeFiat=(tmp)=>{
-    setFiat(tmp)
-  }
-
-  // useEffect(() => {
-  //   const newArray = [...employee];
-  //   // console.log(newArray)
-  //   newArray.sort((a, b) => b.personal.lastName.localeCompare(a.personal.lastName));
-  //   // console.log("day la newArray", newArray);
-
-  //   if (sort2 == "Z - A") {
-  //     setSortedArray(newArray);
-  //     console.log(sortedArray);
-  //   } else if (sort2 == "A - Z") {
-  //     setSortedArray(newArray.reverse());
-  //     console.log(sortedArray);
-  //   } else if (sort2 == "Sort Name") {
-  //     setSortedArray([...employee]);
-  //   }
-  // }, [sort2]);
-
-  // console.log("day la employee : ", employee)
+  
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
