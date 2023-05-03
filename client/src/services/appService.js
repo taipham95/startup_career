@@ -9,7 +9,7 @@ const appService = {
     return formatCurrency
       .format(amount)
       .replace(/(?:\.)00/g, "")
-      .replace(/₫/g, "");
+      // .replace(/₫/g, "");
   }
 }
 
