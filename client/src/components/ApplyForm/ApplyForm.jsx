@@ -75,13 +75,22 @@ const ApplyForm = (props) => {
     e.preventDefault();
     setCoverLetter("");
   };
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    const timeLineInit = [
+      {
+        nameStep: 0,
+        created_at: Date.now(),
+      }
+    ]
+
     const updatedPersonal = { ...personal, headline: jobTitle };
     setInfo(updatedPersonal);
     
-    const userInfo = { personal: updatedPersonal, profile, coverLetter };
+    const userInfo = { personal: updatedPersonal, profile, coverLetter , timeLine : timeLineInit };
     console.log("userInfo", userInfo);
     
     try {
