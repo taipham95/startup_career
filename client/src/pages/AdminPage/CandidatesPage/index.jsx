@@ -143,8 +143,8 @@ const CandidatesPage = () => {
                 <div className="pt-[1px]">Filter & Sort</div>
               </button>
             ) : (
-              <div className="w-3/6 flex justify-around">
-                <div className="relative w-3/6">
+              <div className="w-2/3 flex justify-between">
+              <div className="relative w-4/5">
                   <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
@@ -247,7 +247,9 @@ const CandidatesPage = () => {
                         item.personal.firstName
                       )
                         .toLowerCase()
-                        .includes(val.toLowerCase());
+                        .includes(val.toLowerCase())&& (select1 === "" ||
+                        item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
+                    
                     })
                     ?.map((item) => {
                       return (
