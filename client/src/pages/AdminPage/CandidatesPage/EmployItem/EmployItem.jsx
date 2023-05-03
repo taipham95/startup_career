@@ -48,7 +48,7 @@ const EmployItem = (props) => {
         </div>
       </td>
       <td className="w-1/8 px-4 py-2 text-xs">
-        {experience ? experience.title : "Non title"}
+        {personal ? personal.headline : "Non title"}
       </td>
       <td className="w-1/8 px-4 py-2">
         <div className="text-xs ">{teamLead ? teamLead : "None TeamLead"}</div>
