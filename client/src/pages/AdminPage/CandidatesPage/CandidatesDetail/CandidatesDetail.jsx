@@ -111,7 +111,7 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
                     </button>
                 </div>
             </div>
-            <div className=" text-xs grid grid-cols-3 ">
+            <div className=" text-xs grid grid-cols-2 ">
                 <div className=" w-[80%]">
                     <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">EMPLOYEE DETAILS</div>
                     <div className="pl-3 pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
@@ -137,12 +137,7 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
                     <div className="relative  pr-3 pt-2 pb-2 bg-slate-50  rounded-[10px] mb-4 ">
                         <div className="text-gray-400 pb-1 pl-3">EXPERIENCES</div>
                         <div className="pl-3">{employData?.experience?.title?employData?.experience?.title:"1 year"}</div>
-                        <div className="reab absolute ">
-                            <div className="button-wrapper">
-                                <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
-                                <button onClick={() => { navigate("/admin/candidates") }} className="button-can p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
-                            </div>
-                        </div>
+                       
                     </div>
 
                 </div>
@@ -180,7 +175,7 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
                     <select
                      value={select2}
                      onChange={handleChangeSelect2}
-                    className="bg-white-50 mr-1 border-sky-300 border-none text-red-600 mb-5  font-bold text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-4 px-3">
+                    className="bg-white-50 mr-1 border-sky-300 border-none text-grey-600 mb-5  font-bold text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-4 px-3">
                         <option>Fiat</option>
                         <option>VND</option>
                         <option>USD</option>
@@ -241,7 +236,7 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
 
 
                 {/* <div className="text-center">ba</div> */}
-                <div className=" w-[80%]">
+                {/* <div className=" w-[80%]">
                     <div className=" text-base font-medium text-gray-400 pb-4 pt-2 ">ONBOARDING</div>
                     <div className="relative max-w-sm mb-3">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -308,7 +303,7 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
 
 
 
-                </div>
+                </div> */}
 
             </div>
             {/* <div className="pl-[35%] p-2">
@@ -316,6 +311,12 @@ employForm.salary=employForm?.salary?.slice(0,employForm?.salary.length-4)
                 <button onClick={() => { navigate("/candidates") }} className="w-[20%] rounded-[10px] ml-[5%] bg-slate-100 text-black text-base font-bold pt-2 pb-2">CANCEL</button>
 
             </div> */}
+             <div className="reab absolute ">
+                            <div className="button-wrapper">
+                                <button onClick={onSubmitHandler} className="p-2 pl-10 pr-10 mr-3 rounded-[10px] bg-black text-white text-base font-bold  ">SAVE</button>
+                                <button onClick={() => { navigate("/admin/candidates") }} className="button-can p-2 pl-7 pr-7 rounded-[10px]  bg-slate-100 text-black text-base font-bold ">CANCEL</button>
+                            </div>
+                        </div>
         </div>
     )
 }

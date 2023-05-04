@@ -1,12 +1,11 @@
-
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import { CareersContext } from "../../../Context/CareersContext";
 import EmployItem from "./EmployItem/EmployItem";
+import StatusProcess from "./StatusProcess"
 import { Link } from "react-router-dom";
 const CandidatesPage = () => {
-
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
   const [check, setCheck] = useState(true);
@@ -14,15 +13,11 @@ const CandidatesPage = () => {
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
   const [select1, setSelect1] = useState("");
-  const { employee } = useContext(CareersContext)
+  const { employee } = useContext(CareersContext);
   console.log(employee);
-  // const [sortedArray, setSortedArray] = useState([...employee]); 
+  // const [sortedArray, setSortedArray] = useState([...employee]);
 
   // const [sortedArray, setSortedArray] = useState(employee.slice());
-
-
-
-
 
   // const handleSort = () => {
   //   const newArray = [...employee];
@@ -47,10 +42,10 @@ const CandidatesPage = () => {
     setSelect1(e.target.value);
     console.log(select1);
   };
-  const [fiat,setFiat]=useState();
-  const changeFiat=(tmp)=>{
-    setFiat(tmp)
-  }
+  const [fiat, setFiat] = useState();
+  const changeFiat = (tmp) => {
+    setFiat(tmp);
+  };
 
   // useEffect(() => {
   //   const newArray = [...employee];
@@ -69,7 +64,7 @@ const CandidatesPage = () => {
   //   }
   // }, [sort2]);
 
-  console.log("day la employee : ", employee)
+  console.log("day la employee : ", employee);
 
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -79,15 +74,19 @@ const CandidatesPage = () => {
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % employee.length;
-    console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
+    console.log(
+      `DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
     setItemOffset(newOffset);
   };
   const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
 
   useEffect(() => {
-    const newArray = [...currentEmployeess? currentEmployeess : ''];
+    const newArray = [...(currentEmployeess ? currentEmployeess : "")];
     // console.log(newArray)
-    newArray.sort((a, b) => b?.personal.lastName.localeCompare(a?.personal?.lastName));
+    newArray.sort((a, b) =>
+      b?.personal.lastName.localeCompare(a?.personal?.lastName)
+    );
     // console.log("day la newArray", newArray);
 
     if (sort2 == "Z - A") {
@@ -102,15 +101,11 @@ const CandidatesPage = () => {
   }, [sort2]);
 
   useEffect(() => {
-    setSortedArray([...currentEmployeess?.slice()])
-  }, [currentEmployeess?.length])
+    setSortedArray([...currentEmployeess?.slice()]);
+  }, [currentEmployeess?.length]);
 
-  console.log("day la sortarray : ", sortedArray)
+  console.log("day la sortarray : ", sortedArray);
 
-
-
-
-  
   return (
     <div className="bg-white px-4 pt-3 pb-4 flex-1">
       <section className="px-4 py-2">
@@ -177,24 +172,24 @@ const CandidatesPage = () => {
                       <option value="High - Low">High - Low</option>
                       <option value="Low - High">Low - High</option>
                     </select> */}
-                     <select
-                value={select1}
-                onChange={handleChangeSelect1}
-                id="countries"
-                className="bg-gray-50 border mr-[10%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
-              >
-                <option selected value="">
-                  Department
-                </option>
-                <option value="Art">Art</option>
-                <option value="Engineer">Engineer</option>
-                <option value="Finance">Finance</option>
-                <option value="Game Production">Game Production</option>
-                <option value="Growth">Growth</option>
-                <option value="HR & Admin">HR & Admin</option>
-                <option value="Legal">Legal</option>
-                <option value="Product">Product</option>
-              </select>
+                <select
+                  value={select1}
+                  onChange={handleChangeSelect1}
+                  id="countries"
+                  className="bg-gray-50 border mr-[10%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
+                >
+                  <option selected value="">
+                    Department
+                  </option>
+                  <option value="Art">Art</option>
+                  <option value="Engineer">Engineer</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Game Production">Game Production</option>
+                  <option value="Growth">Growth</option>
+                  <option value="HR & Admin">HR & Admin</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Product">Product</option>
+                </select>
                 <select
                   value={sort2}
                   onChange={handleSort2}
@@ -232,75 +227,74 @@ const CandidatesPage = () => {
                 </tr>
               </thead>
               <tbody>
-
                 {
-
                   // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
                   sortedArray
                     // employee
                     // currentEmployeess
-                    .filter((item) => 
-                     ((item.personal.lastName+" "+item.personal.firstName)
-                        .toLowerCase()
-                        .includes(val.toLowerCase()) ) && (select1 === "" ||
-                        item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
+                    .filter(
+                      (item) =>
+                        (item.personal.lastName + " " + item.personal.firstName)
+                          .toLowerCase()
+                          .includes(val.toLowerCase()) &&
+                        (select1 === "" ||
+                          item?.teamLead
+                            ?.toLowerCase()
+                            .includes(select1?.toLowerCase()))
                     )
 
                     ?.map((item) => {
-
                       return (
                         // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                         <EmployItem key={item._id} employee={item} />
-                      )
+                      );
                     })
                 }
               </tbody>
             </table>
 
             <nav
-        className="flex items-center justify-between py-2 pt-1 pl-2"
-        aria-label="Table navigation"
-      >
-        <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
-          Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
-            {endOffset >= employee?.length
-              ? `${itemOffset + 1}-${employee?.length}`
-              : `${itemOffset + 1}-${endOffset}`}
-          </span>{" "}
-          of{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
-            {employee?.length}
-          </span>
-        </span>
+              className="flex items-center justify-between py-2 pt-1 pl-2"
+              aria-label="Table navigation"
+            >
+              <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                Showing{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {endOffset >= employee?.length
+                    ? `${itemOffset + 1}-${employee?.length}`
+                    : `${itemOffset + 1}-${endOffset}`}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {employee?.length}
+                </span>
+              </span>
 
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          pageCount={pageCount}
-          previousLabel="<"
-          marginPagesDisplayed={2}
-          renderOnZeroPageCount={null}
-          className="inline-flex items-center -space-x-px"
-          pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          nextLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          previousLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
-        />
-      </nav>
-
-
-
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={1}
+                pageCount={pageCount}
+                previousLabel="<"
+                marginPagesDisplayed={2}
+                renderOnZeroPageCount={null}
+                className="inline-flex items-center -space-x-px"
+                pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                nextLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                previousLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
+              />
+            </nav>
           </div>
         </div>
       </section>
-      
+     <StatusProcess/>
+     
     </div>
   );
 };
 
-
 export default CandidatesPage;
+
