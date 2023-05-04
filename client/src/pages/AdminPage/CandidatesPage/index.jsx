@@ -14,10 +14,14 @@ const CandidatesPage = () => {
   const [sort2, setSort2] = useState("");
 
   const [select1, setSelect1] = useState("");
+<<<<<<< HEAD
   const [select2, setSelect2] = useState("");
   const { employee } = useContext(CareersContext)
+=======
+  const { employee } = useContext(CareersContext);
+>>>>>>> 5be0fc2 (add timeline status v1)
   console.log(employee);
-  // const [sortedArray, setSortedArray] = useState([...employee]); 
+  // const [sortedArray, setSortedArray] = useState([...employee]);
 
   // const [sortedArray, setSortedArray] = useState(employee.slice());
 
@@ -305,3 +309,4 @@ const CandidatesPage = () => {
 };
 
 export default CandidatesPage;
+
