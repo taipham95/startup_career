@@ -6,18 +6,19 @@ import EmployItem from "./EmployItem/EmployItem";
 import { motion } from "framer-motion";
 
 const CandidatesPage = () => {
+  const { employee } = useContext(CareersContext);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
   const [check, setCheck] = useState(true);
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
+  const [sortedArray, setSortedArray] = useState(employee?.slice());
 
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
-  const { employee } = useContext(CareersContext)
   console.log(employee);
-  // const [sortedArray, setSortedArray] = useState([...employee]); 
+  // const [sortedArray, setSortedArray] = useState([...employee]);
 
   // const [sortedArray, setSortedArray] = useState(employee.slice());
 
@@ -52,8 +53,10 @@ const CandidatesPage = () => {
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentEmployeess = employee?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(employee?.length / itemsPerPage);
+  const currentEmployeess = sortedArray?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(sortedArray?.length / itemsPerPage);
+
+console.log(currentEmployeess)
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -61,10 +64,14 @@ const CandidatesPage = () => {
     // console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
     setItemOffset(newOffset);
   };
-  const [sortedArray, setSortedArray] = useState(currentEmployeess?.slice());
+
+
+
+
+  
 
   useEffect(() => {
-    const newArray = [...(currentEmployeess ? currentEmployeess : "")];
+    const newArray = [...(employee ? employee : "")];
     // console.log(newArray)
     newArray.sort((a, b) =>
       b?.personal.lastName.localeCompare(a?.personal?.lastName)
@@ -78,13 +85,13 @@ const CandidatesPage = () => {
       setSortedArray(newArray.reverse());
       console.log(sortedArray);
     } else if (sort2 == "Sort Name") {
-      setSortedArray([...currentEmployeess]);
+      setSortedArray([...employee]);
     }
   }, [sort2]);
 
   useEffect(() => {
-    setSortedArray([...currentEmployeess?.slice()]);
-  }, [currentEmployeess?.length]);
+    setSortedArray([...employee?.slice()]);
+  }, [employee?.length]);
 
   console.log("day la sortarray : ", sortedArray);
 
@@ -100,7 +107,9 @@ const CandidatesPage = () => {
         <div className="">
           <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900">
             <div>
-              <p className="text-xl lg:text-2xl text-neutral-500 font-semibold">Candidates</p>
+              <p className="text-xl lg:text-2xl text-neutral-500 font-semibold">
+                Candidates
+              </p>
             </div>
 
             {check ? (
@@ -216,7 +225,10 @@ const CandidatesPage = () => {
             <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400 rounded-lg border-collapse">
               <thead className="text-xs text-white bg-sky-400 border-b-0 dark:bg-sky-200 dark:text-gray-500">
                 <tr>
-                  <th scope="col" className="w-3/8 px-3 py-3 font-semibold rounded-tl-lg">
+                  <th
+                    scope="col"
+                    className="w-3/8 px-3 py-3 font-semibold rounded-tl-lg"
+                  >
                     Name
                   </th>
                   <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
@@ -231,7 +243,10 @@ const CandidatesPage = () => {
                   <th scope="col" className="w-1/8 px-3 py-3 font-semibold">
                     Status
                   </th>
-                  <th scope="col" className="w-1/8 px-3 py-3 font-semibold rounded-tr-lg">
+                  <th
+                    scope="col"
+                    className="w-1/8 px-3 py-3 font-semibold rounded-tr-lg"
+                  >
                     &nbsp;
                   </th>
                 </tr>
@@ -239,9 +254,9 @@ const CandidatesPage = () => {
               <tbody className="border-[1.5px] border-t-0 border-sky-200">
                 {
                   // sort2==="A - Z"||sort2==="Z - A"?sortedArray:employee
-                  sortedArray
+                  // sortedArray
                     // employee
-                    // currentEmployeess
+                    currentEmployeess
                     .filter((item) => {
                       return (
                         item.personal.lastName +
@@ -254,6 +269,7 @@ const CandidatesPage = () => {
                         (select1 === "" || item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
                         &&
                         (select2 === "" || item?.status?.toLowerCase().includes(select2?.toLowerCase()))
+
                     })
                     ?.map((item) => {
                       return (
@@ -288,7 +304,7 @@ const CandidatesPage = () => {
                 pageRangeDisplayed={1}
                 pageCount={pageCount}
                 previousLabel="<"
-                marginPagesDisplayed={2}
+                marginPagesDisplayed={5}
                 renderOnZeroPageCount={null}
                 className="inline-flex items-center -space-x-px"
                 pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
