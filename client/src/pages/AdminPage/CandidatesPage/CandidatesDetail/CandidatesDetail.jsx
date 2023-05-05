@@ -92,7 +92,7 @@ const CandidatesDetail = () => {
           employForm.salary.length - 3,
           employForm.salary.length
         ) == "USD" ||
-        employForm?.salary.slice(
+        employForm?.salary?.slice(
           employForm.salary.length - 3,
           employForm.salary.length
         ) == "GBP"

@@ -14,6 +14,7 @@ const CandidatesPage = () => {
   const [sort2, setSort2] = useState("");
 
   const [select1, setSelect1] = useState("");
+  const [select2, setSelect2] = useState("");
   const { employee } = useContext(CareersContext)
   console.log(employee);
   // const [sortedArray, setSortedArray] = useState([...employee]); 
@@ -43,7 +44,11 @@ const CandidatesPage = () => {
     setSelect1(e.target.value);
     console.log(select1);
   };
-  
+  const handleChangeSelect2 = (e) => {
+    setSelect2(e.target.value);
+    // console.log(select2);
+  };
+
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -122,7 +127,7 @@ const CandidatesPage = () => {
               </button>
             ) : (
               <div className="w-2/3 flex justify-between">
-              <div className="relative w-4/5">
+                <div className="relative w-4/5">
                   <div className=" absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
@@ -155,24 +160,43 @@ const CandidatesPage = () => {
                       <option value="High - Low">High - Low</option>
                       <option value="Low - High">Low - High</option>
                     </select> */}
-                     <select
-                value={select1}
-                onChange={handleChangeSelect1}
-                id="countries"
-                className="bg-gray-50 border mr-[10%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
-              >
-                <option selected value="">
-                  Department
-                </option>
-                <option value="Art">Art</option>
-                <option value="Engineer">Engineer</option>
-                <option value="Finance">Finance</option>
-                <option value="Game Production">Game Production</option>
-                <option value="Growth">Growth</option>
-                <option value="HR & Admin">HR & Admin</option>
-                <option value="Legal">Legal</option>
-                <option value="Product">Product</option>
-              </select>
+                <select
+                  value={select1}
+                  onChange={handleChangeSelect1}
+                  id="countries"
+                  className="bg-gray-50 border mr-[5%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
+                >
+                  <option selected value="">
+                    Department
+                  </option>
+                  <option value="Art">Art</option>
+                  <option value="Engineer">Engineer</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Game Production">Game Production</option>
+                  <option value="Growth">Growth</option>
+                  <option value="HR & Admin">HR & Admin</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Product">Product</option>
+                </select>
+                <select
+                  value={select2}
+                  onChange={handleChangeSelect2}
+                  id="countries"
+                  className="bg-gray-50 border mr-[5%] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-2/5"
+                >
+                  <option selected value="">
+                    Status
+                  </option>
+                  <option value="APPLIED">APPLIED</option>
+                  <option value="APPROVED">APPROVED</option>
+                  <option value="TESTING">TESTING</option>
+                  <option value="TESTED">TESTED</option>
+                  <option value="PASSED">PASSED</option>
+                  <option value="INTERVIEW">INTERVIEW</option>
+                  <option value="OFFERING">OFFERING</option>
+                  <option value="ONBOARDING">ONBOARDING</option>
+                  <option value="REJECT">REJECT</option>
+                </select>
                 <select
                   value={sort2}
                   onChange={handleSort2}
@@ -225,14 +249,14 @@ const CandidatesPage = () => {
                         item.personal.firstName
                       )
                         .toLowerCase()
-                        .includes(val.toLowerCase())&& (select1 === "" ||
-                        item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
-                    
+                        .includes(val.toLowerCase())
+                        &&
+                        (select1 === "" || item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
+                        &&
+                        (select2 === "" || item?.status?.toLowerCase().includes(select2?.toLowerCase()))
                     })
                     ?.map((item) => {
                       return (
-                        // <tr className="border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                         <EmployItem key={item._id} employee={item} />
                       );
                     })

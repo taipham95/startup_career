@@ -39,7 +39,7 @@ const ApplyPage = () => {
                 Back to Job Description
               </Link>
             </div>
-            <ApplyForm param={param} jobTitle={joblist2?.title} />
+            <ApplyForm param={param} jobTitle={joblist2?.title} team={joblist2?.tags[0]} />
           </div>
         </div>
       ) : (
