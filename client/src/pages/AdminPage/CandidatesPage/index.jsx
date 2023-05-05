@@ -18,6 +18,8 @@ const CandidatesPage = () => {
   const [select1, setSelect1] = useState("");
   const [select2, setSelect2] = useState("");
   console.log(employee);
+ const statusList=["RECEIVED CV","APPROVED","DO A TEST","DONE A TEST","AWAITING INTERVIEW","INTERVIEW","OFFERING","ONBOARDING","REJECT"]
+
   // const [sortedArray, setSortedArray] = useState([...employee]);
 
   // const [sortedArray, setSortedArray] = useState(employee.slice());
@@ -196,11 +198,11 @@ console.log(currentEmployeess)
                   <option selected value="">
                     Status
                   </option>
-                  <option value="APPLIED">APPLIED</option>
+                  <option value="RECEIVED CV">RECEIVED CV</option>
                   <option value="APPROVED">APPROVED</option>
-                  <option value="TESTING">TESTING</option>
-                  <option value="TESTED">TESTED</option>
-                  <option value="PASSED">PASSED</option>
+                  <option value="DO A TEST">DO A TEST</option>
+                  <option value="DONE A TEST">DONE A TEST</option>
+                  <option value="AWAITING INTERVIEW">AWAITING INTERVIEW</option>
                   <option value="INTERVIEW">INTERVIEW</option>
                   <option value="OFFERING">OFFERING</option>
                   <option value="ONBOARDING">ONBOARDING</option>
@@ -268,7 +270,7 @@ console.log(currentEmployeess)
                         &&
                         (select1 === "" || item?.teamLead?.toLowerCase().includes(select1?.toLowerCase()))
                         &&
-                        (select2 === "" || item?.status?.toLowerCase().includes(select2?.toLowerCase()))
+                        (select2 === "" || item?.isReject?statusList[8]:statusList[item?.timeLine.length-1].toLowerCase().includes(select2?.toLowerCase()))
 
                     })
                     ?.map((item) => {

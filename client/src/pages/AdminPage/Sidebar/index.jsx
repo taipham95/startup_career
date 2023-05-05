@@ -55,7 +55,7 @@ const Sidebar = () => {
             </div>
           </Link>
           <Link to={"/admin/employee"}>
-            <div className=" flex py-2 cursor-grab">
+            <div className=" flex py-2 cursor-grab hover:bg-gray-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
