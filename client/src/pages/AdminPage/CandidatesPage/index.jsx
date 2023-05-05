@@ -16,16 +16,7 @@ const CandidatesPage = () => {
   const [sortedArray, setSortedArray] = useState(employee?.slice());
 
   const [select1, setSelect1] = useState("");
-<<<<<<< HEAD
-<<<<<<< HEAD
   const [select2, setSelect2] = useState("");
-  const { employee } = useContext(CareersContext)
-=======
-  const { employee } = useContext(CareersContext);
->>>>>>> 5be0fc2 (add timeline status v1)
-=======
-  
->>>>>>> 3e6e951 (add timeline status v3)
   console.log(employee);
   // const [sortedArray, setSortedArray] = useState([...employee]);
 
@@ -54,14 +45,11 @@ const CandidatesPage = () => {
     setSelect1(e.target.value);
     console.log(select1);
   };
-<<<<<<< HEAD
   const handleChangeSelect2 = (e) => {
     setSelect2(e.target.value);
     // console.log(select2);
   };
 
-=======
->>>>>>> 3e6e951 (add timeline status v3)
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
