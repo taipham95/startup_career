@@ -39,5 +39,5 @@ export const data = {
 };
 
 export default function DoughnutChart() {
-  return <Doughnut options={options} data={data} />;
+  return <Doughnut className='' options={options} data={data} />;
 }
