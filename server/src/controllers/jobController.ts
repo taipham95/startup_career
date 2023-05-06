@@ -12,7 +12,11 @@ const fetchAllJob = async (req: any, res: any) => {
     }
 
     res.json({
+<<<<<<< HEAD
+      message: 'Success Get All Jobs',
+=======
       message: "Success Get All Jobs",
+>>>>>>> d91e5f34a10c129588e3e272e561a922c194fc56
       data: jobs,
     });
   } catch (error: any) {
@@ -42,7 +46,11 @@ const fetchJob = async (req: any, res: any) => {
     }
 
     res.json({
+<<<<<<< HEAD
+      message: 'Success Get Job',
+=======
       message: "Success Get Job",
+>>>>>>> d91e5f34a10c129588e3e272e561a922c194fc56
       data: job,
     });
   } catch (error: any) {
@@ -72,10 +80,17 @@ const createJob = async (req: any, res: any) => {
     const newDataJob = await Job.find();
 
     res.json({
+<<<<<<< HEAD
+      message: 'Success Create New Job',
+    })} 
+    
+    catch (error: any) {
+=======
       message: "Success Create New Job",
       newData: newDataJob,
     });
   } catch (error: any) {
+>>>>>>> d91e5f34a10c129588e3e272e561a922c194fc56
     res.status(400).json({
       message: error.toString(),
     });

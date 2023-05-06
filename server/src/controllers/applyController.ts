@@ -75,7 +75,69 @@ const createApply = async (req: any, res: any) => {
     await apply.save();
 
     res.json({
+<<<<<<< HEAD
+      message: 'Success Create New Application',
+    })} 
+    
+    catch (error: any) {
+    res.status(400).json({
+      message: error.toString(),
+    });
+  }
+};
+
+const updateApply= async (req:any, res:any)=>{
+
+  try {
+
+    const { id } = req.params;
+
+    const isValid = validationMongoId(id);
+
+    if(!isValid){
+      res.status(404).json({
+        message:"Apply is valid",
+      })
+    }
+    
+    const existingApply= await Applicant.findById(id)
+
+    if(!existingApply){
+      return res.status(404).json({
+         message:"Apply not exists",
+      })
+    }
+
+    await Applicant.findByIdAndUpdate(id,req.body);
+
+    res.json({
+      message: 'Success Update Application',
+    });
+  } catch (error:any){
+    res.status(400).json({
+      message: error.toString(),
+    })
+  }
+}
+
+
+const deleteApply = async (req: any, res: any) => {
+  try {
+    const { id } = req.params;
+    const isValid = validationMongoId(id);
+    if (!isValid) {
+      res.status(404).json({
+        message: 'Application is valid',
+      });
+    }
+
+    await Applicant.findByIdAndDelete(id);
+
+    res.json({
+      message: 'Success Delete Application',
+=======
       message: "Success Create New Application",
+>>>>>>> d91e5f34a10c129588e3e272e561a922c194fc56
     });
   } catch (error: any) {
     res.status(400).json({
