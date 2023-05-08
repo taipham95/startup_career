@@ -3,7 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import { CareersContext } from "../../../Context/CareersContext";
 import UserItem from "./UserItem/UserItem";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+;
 const CandidatesPage = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
@@ -11,7 +12,7 @@ const CandidatesPage = () => {
   const [val, setVal] = useState("");
   const [sort1, setSort1] = useState("");
   const [sort2, setSort2] = useState("");
-  const { user } = useContext(CareersContext)
+  const { user } = useContext(CareersContext);
   console.log(user);
   const handleChangeVal = (e) => {
     setVal(e.target.value);
@@ -22,19 +23,21 @@ const CandidatesPage = () => {
   const handleSort2 = (e) => {
     setSort2(e.target.value);
   };
-  console.log("day la user : ", user)
+  console.log("day la user : ", user);
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentuserss = user?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(user?.length / itemsPerPage);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % user.length;
-    console.log(`DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`);
+    console.log(
+      `DA FIX User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
     setItemOffset(newOffset);
   };
   const [sortedArray, setSortedArray] = useState(currentuserss?.slice());
   useEffect(() => {
-    const newArray = [...currentuserss? currentuserss : ''];
+    const newArray = [...(currentuserss ? currentuserss : "")];
     newArray.sort((a, b) => b?.username.localeCompare(a?.username));
     if (sort2 == "Z - A") {
       setSortedArray(newArray);
@@ -47,16 +50,22 @@ const CandidatesPage = () => {
     }
   }, [sort2]);
   useEffect(() => {
-    setSortedArray([...currentuserss?.slice()])
-  }, [currentuserss?.length])
-  console.log("day la sortarray : ", sortedArray)
+    setSortedArray([...currentuserss?.slice()]);
+  }, [currentuserss?.length]);
+  console.log("day la sortarray : ", sortedArray);
   return (
-    <div className="bg-white px-4 pt-3 pb-4 flex-1">
+    <motion.div
+      className="bg-white px-4 pt-3 pb-4 flex-1"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.05, duration: 0.35 }}
+    >
       <section className="px-4 py-2">
         <div className="">
           <div className="flex items-center justify-between pb-2 bg-white dark:bg-gray-900  ">
             <div>
-              <p className="font-semibold">Employees</p>
+              <p className="text-xl lg:text-2xl text-neutral-500 font-semibold">Employees</p>
             </div>
             {check ? (
               <button
@@ -126,7 +135,7 @@ const CandidatesPage = () => {
             )}
           </div>
           <div className="relative m-auto overflow-x-auto border-[1.5px] rounded-lg w-[80%]">
-          <table className="w-full   text-sm text-center text-gray-500 dark:text-gray-400">
+            <table className="w-full   text-sm text-center text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-3 py-3 font-semibold">
@@ -141,53 +150,47 @@ const CandidatesPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                    sortedArray
-                    ?.map((item) => {
-
-                      return (
-                        <UserItem key={item._id} employee={item} />
-                      )
-                    })
-                }
+                {sortedArray?.map((item) => {
+                  return <UserItem key={item._id} employee={item} />;
+                })}
               </tbody>
             </table>
             <nav
-        className="flex items-center justify-between py-2 pt-1 pl-2"
-        aria-label="Table navigation"
-      >
-        <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
-          Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
-            {endOffset >= user?.length
-              ? `${itemOffset + 1}-${user?.length}`
-              : `${itemOffset + 1}-${endOffset}`}
-          </span>{" "}
-          of{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
-            {user?.length}
-          </span>
-        </span>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          pageCount={pageCount}
-          previousLabel="<"
-          marginPagesDisplayed={2}
-          renderOnZeroPageCount={null}
-          className="inline-flex items-center -space-x-px"
-          pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          nextLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          previousLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
-        />
-      </nav>
+              className="flex items-center justify-between py-2 pt-1 pl-2"
+              aria-label="Table navigation"
+            >
+              <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                Showing{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {endOffset >= user?.length
+                    ? `${itemOffset + 1}-${user?.length}`
+                    : `${itemOffset + 1}-${endOffset}`}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {user?.length}
+                </span>
+              </span>
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={1}
+                pageCount={pageCount}
+                previousLabel="<"
+                marginPagesDisplayed={2}
+                renderOnZeroPageCount={null}
+                className="inline-flex items-center -space-x-px"
+                pageLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                nextLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                previousLinkClassName="px-2 py-2 text-xs text-gray-500 bg-white  border-gray-300 hover:bg-slate-100 hover:rounded-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                activeLinkClassName="px-2 py-2 text-xs text-gray-800 bg-white font-bold"
+              />
+            </nav>
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 export default CandidatesPage;

@@ -33,6 +33,11 @@ export interface IApplicant {
   teamLead: String;
   status: String;
   salary: String;
+  timeLine: [{
+    nameStep: string;
+    created_at: Date;
+  }];
+  isReject: Boolean;
 }
 // Schema is database combination of rules
 const applicantSchema: Schema = new mongoose.Schema({
@@ -68,6 +73,11 @@ const applicantSchema: Schema = new mongoose.Schema({
   teamLead: { type: String },
   status: { type: String },
   salary: { type: String },
+  timeLine: [{
+    nameStep: { type: String },
+    created_at: { type: Date },
+  }],
+  isReject: { type: Boolean , default: false },
 });
 
 const Applicant = mongoose.model<IApplicant>("Applicant", applicantSchema);

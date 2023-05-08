@@ -14,7 +14,7 @@ const ApplyForm = (props) => {
   const [showExp, setShowExp] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
   const [uploadErr, setUploadError] = useState("");
-  const {param, jobTitle}=props;
+  const {param, jobTitle, team}=props;
   const showAlert = (mess) => {
     Swal.fire({
       icon: "success",
@@ -75,13 +75,23 @@ const ApplyForm = (props) => {
     e.preventDefault();
     setCoverLetter("");
   };
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    const timeLineInit = [
+      {
+        nameStep: 0,
+        created_at: Date.now(),
+      }
+    ]
+
     const updatedPersonal = { ...personal, headline: jobTitle };
-    setInfo(updatedPersonal);
+    console.log("kq la:",updatedPersonal);
+    // setInfo(updatedPersonal);
     
-    const userInfo = { personal: updatedPersonal, profile, coverLetter };
+    const userInfo = { personal: updatedPersonal, profile, coverLetter ,  teamLead: team, timeLine : timeLineInit };
     console.log("userInfo", userInfo);
     
     try {

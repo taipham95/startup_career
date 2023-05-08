@@ -1,17 +1,18 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DoughnutChart from "../DoughnutChart";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 
 import { CareersContext } from "../../../../Context/CareersContext";
+import StatusBadge from "../../../../components/StatusBadge/StatusBadge";
 
 function Items({ currentItems }) {
+  const statusList=["RECEIVED CV","APPROVED","DO A TEST","DONE A TEST","AWAITING INTERVIEW","INTERVIEW","OFFERING","ONBOARDING","REJECT"]
  
   return (
     <>
       {currentItems &&
         currentItems.map((item) => (
-         
           <tr
             key={item._id}
             className="bg-white  border-b-[1.5px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -33,37 +34,34 @@ function Items({ currentItems }) {
               >
                 {(item.personal?.firstName + " " + item.personal?.lastName)
                   .split(" ")
-                  .reduce((acc, cur) => cur==""? acc :(acc += cur[0]) , "")
-                  
-                  }
+                  .reduce(
+                    (acc, cur) => (cur == "" ? acc : (acc += cur[0])),
+                    ""
+                  )}
               </div>
 
               <div className="text-xs font-semibold pl-3">
                 {item.personal?.firstName + " " + item.personal?.lastName}
               </div>
             </th>
-            <td className="px-6 py-4 text-xs">{item.coverLetter}</td>
-            <td className="px-6 py-4">
+            <td className="px-2 py-4 text-xs">
+              {item.personal?.headline ? item.personal?.headline : "None title"}
+            </td>
+            <td className="px-2 py-4">
               <div className="text-xs ">{item.teamLead} </div>
             </td>
-            <td className="pl-6 pr-2 py-4">
-              {item.status == "ONBOARDING" ? (
-                <mark className="text-xs px-3 py-2 font-semibold bg-green-100 text-green-600 rounded-md">
-                  {item?.status}
-                </mark>
-              ) : (
-                <mark className="text-xs px-3 py-2 font-semibold bg-orange-100 text-orange-600 rounded-md">
-                  {item?.status}
-                </mark>
-              )}
-            </td> 
+            <td className="pl-2 pr-2 py-4">
+              <StatusBadge class='text-'
+        status={
+          item.isReject?statusList[8]:statusList[item.timeLine.length-1]
+        }
+        />
+            </td>
           </tr>
         ))}
     </>
   );
 }
-
-
 
 function EmployeesStatus({ itemsPerPage }) {
   // Here we use item offsets; we could also use page offsets
@@ -72,25 +70,22 @@ function EmployeesStatus({ itemsPerPage }) {
   // const { employees } = useContext(CareersContext)
 
   const [itemOffset, setItemOffset] = useState(0);
-  const { employee } = useContext(CareersContext)
+  const { employee } = useContext(CareersContext);
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   // const currentEmployees=[1,2,3,4,5,6]
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentEmployees = employee?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(employee?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % employee?.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    
     setItemOffset(newOffset);
   };
-console.log(employee)
+  console.log(employee);
   return (
     <>
       <section className="px-4 py-2 flex justify-between">
@@ -100,32 +95,13 @@ console.log(employee)
               <p className="font-semibold">Employee Status</p>
             </div>
 
-            <button
-              type="button"
-              className="flex  text-slate-500 bg-white border border-gray-200 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-3 py-1 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5 pr-1"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
-                />
-              </svg>
-              <div className="pt-[1px]">Filter & Sort</div>
-            </button>
+          
           </div>
           <div className="relative overflow-x-auto border-[1.5px] rounded-lg ">
             <table className="w-full  text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
+              <thead className=" text-sm text-gray-500  bg-gray-100 border-b-[1.5px] dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" className="px-3 pl-5 py-3 font-semibold">
+                  <th scope="col" className="px-3 pl- py-3 font-semibold">
                     Employee Name
                   </th>
                   <th scope="col" className="px-3 pl-5 py-3 font-semibold">
@@ -134,7 +110,7 @@ console.log(employee)
                   <th scope="col" className="px-3 pl-5 py-3 font-semibold">
                     Team Lead
                   </th>
-                  <th scope="col" className="px-3  pl-5 py-3 font-semibold">
+                  <th scope="col" className="px-0  pl-5 py-3 font-semibold">
                     Status
                   </th>
                 </tr>
@@ -143,7 +119,7 @@ console.log(employee)
                 <Items currentItems={currentEmployees} />
               </tbody>
             </table>
-            
+
             <nav
               className="flex items-center justify-between py-2 pt-1 pl-2"
               aria-label="Table navigation"
